@@ -1,0 +1,81 @@
+script.
+  if (!window.liushen) {
+    window.liushen = {
+      saveData: (key, data) => {
+        localStorage.setItem(key, JSON.stringify({
+          time: Date.now(),
+          data: data
+        }));
+      },
+
+      loadData: (key, validTimeInMinutes) => {
+        let storedData = JSON.parse(localStorage.getItem(key));
+        if (storedData) {
+          let elapsedTime = Date.now() - storedData.time;
+          if (elapsedTime >= 0 && elapsedTime < validTimeInMinutes * 60000) {
+            return storedData.data;
+          }
+        }
+        return null;
+      },
+
+      runtime: () => {
+        const formatTime = (unit) => unit > 9 ? unit : "0" + unit;
+        const startTime = new Date('#{theme.footer_better.footer_bottom.runtime.time}').getTime();
+        const currentTime = Date.now();
+        let elapsedTimeInSeconds = Math.round((currentTime - startTime) / 1000);
+
+        let runtimeText = "本站已苟活：";
+        if (elapsedTimeInSeconds >= 86400) {
+          runtimeText += `${formatTime(Math.floor(elapsedTimeInSeconds / 86400))} 天 `;
+          elapsedTimeInSeconds %= 86400;
+        }
+        if (elapsedTimeInSeconds >= 3600) {
+          runtimeText += `${formatTime(Math.floor(elapsedTimeInSeconds / 3600))} 时 `;
+          elapsedTimeInSeconds %= 3600;
+        }
+        if (elapsedTimeInSeconds >= 60) {
+          runtimeText += `${formatTime(Math.floor(elapsedTimeInSeconds / 60))} 分 `;
+          elapsedTimeInSeconds %= 60;
+        }
+        runtimeText += `${formatTime(elapsedTimeInSeconds)} 秒`;
+
+        const runtimeElement = document.getElementById("runtime");
+        if (runtimeElement) {
+          runtimeElement.innerHTML = runtimeText;
+        }
+        setTimeout(window.liushen.runtime, 1000);
+      },
+
+      randomLink: () => {
+        let linksData = window.liushen.loadData("links", 30);
+        if (linksData) {
+          let linkElements = document.querySelectorAll("#friend-links-in-footer .footer-item");
+          if (!linkElements.length) return;
+
+          for (let i = 0; i < linkElements.length; i++) {
+            let randomIndex = Math.floor(Math.random() * linksData.length);
+            linkElements[i].innerText = linksData[randomIndex].name;
+            linkElements[i].href = linksData[randomIndex].link;
+            linksData.splice(randomIndex, 1);
+          }
+        } else {
+          fetch("/flink_count.json")
+            .then(response => response.json())
+            .then(data => {
+              window.liushen.saveData("links", data.link_list);
+              window.liushen.randomLink();
+            });
+        }
+      }
+    };
+  }
+
+  if (#{theme.pjax.enable}) {
+    window.liushen.randomLink();
+    document.addEventListener("DOMContentLoaded", window.liushen.randomLink);
+    window.liushen.runtime();
+  } else {
+    window.liushen.randomLink();
+    window.liushen.runtime();
+  }

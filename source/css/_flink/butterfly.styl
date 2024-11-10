@@ -1,0 +1,106 @@
+.butterfly-flink-list
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-start
+  margin: -0.5 * 16px
+  align-items: stretch
+
+  & > .flink-list-item
+    @extend .cardHover
+    float: left
+    line-height: 17px
+    -webkit-transform: translateZ(0)
+    overflow: hidden
+    background: var(--liushen-card-bg)
+    height: 100px;
+    padding: 10px;
+    margin: 0.5rem 0.25rem;
+    border-radius: 12px;
+    border: 1px solid var(--liushen-card-border)
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    
+    width: calc(100% / 5 - 0.5rem)
+    @media screen and (min-width: 2048px)
+      width: "calc(100% / 6 - %s)" % 16px
+    @media screen and (max-width: 768px)
+      width: "calc(100% / 4 - %s)" % 16px
+    @media screen and (max-width: 500px)
+      width: "calc(100% / 2 - %s)" % 16px
+
+    &:hover
+      background-color: var(--liushen-button-hover-bg)
+      .flink-item-info
+        .flink-item-name
+          color: #ffffff
+        .flink-item-desc
+          color: #E2E2E2
+
+      .flink-item-icon
+        width: 0;
+        height: 0;
+        margin-left: -10px;
+      
+
+    &:hover:before,
+    &:focus:before,
+    &:active:before
+      transform: scale(1)
+
+    a
+      text-decoration: none
+
+      .flink-item-icon
+        float: left
+        overflow: hidden
+        margin: 15px 10px
+        width: 60px
+        height: 60px
+        border-radius: 35px
+        transition: all .3s ease-out
+        margin: 8px 0 8px 0;
+        border-radius: 50%;
+        overflow: hidden;
+
+        img
+          width: 100%
+          height: 100%
+          transition: filter 375ms ease-in .2s, transform .3s
+          object-fit: cover
+
+      .img-alt
+        display: none
+
+    .flink-item-info
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 10px;
+      text-align: left;
+      flex-direction: column;
+
+      .flink-item-name
+        @extend .limit-one-line
+        color: var(--liushen-text)
+        padding: 12px 0 16px 0;
+        height: auto;
+        font-weight: bold
+        font-size: 1.2em
+        transition: color .3s ease-in-out;
+
+      .flink-item-desc
+        @extend .limit-one-line
+        padding: 0
+        color: var(--liushen-secondtext)
+        height: 35px
+        font-size: .93em
+        opacity: .7;
+        word-break: break-all;
+        white-space: break-spaces;
+        display: -webkit-box;
+        overflow: hidden;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        transition: color .3s ease-in-out;

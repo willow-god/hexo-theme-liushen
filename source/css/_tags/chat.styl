@@ -1,0 +1,77 @@
+.chatContainer
+    background: var(--card-bg)
+    addBorderRadius()
+    border: 1px solid var(--liushen-card-border)
+    overflow: hidden
+    margin: 0 0 16px
+    width: 100%
+
+    .chatBoxTitle
+        display: flex
+        justify-content: flex-start
+        background: var(--default-bg-color)
+        padding: 10px 10px
+        color: var(--white)
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+        i
+            font-size: 16px
+            margin: 0 10px
+        
+        .chatTitleText
+            flex: 1
+            font-size: 16px
+            white-space: nowrap; /* 不换行 */
+            overflow: hidden; /* 超出部分隐藏 */
+            text-overflow: ellipsis; /* 显示省略号 */
+
+.chatBox
+    padding: 20px 30px
+    box-sizing: border-box
+    max-height: 600px
+    overflow-y: auto
+    
+    +maxWidth768()
+        padding: 20px 10px
+        max-height: 400px
+
+.chatItem
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
+    margin: 20px 0
+
+    .chatAvatar
+        width: 40px
+        height: 40px
+        border-radius: 50% !important
+        margin: 5px 10px 0 0 !important
+    
+    .chatContentWrapper
+        display: flex
+        flex-direction: column
+        width: calc(100% - 110px)
+
+        .chatContent
+            background: var(--liushen-card-secondbg)
+            border: 1px solid var(--liushen-card-border)
+            padding: 10px
+            border-radius: 0 10px 10px 10px
+            width: fit-content
+            max-width: 100%
+            word-wrap: break-word
+
+    &.me
+        flex-direction: row-reverse
+
+        .chatAvatar
+            margin: 5px 0 0 10px !important
+
+        .chatContentWrapper
+            align-items: flex-end
+
+            .chatContent
+                background: var(--liushen-card-bg)
+                border-radius: 10px 0 10px 10px

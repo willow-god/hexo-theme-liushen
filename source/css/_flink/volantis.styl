@@ -1,0 +1,69 @@
+.volantis-flink-list
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-start
+  margin: -0.5 * 16px
+  align-items: stretch
+  
+  .flink-list-item
+    margin: 8px
+    width: "calc(100% / 4 - %s)" % 16px
+    @media screen and (min-width: 2048px)
+      width: "calc(100% / 5 - %s)" % 16px
+    @media screen and (max-width: 768px)
+      width: "calc(100% / 3 - %s)" % 16px
+    @media screen and (max-width: 500px)
+      width: "calc(100% / 2 - %s)" % 16px
+    display: block
+    line-height: 1.4
+    height 100%
+    .img
+      @extend .cardHover
+      height 150px
+      @media screen and (max-width: 450px)
+        height 130px
+      img
+        width: 100%
+        height 100%
+        pointer-events:none;
+        object-fit: cover
+
+    .info
+      margin-top: 8px
+      height: 55px
+      img
+        width: 32px
+        height: 32px
+        pointer-events:none;
+        border-radius: 16px !important
+        float: left
+        margin-right: 8px !important
+        transition: height 0.5s ease, width 0.5s ease, margin 0.5s ease !important
+      span
+        display: block
+      .title
+        font-weight: 600
+        font-size: var(--global-font-size)
+        color: #444
+        display: -webkit-box
+        -webkit-box-orient: vertical
+        overflow: hidden
+        -webkit-line-clamp: 1
+        transition: color 0.3s ease
+      .desc
+        font-size: var(--global-font-size)
+        word-wrap: break-word
+        line-height: 1.2
+        color: #888
+        display: -webkit-box
+        -webkit-box-orient: vertical
+        overflow: hidden
+        -webkit-line-clamp: 2
+    &:hover
+      .info
+        img
+          width: 0px
+          height: 0px
+          margin-right: 0px
+        .title
+          color: #ff5722

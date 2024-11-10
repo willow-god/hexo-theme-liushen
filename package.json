@@ -1,0 +1,32 @@
+{
+  "name": "hexo-theme-liushen",
+  "version": "5.0.0",
+  "description": "A Simple and Card UI Design theme for Hexo",
+  "main": "package.json",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "liushen",
+    "Card UI Design",
+    "LiuShen",
+    "hexo-theme-liushen"
+  ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/willow-god/hexo-theme-liushen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/willow-god/hexo-theme-liushen/issues",
+    "email": "01@liushen.fun"
+  },
+  "dependencies": {
+    "hexo-renderer-stylus": "^3.0.1",
+    "hexo-renderer-pug": "^3.0.0"
+  },
+  "homepage": "https://blog.liushen.fun",
+  "author": "LiuShen <01@liushen.fun>",
+  "license": "Apache-2.0"
+}

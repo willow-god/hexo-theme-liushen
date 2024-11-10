@@ -1,0 +1,54 @@
+#category-bar
+  padding 7px 11px
+  display flex
+  white-space nowrap
+  overflow hidden
+  transition 0.3s
+  height 50px
+  width 100%
+  justify-content space-between
+  user-select none
+  align-items center
+  margin-bottom 20px
+
+  .category-bar-right
+    display flex
+    border-radius 8px
+    align-items center
+
+    .category-bar-more
+      margin-left 4px
+      margin-right 4px
+      font-weight 700
+      border-radius 8px
+      padding 0 8px
+
+  .category-bar-items
+    width 100%
+    white-space nowrap
+    overflow-x scroll
+    scrollbar-width: none
+    -ms-overflow-style: none
+    overflow-y hidden
+    display flex
+    border-radius 8px
+    align-items center
+    height 30px
+
+    &::-webkit-scrollbar
+      display: none
+
+    .category-bar-item
+      a
+        padding .1rem .5rem
+        margin-right 6px
+        font-weight 700
+        border-radius 8px
+        display flex
+        align-items center
+        height 30px
+
+      &.select
+        a
+          background #3eb8be
+          color var(--btn-color)

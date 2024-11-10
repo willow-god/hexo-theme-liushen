@@ -1,0 +1,60 @@
+if theme.preloader.enable
+  case theme.preloader.load_style    
+    when 'gear'
+      include ./load_style/gear.pug
+    when 'ironheart'
+      include ./load_style/ironheart.pug
+    when 'scarecrow'
+      include ./load_style/scarecrow.pug
+    when 'triangles'
+      include ./load_style/triangles.pug
+    when 'wizard'
+      include ./load_style/wizard.pug
+    when 'image'
+      include ./load_style/image.pug
+    default
+      include ./load_style/default.pug
+
+script(async).
+  (()=>{
+    const $loadingBox = document.getElementById('loading-box')
+    const $body = document.body
+    const preloader = {
+      endLoading: () => {
+        $body.style.overflow = ''
+        $loadingBox.classList.add('loaded')
+      },
+      initLoading: () => {
+        $body.style.overflow = 'hidden'
+        $loadingBox.classList.remove('loaded')
+      }
+    }
+    
+    preloader.initLoading()
+    
+    let loaded = false;
+    
+    window.addEventListener('load', () => { 
+        if (!loaded) {
+            preloader.endLoading();
+            loaded = true;
+        }
+    });
+
+    setTimeout(() => {
+        if (!loaded) {
+            preloader.endLoading();
+            loaded = true;
+        }
+    }, 5000);
+
+    
+    window.addEventListener('load',() => { preloader.endLoading() })
+    setTimeout(function(){preloader.endLoading();}, 3000);
+    document.getElementById('loading-box').addEventListener('click',()=> {preloader.endLoading()})
+
+    if (!{theme.pjax && theme.pjax.enable}) {
+      document.addEventListener('pjax:send', () => { preloader.initLoading() })
+      document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+    }
+  })()

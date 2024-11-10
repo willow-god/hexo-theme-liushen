@@ -1,0 +1,47 @@
+- const { use, lazyload } = theme.comments
+- const { repo, issue_term, light_theme, dark_theme, js, option } = theme.utterances
+- const utterancesUrl = js || 'https://utteranc.es/client.js'
+- const utterancesOriginUrl = new URL(utterancesUrl).origin
+
+script.
+  (() => {
+    const getUtterancesTheme = theme => theme === 'dark' ? '#{dark_theme}' : '#{light_theme}'
+
+    const loadUtterances = () => {
+      const config = Object.assign({
+        id: 'utterances_comment',
+        src: '!{utterancesUrl}',
+        repo: '!{repo}',
+        'issue-term': '!{issue_term}',
+        theme: getUtterancesTheme(document.documentElement.getAttribute('data-theme')),
+        crossorigin: 'anonymous',
+        async: true
+      },!{JSON.stringify(option)})
+
+      const ele = document.createElement('script')
+      for (let key in config) {
+        ele.setAttribute(key, config[key])
+      }
+      document.getElementById('utterances-wrap').appendChild(ele)
+    }
+
+    const changeUtterancesTheme = theme => {
+      const iframe = document.querySelector('#utterances-wrap iframe')
+      if (iframe) {
+        const message = {
+          type: 'set-theme',
+          theme: getUtterancesTheme(theme)
+        };
+        iframe.contentWindow.postMessage(message, '!{utterancesOriginUrl}')
+      }
+    }
+
+    btf.addGlobalFn('themeChange', changeUtterancesTheme, 'utterances')
+
+    if ('!{use[0]}' === 'Utterances' || !!{lazyload}) {
+      if (!{lazyload}) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+      else loadUtterances()
+    } else {
+      window.loadOtherComment = loadUtterances
+    }
+  })()

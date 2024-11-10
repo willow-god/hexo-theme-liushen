@@ -1,0 +1,44 @@
+- const { client_id, client_secret, repo, owner, admin, option } = theme.gitalk
+
+script.
+  (() => {
+    const initGitalk = () => {
+      const gitalk = new Gitalk(Object.assign({
+        clientID: '!{client_id}',
+        clientSecret: '!{client_secret}',
+        repo: '!{repo}',
+        owner: '!{owner}',
+        admin: ['!{admin}'],
+        id: '!{md5(page.path)}',
+        updateCountCallback: commentCount
+      },!{JSON.stringify(option)}))
+
+      gitalk.render('gitalk-container')
+    }
+
+    const loadGitalk = async() => {
+      if (typeof Gitalk === 'function') initGitalk()
+      else {
+        await btf.getCSS('!{url_for(theme.asset.gitalk_css)}')
+        await btf.getScript('!{url_for(theme.asset.gitalk)}')
+        initGitalk()
+      }
+    }
+    
+    const commentCount = n => {
+      const isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+      if (isCommentCount) {
+        isCommentCount.textContent= n
+      }
+    }
+
+    if ('!{theme.comments.use[0]}' === 'Gitalk' || !!{theme.comments.lazyload}) {
+      if (!{theme.comments.lazyload}) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+      else loadGitalk()
+    } else {
+      window.loadOtherComment = loadGitalk
+    }
+  })()
+
+
+

@@ -1,0 +1,103 @@
+.smoothcard-flink-list
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-start
+  margin: -0.5 * 16px
+  align-items: stretch
+  
+  .flink-list-item
+    @extend .cardHover
+    margin: 16px * 0.5
+    width: "calc(100% / 4 - %s)" % 16px
+    @media screen and (min-width: 2048px)
+      width: "calc(100% / 5 - %s)" % 16px
+    @media screen and (max-width: 768px)
+      width: "calc(100% / 3 - %s)" % 16px
+    @media screen and (max-width: 500px)
+      width: "calc(100% / 2 - %s)" % 16px
+    display: block
+    border: 1px solid var(--liushen-card-border)
+    overflow: hidden
+    height: 210px !important
+    line-height: 1.4
+    height 100%
+    .img
+      position: relative
+      object-fit: cover
+      margin: 0 !important
+      min-width: 100%
+      object-fit: contain
+      height 60%
+      overflow: hidden
+      transition: all .4s!important
+      filter: blur(0)
+      img
+        width: 100%
+        height 100%
+        margin: 0 !important
+        border-radius: 12px 12px 0 0 !important
+        pointer-events:none;
+        transition: background .4s,height .4s
+        object-fit: cover
+
+    .info
+      position: relative
+      height: 40%
+      transition: background .4s,height .4s
+      img
+        position: absolute
+        width: 100px
+        height: 100px
+        pointer-events:none
+        background-size: cover
+        border-radius: 50% !important
+        top: -32px
+        left: -32px
+        transform: scale(.2)
+        transition: all .4s !important
+        .img
+          transition: all .4s !important
+      .smoothcard-text
+        position: relative
+        top: 5px
+        display: flex
+        flex-direction: column
+        padding-right: 10px
+        margin-left: 35px
+        transition: all .4s;
+        .title
+          max-width: 100%
+          font-size: 16px
+          line-height: 26px
+          font-weight: 700
+          color: var(--liushen-text)
+          text-overflow: ellipsis
+          white-space: nowrap
+          overflow: hidden
+        .desc
+          font-size: var(--global-font-size)
+          line-height: 26px
+          color: var(--liushen-secendtext)
+          overflow: hidden
+          font-size: small
+          margin-bottom: 10px
+          max-height: 52px
+          -webkit-line-clamp: 2
+    &:hover
+      .info
+        background: var(--default-bg-color)
+      .img
+        height: 35%
+        img
+          filter: blur(3px)
+      .info
+        height: 66%
+        color: #fff
+        img
+          left: -10px
+          top: -50px
+          background: var(--liushen-card-bg)
+          transform: rotate(-35deg) rotateX(1turn) rotateY(1turn) scale(.6)
+        .smoothcard-text
+          top: 32px
+          margin-left: 10px

@@ -1,0 +1,204 @@
+if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
+  [data-theme='dark']
+    --global-bg: darken(#121212, 2)
+    --font-color: alpha(#FFFFFF, .7)
+    --hr-border: alpha(#FFFFFF, .4)
+    --hr-before-color: alpha(#FFFFFF, .7)
+    --search-bg: #121212
+    --search-input-color: alpha(#FFFFFF, .7)
+    --search-a-color: alpha(#FFFFFF, .7)
+    --preloader-bg: darken(#121212, 2)
+    --preloader-color: alpha(#FFFFFF, .7)
+    --tab-border-color: #2c2c2c
+    --tab-botton-bg: #2c2c2c
+    --tab-botton-color: alpha(#FFFFFF, .7)
+    --tab-button-hover-bg: lighten(#121212, 15)
+    --tab-button-active-bg: #121212
+    --card-bg: rgba(35,37,58,.8)
+    --sidebar-bg: linear-gradient(60deg, #2c0c16 0%, #043749 100%)
+    --sidebar-menu-bg: lighten(#121212, 5)
+    --btn-hover-color: lighten(#121212, 40)
+    --btn-color: alpha(#FFFFFF, .7)
+    --btn-bg: lighten(#121212, 5)
+    --text-bg-hover: lighten(#121212, 15)
+    --light-grey: alpha(#FFFFFF, .7)
+    --dark-grey: alpha(#FFFFFF, .2)
+    --white: alpha(#FFFFFF, .9)
+    --text-highlight-color: alpha(#FFFFFF, .9)
+    --blockquote-color: alpha(#FFFFFF, .7)
+    --blockquote-bg: lighten(#00344D, 10)
+    --reward-pop: lighten(#121212, 10)
+    --toc-link-color: alpha(#FFFFFF, .6)
+    --scrollbar-color: lighten(#121212, 25)
+    --timeline-bg: lighten(#121212, 5)
+    --zoom-bg: #121212
+    --mark-bg: alpha($dark-black, .6)
+    --better-footer-bottom-bg: #202020
+    --better-footer-content-bg: linear-gradient(0deg, #202020, rgba(24, 40, 72, .4))
+    --better-footer-icons-bg: linear-gradient(0deg, rgba(24, 40, 72, .4), rgba(24, 40, 72, .0))
+    --better-footer-icon-bg: #4f5b66
+
+    // card
+    --liushen-card-bg: #181818
+    --liushen-card-secondbg: #30343f
+    --liushen-card-border: 1px solid #42444a
+
+    // button
+    --liushen-button-bg: #30343f
+    --liushen-button-hover-bg: $theme-color
+
+      // text
+    --liushen-text: #ffffffb3
+    --liushen-secondtext: #a1a2b8
+
+    // snackbar
+    --snackbar-bg: rgba(48, 48, 48, 0.809)
+    --snackbar-text: #dfdfdf
+    --snackbar-border: 1px solid #cfd4dc40
+
+    // menu child
+    --menu-child-bg: rgba(18,18,18,0.8)
+    
+    // fancybox
+    --liushen-fancybox-bg: rgba(0,0,0,0.5)
+    --liushen-fancybox-button-color: #ffffff
+
+    // author
+    --author-card-bg: linear-gradient(-45deg, rgba(24, 40, 72, .6),
+      rgba(35, 37, 58, .5),
+      rgba(35, 37, 58, .5),
+      rgba(24, 40, 72, .6))
+    --author-card-bg-before: linear-gradient(to bottom, rgba(24, 40, 72, .1),
+      rgba(35, 37, 58, .3),
+      rgba(35, 37, 58, .6),
+      rgba(24, 40, 72, .7)), 
+      url(/config/img/dog.jpg)
+
+    // 改动设置夜间模式下的背景，从配置文件中获取，如果没设置则不使用
+    #web_bg
+      if hexo-config('background_dark')
+        background-image: url(hexo-config('background_dark'))
+      &:before
+        position: absolute
+        width: 100%
+        height: 100%
+        background-color: alpha($dark-black, .1)
+        content: ''
+
+    #article-container
+      code
+        background: #2c2c2c
+
+      pre > code
+        background: lighten(#121212, 2)
+
+      figure.highlight
+        box-shadow: none
+
+      .note
+        code
+          background: $code-background
+
+      .aplayer
+        filter: brightness(.8)
+
+      kbd
+        border-color: #696969
+        background-color: #525252
+        color: #e2f1ff
+
+    // 頭部
+    #page-header
+      &.nav-fixed > #nav,
+      &.not-top-img > #nav
+        background: alpha(#121212, .8)
+        box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
+
+    #post-comment
+      .comment-switch
+        if hexo-config('comments.text')
+          background: #2c2c2c !important
+
+        #switch-btn
+          filter: brightness(.8)
+
+    // note
+    if hexo-config('note.style') == 'modern' || hexo-config('note.style') == 'flat'
+      .note
+        filter: brightness(.8)
+
+    // hide-tags
+    .hide-button,
+    .btn-beautify,
+    .hl-label,
+    .post-outdate-notice,
+    .error-img,
+    #article-container iframe,
+    .gist,
+    .ads-wrap
+      filter: brightness(.8)
+
+    img
+      if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-config('lazyload.placeholder')
+        filter: blur(0) brightness(.8)
+      else
+        filter: brightness(.8)
+
+    #aside-content .aside-list > .aside-list-item:not(:last-child)
+      border-bottom: 1px dashed alpha(#FFFFFF, .1)
+
+    // Gitalk
+    #gitalk-container
+      filter: brightness(.8)
+
+      svg
+        fill: alpha(#FFFFFF, .9) !important
+
+    // Disqusjs 反代模式下的適配
+    #disqusjs
+      #dsqjs
+        &:hover,
+        &:focus,
+        .dsqjs-tab-active,
+        .dsqjs-no-comment
+          color: alpha(#FFFFFF, .7)
+
+        .dsqjs-order-label
+          background-color: lighten(#121212, 5)
+
+        .dsqjs-post-body
+          color: alpha(#FFFFFF, .7)
+
+          code,
+          pre
+            background: #2c2c2c
+
+          blockquote
+            color: alpha(#FFFFFF, .7)
+
+    #artitalk_main #lazy
+      background: #121212
+
+    #operare_artitalk .c2
+      background: #121212
+
+    #card-toc
+      +maxWidth900()
+        background: lighten(#121212, 5)
+
+    // artalk
+    .artalk.atk-dark-mode,
+    .atk-layer-wrap.atk-dark-mode
+      --at-color-font: alpha(#FFFFFF, .7)
+      --at-color-meta: alpha(#FFFFFF, .7)
+      --at-color-grey: alpha(#FFFFFF, .7)
+    
+    .atk-send-btn,
+    .atk-badge
+      color: alpha(#FFFFFF, .7) !important
+
+    // waline
+    #waline-wrap
+      --waline-color: alpha(#FFFFFF, .7)
+      --waline-dark-grey: alpha(#FFFFFF, .7)
+      --waline-info-color: alpha(#FFFFFF, .5)

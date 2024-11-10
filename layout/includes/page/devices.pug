@@ -1,0 +1,21 @@
+#article-container
+  #equipment
+    if site.data.devices
+      each group in site.data.devices
+        .equipment-item
+          h2.equipment-item-title= group.class_name
+          .equipment-item-description= group.description
+          .equipment-item-content
+            each device in group.devices_list
+              .equipment-item-content-item
+                .equipment-item-content-item-cover
+                  img.nolazyload.no-lightbox.equipment-item-content-item-image(src=url_for(device.image) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='')
+                .equipment-item-content-item-info
+                  .equipment-item-content-item-name= device.name
+                  .equipment-item-content-item-specification= device.specification
+                  .equipment-item-content-item-description= device.description
+                  .equipment-item-content-item-toolbar
+                    if device.link.includes('https://') || device.link.includes('http://')
+                      a.equipment-item-content-item-link(href= device.link, target='_blank') 详情
+                    else
+                      a.equipment-item-content-item-link(href= device.link, target='_blank') 查看文章

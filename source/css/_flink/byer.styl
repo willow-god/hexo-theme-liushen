@@ -1,0 +1,144 @@
+#article-container
+  .flink
+    margin-bottom: 20px
+
+    .byer-flink-list
+      overflow: auto
+      padding: 10px 10px 0
+      text-align: center
+
+      & > .flink-list-item
+        position: relative
+        background: #ffffff
+        float: left
+        overflow: hidden
+        margin: 15px 7px
+        width: calc(100% / 3 - 15px)
+        height: 120px
+        border-radius: 2px
+        line-height: 17px
+        -webkit-transform: translateZ(0)
+        border: 1px solid
+        box-shadow: 3px 3px 1px 1px #fee34c;
+
+        +maxWidth1024()
+          width: calc(50% - 15px) !important
+
+        +maxWidth600()
+          width: calc(100% - 15px) !important
+
+        a
+          color: var(--font-color)
+          text-decoration: none
+          .flink-item-bar
+            height: 15px
+            border-width: 0 0 1px 0
+            border-style: none none solid none
+            background: #fde135
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            padding: 0 3px 0 3px
+            sapn
+              width: 10px;
+              height: 10px;
+              margin: 0 1px 0 1px
+              border-radius: 50%;
+              display: block;
+              border: 1px solid;
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              &.flink-item-bar-yellow
+                background: #fde135
+              &.flink-item-bar-green
+                background: #249a33
+              &.flink-item-bar-red
+                background: #f13b06
+              &.flink-item-bar-x
+                background: transparent
+                border: 0px
+                margin-left: auto
+                transform: rotate(45deg);
+                font-size: 23px;
+                padding: 0px 0px 6px 0px;
+          .flink-item-content
+            display: flex;
+            height: 105px
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px 0 5px;
+            .flink-item-text
+              width: 60%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              .flink-item-name
+                @extend .limit-one-line
+                max-width: 100%;
+                padding: 0px 5px 0px 5px;
+                margin: 0px 0 6px 0;
+                height: 50%;
+                font-weight: bold;
+                font-size: 1.43em;
+                border-width: 0 0 7px 0;
+                border-style: solid;
+                border-color: #fbf19f;
+              .flink-item-desc
+                @extend .limit-one-line
+                max-width: 100%;
+                height: 50%;
+                padding: 5px 5px 5px 5px;
+                font-size: 0.93em;
+                position: relative
+                &:before
+                  content: "";
+                  background: transparent;
+                  display: block;
+                  height: calc(100% - 4px);
+                  width: calc(100% - 4px);
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  border-radius: 2px;
+                  border: 1px solid;
+                  clip-path: polygon(0 0, 100% 0, 100% 100%, 95% 100%, 95% 50%, 90% 50%, 90% 100%, 0 100%);
+
+
+            .flink-item-icon
+              overflow: hidden;
+              margin: 0px 5px;
+              width: 70px;
+              height: 70px;
+              border: 1px solid;
+              border-radius: 2px;
+              transition: width .3s ease-out
+              box-shadow: 2px 2px 1px 1px #fee34c;
+              img
+                width: 50px;
+                height: 50px;
+                margin: 9px 9px;
+                transition: filter 375ms ease-in .2s, transform .3s
+                object-fit: cover
+
+              .img-alt
+                display: none
+
+[data-theme=dark]
+  #article-container
+    .flink
+      .byer-flink-list
+        & > .flink-list-item
+          background: rgb(40,40,40)
+          box-shadow: 3px 3px 1px 1px #1B5A70;
+          a
+            .flink-item-bar
+              background: #1B5A70;
+            .flink-item-content
+              .flink-item-text
+                .flink-item-name
+                  border-color: #5EBAD9;
+              .flink-item-icon
+                box-shadow: 2px 2px 1px 1px #1B5A70;

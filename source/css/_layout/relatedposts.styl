@@ -1,0 +1,41 @@
+.relatedPosts
+  margin-top: 40px
+
+  & > .headline
+    margin-bottom: 5px
+    font-weight: 700
+    font-size: 1.43em
+
+  & > .relatedPosts-list
+    & > a
+      position: relative
+      display: inline-block
+      overflow: hidden
+      margin: 3px
+      width: calc(33.333% - 6px)
+      height: 200px
+      background: $dark-black
+      vertical-align: bottom
+      @extend .postImgHover
+      addBorderRadius(12)
+
+      +maxWidth768()
+        margin: 2px
+        width: calc(50% - 4px)
+        height: 150px
+
+      +maxWidth600()
+        width: calc(100% - 4px)
+
+    .content
+      padding: 0 20px
+      @extend .verticalCenter
+
+      .date
+        color: var(--light-grey)
+        font-size: 90%
+
+      .title
+        @extend .limit-more-line
+        color: var(--white)
+        -webkit-line-clamp: 2

@@ -1,0 +1,39 @@
+-
+  var options = {
+    prev_text: '<i class="fas fa-chevron-left fa-fw"></i>',
+    next_text: '<i class="fas fa-chevron-right fa-fw"></i>',
+    mid_size: 1,
+    escape: false
+  }
+
+if is_post()
+  - let prev = theme.post_pagination === 1 ? page.prev : page.next
+  - let next = theme.post_pagination === 1 ? page.next : page.prev
+  nav#pagination.pagination-post
+    if(prev)
+      - var hasPageNext = next ? 'pull-left' : 'pull-full'
+      a.prev-post(class=hasPageNext href=url_for(prev.path) title=prev.title)
+        if prev.cover_type === 'img'
+          img.cover(src=url_for(prev.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of previous post')
+        else
+          .cover(style=`background: ${prev.cover || 'var(--default-bg-color)'}`)
+        .pagination-info
+          .label=_p('pagination.prev')
+          .prev_info=prev.title
+          
+    if(next)
+      - var hasPagePrev = prev ? 'pull-right' : 'pull-full'
+      a.next-post(class=hasPagePrev href=url_for(next.path) title=next.title)
+        if next.cover_type === 'img'
+          img.cover(src=url_for(next.cover) onerror=`onerror=null;src='${url_for(theme.error_img.post_page)}'` alt='cover of next post')
+        else
+          .cover(style=`background: ${next.cover || 'var(--default-bg-color)'}`)
+        .pagination-info
+          .label=_p('pagination.next')
+          .next_info=next.title
+else
+  nav#pagination
+    .pagination
+      if is_home()
+        - options.format = 'page/%d/#content-inner'
+      !=paginator(options)

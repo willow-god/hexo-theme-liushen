@@ -1,0 +1,270 @@
+:root
+  --global-font-size: $font-size
+  --global-bg: $body-bg
+  --font-color: $font-black
+  --hr-border: lighten($theme-hr-color, 50%)
+  --hr-before-color: lighten($theme-hr-color, 30%)
+  --search-bg: $search-bg
+  --search-input-color: $search-input-color
+  --search-a-color: $search-a-color
+  --preloader-bg: $preloader-bg
+  --preloader-color: $preloader-word-color
+  --tab-border-color: $tab-border-color
+  --tab-botton-bg: $tab-botton-bg
+  --tab-botton-color: $tab-botton-color
+  --tab-button-hover-bg: $tab-button-hover-bg
+  --tab-button-active-bg: $tab-button-active-bg
+  --card-bg: $card-bg
+  --card-meta: $theme-meta-color
+  --sidebar-bg: $sidebar-background
+  --sidebar-menu-bg: #ffffff70
+  --btn-hover-color: $button-hover-color
+  --btn-color: $button-color
+  --btn-bg: $button-bg
+  --text-bg-hover: rgba($text-bg-hover, .7)
+  --light-grey: $light-grey
+  --dark-grey: $dark-grey
+  --white: $white
+  --text-highlight-color: $text-highlight-color
+  --blockquote-color: $blockquote-color
+  --blockquote-bg: $blockquote-background-color
+  --reward-pop: $reward-pop-up-bg
+  --toc-link-color: $toc-link-color
+  --card-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .09)
+  --card-hover-box-shadow: 0 3px 8px 6px rgba(7, 17, 27, .2)
+  --pseudo-hover: $pseudo-hover
+  --headline-presudo: #a0a0a0
+  --scrollbar-color: $scrollbar-color
+  --default-bg-color: $theme-color
+  --zoom-bg: #fff
+  --mark-bg: alpha($dark-black, .3)
+  --better-footer-bottom-bg: $better-footer-bottom-bg
+  --better-footer-content-bg: $better-footer-content-bg
+  --better-footer-icons-bg: $better-footer-icons-bg
+  --better-footer-icon-bg: $better-footer-icon-bg
+  --better-footer-hover: $better-footer-hover
+
+  // card
+  --liushen-card-bg: #fff
+  --liushen-card-secondbg: #f1f3f8
+  --liushen-card-border: #e3e8f7
+
+  // button
+  --liushen-button-bg: #f1f3f8
+  --liushen-button-hover-bg: $theme-color
+
+  // text
+  --liushen-text: #4c4948
+  --liushen-secondtext: #3c3c43cc
+
+  // snackbar
+  --snackbar-bg: rgba(255, 255, 255, 0.809)
+  --snackbar-text: #4c4948
+  --snackbar-border: 1px solid rgba(126, 126, 126, 0.527)
+
+  // menu child
+  --menu-child-bg: rgba(255,255,255,0.8)
+  
+  // fancybox
+  --liushen-fancybox-bg: rgba(255,255,255,0.5)
+  --liushen-fancybox-button-color: #000000
+
+  // author
+  --author-card-bg: linear-gradient(-45deg, rgba(255, 255, 255, .7),
+    rgba(255, 255, 255, .8),
+    rgba(255, 255, 255, .8),
+    rgba(255, 255, 255, .7))
+  --author-card-bg-before: linear-gradient(to bottom, 
+		rgba(255, 255, 255, 0.0),
+		rgba(255, 255, 255, 0.3),
+		rgba(255, 255, 255, 0.6),
+		rgba(255, 255, 255, 0.7)),
+		url(/config/img/dog.jpg)
+
+body
+  position: relative
+  overflow-y: scroll
+  min-height: 100%
+  background: var(--global-bg)
+  color: var(--font-color)
+  font-size: var(--global-font-size)
+  font-family: $font-family
+  line-height: $text-line-height
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  scroll-behavior: smooth
+
+  if !hexo-config('copy.enable')
+    user-select: none
+    -webkit-user-select: none
+
+// scrollbar - firefox
+@-moz-document url-prefix()
+  *
+    scrollbar-width: thin
+    scrollbar-color: var(--scrollbar-color) transparent
+
+// scrollbar - chrome/safari
+*::-webkit-scrollbar
+  width: 5px
+  height: 5px
+
+*::-webkit-scrollbar-thumb
+  background: var(--scrollbar-color)
+
+*::-webkit-scrollbar-track
+  background-color: transparent
+
+input::placeholder
+  color: var(--font-color)
+
+if hexo-config('background')
+  #web_bg
+    position: fixed
+    z-index: -999
+    width: 100%
+    height: 100%
+    background-image: url(hexo-config('background'))
+    background-attachment: local
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  position: relative
+  margin: 20px 0 14px
+  color: var(--text-highlight-color)
+  font-weight: bold
+
+  code
+    font-size: inherit !important
+
+*
+  box-sizing: border-box
+
+.table-wrap
+  overflow-x: scroll
+  margin: 0 0 20px
+
+  if hexo-config('rounded_corners_ui')
+    $borderRadius = 5px
+    border-radius: $borderRadius
+
+    table
+      border-radius: $borderRadius
+
+      thead > tr:first-child
+        th:first-child
+          border-top-left-radius: $borderRadius
+
+        th:last-child
+          border-top-right-radius: $borderRadius
+
+      tbody > tr:last-child
+        td:first-child
+          border-bottom-left-radius: $borderRadius
+
+        td:last-child
+          border-bottom-right-radius: $borderRadius
+
+table
+  display: table
+  width: 100%
+  border-spacing: 0
+  border-collapse: separate
+  border-top: 1px solid var(--light-grey)
+  border-left: 1px solid var(--light-grey)
+  empty-cells: show
+
+  thead
+    background: alpha($table-thead-bg, 10%)
+
+  th,
+  td
+    padding: 6px 12px
+    border: 1px solid var(--light-grey)
+    border-top: none
+    border-left: none
+    vertical-align: middle
+
+*::selection
+  background: $theme-text-selection-color
+  color: #F7F7F7
+
+button
+  padding: 0
+  outline: 0
+  border: none
+  background: none
+  cursor: pointer
+  touch-action: manipulation
+
+a
+  color: $a-link-color
+  text-decoration: none
+  word-wrap: break-word
+  transition: all .2s
+  overflow-wrap: break-word
+
+  &:hover
+    color: $light-blue
+
+// font
+if $site-name-font
+  #site-title,
+  #site-subtitle,
+  .site-name,
+  #aside-content .author-info-name,
+  #aside-content .author-info-description
+    font-family: $site-name-font
+
+.is-center
+  text-align: center
+
+.pull-left
+  float: left
+
+.pull-right
+  float: right
+
+img
+  &[src=''],
+  &:not([src])
+    opacity: 0
+
+// lazyload blur
+if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-config('lazyload.placeholder')
+  img
+    &[data-lazy-src]:not(.loaded)
+      filter: blur(8px) brightness(1)
+
+    &[data-lazy-src].error
+      filter: none
+
+.img-alt
+  margin: -10px 0 10px
+  color: #858585
+
+  &:hover
+    text-decoration: none !important
+
+blockquote
+  margin: 0 0 20px
+  padding: 7px 15px
+  border-left: 4px solid $blockquote-padding-color
+  background-color: var(--blockquote-bg)
+  color: var(--blockquote-color)
+  addBorderRadius()
+
+  footer
+    cite
+      &:before
+        padding: 0 5px
+        content: '—'
+
+  & > :last-child
+    margin-bottom: 0 !important

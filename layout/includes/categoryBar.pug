@@ -1,0 +1,10 @@
+.category-bar-items#category-bar-items(class=is_home() ? 'home' : '')
+  .category-bar-item(class=is_home() ? 'select' : '', id="category-bar-home")
+    a(href=url_for('/'))= __('博客首页')
+  each item in site.categories.find({ parent: { $exists: false } }).data
+    .category-bar-item(class=select ? (select === item.name ? 'select' : '') : '', id=item.name)
+      a(href=url_for(item.path))= item.name
+  .category-bar-item
+    a(href=url_for('/archives/'))= __('文章存档')
+div.category-bar-right
+  a.category-bar-more(href=url_for('/categories/'))= __('更多分类')

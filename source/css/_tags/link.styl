@@ -1,0 +1,78 @@
+:root
+  --tag-link-bg-color white
+  --tag-link-text-color black
+  --tag-link-border-color white
+  --tag-link-hover-bg-color rgb(141, 216, 233)
+  --tag-link-hover-border-color black
+  --tag-link-tips-border-color black
+  --tag-link-sitename-color rgb(144, 144, 144)
+  --tag-link-hover-sitename-color black
+
+[data-theme=dark]
+  --tag-link-bg-color #2d2d2d
+  --tag-link-text-color white
+  --tag-link-border-color black
+  --tag-link-hover-bg-color #339297
+  --tag-link-hover-border-color white
+  --tag-link-tips-border-color white
+  --tag-link-sitename-color rgb(144, 144, 144)
+  --tag-link-hover-sitename-color white
+
+#article-container
+  .tag-Link
+    background var(--tag-link-bg-color)
+    border-radius 12px !important
+    display flex
+    border 1px solid var(--tag-link-border-color)
+    flex-direction column
+    padding 0.5rem 1rem
+    margin-top 1rem
+    text-decoration none !important
+    color var(--tag-link-text-color)
+    margin-bottom 10px
+    transition background-color 0.3s, border-color 0.3s, box-shadow 0.3s
+
+    &:hover
+      border-color var(--tag-link-hover-border-color)
+      background-color var(--tag-link-hover-bg-color)
+      box-shadow 0 0 5px rgba(0, 0, 0, 0.2)
+
+    .tag-link-tips
+      color var(--tag-link-text-color)
+      border-bottom 1px solid var(--tag-link-tips-border-color)
+      padding-bottom 4px
+      font-size 0.6rem
+      font-weight normal
+
+    .tag-link-bottom
+      display flex
+      margin-top 0.5rem
+      align-items center
+      justify-content space-around
+
+      .tag-link-left
+        width 60px
+        min-width 60px
+        height 60px
+        background-size cover
+        border-radius 25%
+
+      .tag-link-right
+        margin-left 1rem
+
+        .tag-link-title
+          font-size 1rem
+          line-height 1.2
+
+        .tag-link-sitename
+          font-size 0.7rem
+          color var(--tag-link-sitename-color)
+          font-weight normal
+          margin-top 4px
+          transition color 0.3s
+
+        &:hover .tag-link-sitename
+          color var(--tag-link-hover-sitename-color)
+
+      i
+        margin-left auto

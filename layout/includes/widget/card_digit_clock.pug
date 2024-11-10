@@ -1,0 +1,10 @@
+.card-widget.card-clock
+  .item-headline
+    i.fas.fa-solid.fa-clock
+    span= _p('赛博时钟')
+  #digit-clock
+  script(data-pjax).
+    window.onload = () => {loadDigitClock()};
+    document.addEventListener("pjax:complete", () => {
+      setTimeout(loadDigitClock, 500);
+    });

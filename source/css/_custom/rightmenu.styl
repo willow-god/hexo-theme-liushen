@@ -1,0 +1,127 @@
+#rightMenu
+    display: none
+    position: fixed
+    padding: 0 .25rem
+    width: 11rem
+    height: fit-content
+    top: 10%
+    left: 10%
+    background-color: rgba(238, 255, 255, .85)
+    -webkit-backdrop-filter: blur(20px)
+    backdrop-filter: blur(20px)
+    color: #363636
+    border-radius: 12px
+    z-index: 99994
+    border: #e3e8f7
+    user-select: none
+    box-shadow: rgba(0, 0, 0, .05)
+    transition: 0.3s
+
+    a
+        color: #363636
+
+    .rightMenu-group
+        padding: .35rem .3rem
+        transition: 0.3s
+
+    .rightMenu-line
+        border-top: 1px dashed #4259ef23
+
+    .rightMenu-group.rightMenu-small
+        display: flex
+        justify-content: space-between
+
+    .rightMenu-group .rightMenu-item
+        border-radius: 8px
+        transition: .3s
+        cursor: pointer
+
+    .rightMenu-line .rightMenu-item
+        margin: .25rem 0
+        padding: .25rem 0
+        transition: 0.3s
+
+    .rightMenu-group.rightMenu-line .rightMenu-item
+        display: flex
+
+    .rightMenu-group .rightMenu-item:hover
+        background-color: #6f42c1
+        color: #fff
+
+    .rightMenu-group .rightMenu-item:active
+        transform: scale(.97)
+
+    .rightMenu-group .rightMenu-item i
+        display: inline-block
+        text-align: center
+        line-height: 1.5rem
+        width: 1.5rem
+        padding: 0 .25rem
+
+    .rightMenu-line .rightMenu-item i
+        margin: 0 .25rem
+
+    .rightMenu-group .rightMenu-item span
+        line-height: 1.5rem
+
+    .rightMenu-small .rightMenu-item
+        width: 30px
+        height: 30px
+        display: flex
+        justify-content: center
+        align-items: center
+        line-height: 30px
+
+#rightmenu-mask
+    position: fixed
+    width: 100vw
+    height: 100vh
+    background: 0 0
+    top: 0
+    left: 0
+    display: none
+    z-index: 101
+    margin: 0 !important
+    z-index: 99993
+
+/* 设置评论弹窗的一些参数 */
+/* 遮罩层样式 */
+.overlay
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    background-color var(--card-bg)
+    backdrop-filter blur(25px) /* 应用高斯模糊效果，可以根据需要调整模糊程度 */
+    -webkit-backdrop-filter blur(25px) /* 兼容性前缀，适用于一些旧版本的浏览器 */
+    z-index 999
+    opacity 0 /* 初始透明度为 0 */
+    transition opacity 0.3s /* 过渡效果，持续时间为 0.3 秒 */
+
+// [data-theme=dark] .overlay
+//     background-color rgba(0, 0, 0, 0.7)
+
+/* 弹窗样式 */
+.popup
+    position fixed
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    background-color var(--liushen-card-bg)
+    padding 20px
+    border 1px solid var(--liushen-card-border)
+    z-index 1000
+    max-height 80%
+    overflow-y auto
+    border-radius 20px
+    opacity 0 /* 初始透明度为 0 */
+    transition opacity 0.3s /* 过渡效果，持续时间为 0.3 秒 */
+    
+    .tk-comments-container 
+        display none
+
+// [data-theme=dark] .popup
+//     background-color rgba(44, 44, 44, 0.7)
+//     border 1px solid #666
+

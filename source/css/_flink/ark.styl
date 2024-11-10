@@ -1,0 +1,215 @@
+:root
+  --ark-flink-default-color: rgba(153, 54, 44,0.8) /*主色调*/
+  --ark-flink-mask: #818181  /*遮罩层配色*/
+  --ark-flink-progress-default: rgba(227, 236, 238, 0.8) /*能量条默认配色*/
+  --ark-flink-progress-charge: #d97f17 /*能量条充能配色*/
+  --flink-name-border-color: #d97f17 /*ID边框配色*/
+
+[data-theme="dark"]
+  --ark-flink-default-color: rgba(55, 112, 143,0.8)
+  --ark-flink-mask: #37708f
+  --ark-flink-progress-default: rgba(46, 160, 221, 0.8)
+  --ark-flink-progress-charge: rgba(227, 236, 238, 0.8)
+  --flink-name-border-color: rgba(227, 236, 238, 0.8)
+
+
+
+#article-container
+  .flink
+    .ark-flink-list
+      overflow: auto
+      padding: 10px 10px 0
+      text-align: center
+
+      & > .flink-list-item
+        position: relative
+        display: block
+        color: var(--font-color)
+        text-decoration: none
+        float: left
+        overflow: hidden
+        margin: 15px 7px
+        width: calc(100% / 3 - 15px)
+        height: 220px
+        border-radius: 2px
+        line-height: 17px
+        -webkit-transform: translateZ(0)
+
+        +maxWidth1024()
+          width: calc(50% - 15px) !important
+
+        +maxWidth600()
+          width: calc(100% - 15px) !important
+        
+
+      a.flink-list-item
+        *
+          transition: all 0.3s cubic-bezier(.6, 0, .5, 1)
+        &:hover
+          *
+            transition: all 0.3s cubic-bezier(.6, 0, .5, 1)
+          .ark-flink-progress-bar-A,
+          .ark-flink-progress-bar-B,
+          .ark-flink-progress-bar-C
+            background: var(--ark-flink-progress-charge)
+          .ark-flink-content
+            .ark-flink-name
+              bottom: 0px;
+            .ark-flink-avatar
+              transform: rotateX(90deg)
+            .ark-flink-mask
+              .ark-flink-mask-left
+                transition-delay: 0.3s;
+                left: -35%;
+              .ark-flink-mask-right
+                transition-delay: 0.3s;
+                right: -55%;
+            .ark-flink-descr
+              .ark-flink-descr-text
+                transition-delay: 0.3s;
+                opacity: 1
+                animation: ark-flink-type 1.5s steps(20, end) 0.3s,ark-flink-blink .75s step-end infinite; /* 定义光标的闪烁动画 */  
+        .ark-flink-progress-bar-A,
+        .ark-flink-progress-bar-B,
+        .ark-flink-progress-bar-C
+          display: block
+          position: absolute;
+          background: var(--ark-flink-progress-default)
+          z-index 6
+        .ark-flink-progress-bar-A
+          height: 8px;
+          width: 100px;
+          top: 3px;
+          left: 6px;
+          clip-path: polygon(0% 100%, 8% 0%, 28% 0%, 20% 100%, 23% 100%, 31% 0%, 46% 0%, 38% 100%, 41% 100%, 49% 0%, 64% 0%, 56% 100%, 59% 100%, 67% 0%, 82% 0%, 74% 100%, 77% 100%, 85% 0%, 100% 0%, 90% 100%);
+        .ark-flink-progress-bar-B
+          height: 8px;
+          width: 35px;
+          bottom: 35px;
+          left: 0;
+          clip-path: polygon(0% 0%, 40% 0%, 15% 100%, 25% 100%, 50% 0%, 85% 0%, 60% 100%, 70% 100%, 90% 0%, 100% 100%, 15% 100%);
+        .ark-flink-progress-bar-C
+          height: 100px
+          width: 8px
+          bottom: 50px
+          right: 0
+          clip-path: polygon( 0% 0%, 100% 8%, 100% 28%, 0% 20%, 0% 23%, 100% 31%,100% 46% ,0% 38% ,0% 41% ,100% 49% ,100% 64% ,0% 56% ,0% 59% ,100% 67% ,100% 82% ,0% 74% , 0% 77%,100% 85% , 100% 100%,0% 90% );
+        .ark-flink-content
+          display: block
+          position: absolute
+          background: radial-gradient(var(--ark-flink-default-color),transparent)
+          width: calc(100% - 10px)
+          height: 100%
+          top: 0
+          left: 0
+          clip-path: polygon(0 15px, 100px 15px, 115px 0, calc(100% - 45px) 0, calc(100% - 15px) 45px, 100% 45px, 100% calc(100% - 25px), calc(100% - 30px) calc(100% - 25px), calc(100% - 55px) calc(100% - 10px), calc(100% - 90px) calc(100% - 10px), calc(100% - 100px) 100%, 100px 100%, 90px calc(100% - 10px), 55px calc(100% - 10px), 35px calc(100% - 45px), 0% calc(100% - 45px));
+          .ark-flink-avatar,
+          .ark-flink-mask,
+          .ark-flink-descr,
+          .ark-flink-siteshot
+            position: absolute
+            width: 100%
+            height: 100%
+            top: 0
+            left: 0
+          .ark-flink-name
+            display: block;
+            position: absolute;
+            z-index: 5;
+            bottom: 10px;
+            left: 20%;
+            color: white;
+            text-shadow: 1px 1px 5px black;
+            background: transparent;
+            height: 40px;
+            width: 60%;
+            border-style: double;
+            border-width: 5px 5px 0 5px;
+            border-color: var(--flink-name-border-color);
+            transform: perspective(0.5em) rotateX(3deg);
+            .flink-sitename
+              transform: perspective(0.5em) rotateX(-3deg);
+              font-size: 15px;
+              margin: 5px 0 0 0;
+            .flink-block
+              transform: perspective(0.5em) rotateX(-10deg);
+              display: block;
+              width: 60%;
+              height: 13px;
+              background: var(--flink-name-border-color);
+              position: absolute;
+              bottom: 0px;
+              left: 20%;
+          .ark-flink-avatar
+            z-index 4
+            display: flex
+            align-items: center;
+            justify-content: center;
+            transform: rotateX(0deg)
+            img
+              width: 100px;
+              height: 100px;
+              margin: 0 auto 20px;
+              object-fit: cover
+              clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            .img-alt
+              display: none
+          .ark-flink-mask
+            z-index 3
+            .ark-flink-mask-left
+              width: 100%;
+              height: 100%;
+              background: repeating-linear-gradient(0deg, var(--ark-flink-mask),transparent 1px);
+              clip-path: polygon(50% 0, 50% calc(50% - 60px), calc(50% - 20px) calc(50% - 60px), calc(50% - 50px) calc(50% - 30px), calc(50% - 50px) calc(50% + 10px), calc(50% - 20px) calc(50% + 40px), 50% calc(50% + 40px), 50% 100%, 0% 100%, 0% 0%);
+              left: 0%;
+              position: absolute;
+            .ark-flink-mask-right
+              background: repeating-linear-gradient(0deg, var(--ark-flink-mask),transparent 1px);
+              width: 100%;
+              height: 100%;
+              clip-path: polygon(100% 0%, 50% 0%, 50% calc(50% - 60px), calc(50% - 20px) calc(50% - 60px), calc(50% - 50px) calc(50% - 30px), calc(50% - 50px) calc(50% + 10px), calc(50% - 20px) calc(50% + 40px), 50% calc(50% + 40px), 50% 100%, 100% 100%);
+              right: 0%;
+              position: absolute;
+          
+          .ark-flink-descr
+            z-index 2
+            display: flex
+            align-items: center;
+            justify-content: center;
+            .ark-flink-descr-text
+              color: white;
+              text-shadow: 1px 1px 5px black;
+              font-size: 1.5em;
+              height: 1.5em;
+              line-height: 1.5em;
+              overflow: hidden; /* 隐藏超出容器的文本 */
+              border-right: .15em solid orange; /* 打字效果的光标动画 */
+              white-space: nowrap; /* 确保文本在一行内显示，不换行 */
+              margin: 20px;
+              opacity: 0
+          .ark-flink-siteshot
+            z-index 1
+            display: flex
+            align-items: center;
+            justify-content: center;
+            img
+              height: 75%;
+              width: 100%;
+              margin: 0 auto 20px;
+              object-fit: cover;
+
+/* 定义打字机动画 */
+@keyframes ark-flink-type
+  from
+    width: 0;
+  to
+    width: 100%;
+
+
+/* 定义光标闪烁动画 */
+@keyframes ark-flink-blink
+  from,
+  to
+    border-color: transparent;
+  50%
+    border-color: orange

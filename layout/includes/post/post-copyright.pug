@@ -1,0 +1,28 @@
+if theme.post_copyright.enable && page.copyright !== false
+  - const author = page.copyright_author ? page.copyright_author : config.author
+  - const url = page.copyright_url ? page.copyright_url : page.permalink
+  .post-copyright
+    .post-copyright__title
+      span.post-copyright-info
+        h #[=page.title]
+    .post-copyright__type
+      span.post-copyright-info
+        a(href=url_for(url))= theme.post_copyright.decode ? decodeURI(url) : url
+    .post-copyright-m
+      .post-copyright-m-info(style="position: relative;z-index: 3")
+        .post-copyright-a(style="display: inline-block;width: fit-content;margin: 20px 20px 20px 0")
+            h 作者
+            .post-copyright-cc-info
+                h=author
+        .post-copyright-c(style="display: inline-block;width: fit-content;margin: 20px 20px 20px 0")
+            h 发布于
+            .post-copyright-cc-info
+                h=date(page.date, config.date_format)
+        .post-copyright-u(style="display: inline-block;width: fit-content;margin: 20px 20px 20px 0")
+            h 更新于
+            .post-copyright-cc-info
+                h=date(page.updated, config.date_format)
+        .post-copyright-c(style="display: inline-block;width: fit-content;margin: 20px 20px 20px 0")
+            h 许可协议
+            .post-copyright-cc-info
+                a(rel='noopener' target='_blank' title=' CC BY 4.0' href='https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1') CC BY-NC-SA 4.0

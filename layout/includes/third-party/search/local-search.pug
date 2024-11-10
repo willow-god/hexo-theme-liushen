@@ -1,0 +1,22 @@
+#local-search
+  .search-dialog
+    nav.search-nav
+      span.search-dialog-title= _p('search.title')
+      span#loading-status
+      button.search-close-button
+        i.fas.fa-times
+
+    #loading-database.is-center
+      i.fas.fa-spinner.fa-pulse
+      span= '  ' + _p("search.load_data")
+
+    .search-wrap
+      #local-search-input
+        .local-search-box
+          input(placeholder=theme.search.placeholder || _p("search.input_placeholder") type="text").local-search-box--input
+      hr
+      #local-search-results
+      #local-search-stats-wrap
+  #search-mask
+
+  script(src=url_for(theme.asset.local_search))

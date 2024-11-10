@@ -1,0 +1,15 @@
+if hexo-config('preloader.enable')
+  if hexo-config('preloader.load_style') == 'gear'
+    @import './_loading/gear'
+  else if hexo-config('preloader.load_style') == 'ironheart'
+    @import './_loading/ironheart'
+  else if hexo-config('preloader.load_style') == 'scarecrow'
+    @import './_loading/scarecrow'
+  else if hexo-config('preloader.load_style') == 'triangles'
+    @import './_loading/triangles'
+  else if hexo-config('preloader.load_style') == 'wizard'
+    @import './_loading/wizard'
+  else if hexo-config('preloader.load_style') == 'image'
+    @import './_loading/image'
+  else
+    @import './_loading/default'

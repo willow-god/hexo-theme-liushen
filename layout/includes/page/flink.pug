@@ -1,0 +1,121 @@
+#article-container
+  if top_img === false
+    h1.page-title= page.title
+  .flink
+    if site.data.link
+      each i in site.data.link
+        if i.class_name
+          h2!= i.class_name
+        if i.class_desc
+          .flink-desc!=i.class_desc
+        if i.flink_style === 'butterfly'
+          .butterfly-flink-list
+            - let randomList = i.link_list.slice()
+            if i.random
+              - randomList.sort(() => Math.random() - 0.5)
+            each item in randomList
+              .flink-list-item
+                a(href=url_for(item.link)  title=item.name target="_blank")
+                  .flink-item-icon
+                    if theme.lazyload.enable
+                      img.no-lightbox(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                    else
+                      img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+                  .flink-item-info
+                    .flink-item-name= item.name
+                    .flink-item-desc(title=item.descr)= item.descr
+        else if i.flink_style === 'flexcard'
+          .flexcard-flink-list
+            - let randomList = i.link_list.slice()
+            if i.random
+              - randomList.sort(() => Math.random() - 0.5)
+            each item in randomList
+              a.flink-list-item(href=url_for(item.link) target='_blank' data-title=item.descr)
+                .wrapper.cover
+                  - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
+                  if theme.lazyload.enable
+                    img.cover.fadeIn.no-lightbox(data-lazy-src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                    img.cover.fadeIn.no-lightbox(data-lazy-src=avatar onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                  else
+                    img.cover.fadeIn.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                    img.cover.fadeIn.no-lightbox(data-lazy-src=avatar onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                .info
+                  if theme.lazyload.enable
+                    img.flink-avatar.no-lightbox(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  else
+                    img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  span.flink-sitename= item.name
+        else if i.flink_style === 'volantis'
+          .volantis-flink-list
+            - let randomList = i.link_list.slice()
+            if i.random
+              - randomList.sort(() => Math.random() - 0.5)
+            each item in randomList
+              a.flink-list-item(target='_blank' rel='noopener' href=url_for(item.link))
+                .img
+                  - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
+                  img.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                .info
+                  img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  span.title= item.name
+                  span.desc(title=item.descr)= item.descr
+        else if i.flink_style === 'smoothcard'
+          .smoothcard-flink-list
+            - let randomList = i.link_list.slice()
+            if i.random
+              - randomList.sort(() => Math.random() - 0.5)
+            each item in randomList
+              a.flink-list-item(target='_blank' rel='noopener' href=url_for(item.link))
+                .img
+                  - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
+                  img.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+                .info
+                  img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  .smoothcard-text
+                    span.title= item.name
+                    span.desc(title=item.descr)= item.descr
+        else if i.flink_style === 'byer'
+          .byer-flink-list
+            - let randomList = i.link_list.slice()
+            if i.random
+              - randomList.sort(() => Math.random() - 0.5)
+            each item in randomList
+              .flink-list-item
+                a(href=url_for(item.link)  title=item.name target="_blank")
+                  .flink-item-bar
+                    sapn.flink-item-bar-yellow 
+                    sapn.flink-item-bar-green 
+                    sapn.flink-item-bar-red
+                    sapn.flink-item-bar-x +
+                  .flink-item-content
+                    .flink-item-text
+                      .flink-item-name= item.name 
+                      .flink-item-desc(title=item.descr)= item.descr
+                    .flink-item-icon
+                      img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
+        else if i.flink_style === 'ark'
+          .ark-flink-list
+            - let randomList = i.link_list.slice()
+            if i.random
+              - randomList.sort(() => Math.random() - 0.5)
+            each item in randomList
+              a.flink-list-item(href=url_for(item.link) target='_blank' title=item.descr)
+                .ark-flink-progress-bar-A
+                .ark-flink-progress-bar-B
+                .ark-flink-progress-bar-C
+                .ark-flink-content
+                  .ark-flink-name
+                    .flink-sitename= item.name
+                    .flink-block
+                  .ark-flink-avatar
+                    img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
+                  .ark-flink-mask
+                    .ark-flink-mask-left 
+                    .ark-flink-mask-right
+                  .ark-flink-descr
+                    .ark-flink-descr-text=item.descr
+                  .ark-flink-siteshot
+                    - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
+                    img.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
+
+    != page.content
