@@ -230,19 +230,19 @@ document.addEventListener('visibilitychange', function () {
 // }
 
 // umami 统计分析工具
-(function() {
-    var currentDomain = window.location.hostname;
-    if (currentDomain.includes('liushen.fun')) {
-        var script = document.createElement('script');
-        script.src = "https://um.liushen.fun/script.js"; // 这个需要你自己看着改改
-        script.setAttribute('data-website-id', '7677c8fd-8995-4344-acfc-50ceeceb04a0');
-        script.async = true; // 将script的async属性设置为true，实现异步加载
-        document.head.appendChild(script);
-        console.log('========成功加载 [blog.liushen.fun] 统计分析工具代码========');
-    } else { // 比如本地调试，就不需要统计了，要不然会发现统计页面很多来自本地localhost
-        console.log('========当前网站不需要加载统计分析工具========');
-    }
-})();
+//(function() {
+//    var currentDomain = window.location.hostname;
+//    if (currentDomain.includes('liushen.fun')) {
+//        var script = document.createElement('script');
+//        script.src = "https://um.xxx.fun/script.js"; // 这个需要你自己看着改改
+//        script.setAttribute('data-website-id', '11111111111111111111111111111111111111');
+//        script.async = true; // 将script的async属性设置为true，实现异步加载
+//        document.head.appendChild(script);
+//        console.log('========成功加载 [blog.liushen.fun] 统计分析工具代码========');
+//    } else { // 比如本地调试，就不需要统计了，要不然会发现统计页面很多来自本地localhost
+//        console.log('========当前网站不需要加载统计分析工具========');
+//    }
+//})();
 
 
 // Fetch IP 地址信息
@@ -258,7 +258,7 @@ function fetchIpLocation() {
     }
 
     // 如果没有缓存或已过期，进行网络请求
-    return fetch('https://api.76.al/api/ip/query?key=H8rt5Q4PtgP00XRGOPZAVR8Mmp')
+    return fetch('https://api.76.al/api/ip/query?key=这里要自己改改')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
