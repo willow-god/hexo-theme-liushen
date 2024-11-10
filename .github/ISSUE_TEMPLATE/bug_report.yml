@@ -1,26 +1,29 @@
-name: Bug report
-description: Create a report to help us improve
+已将主题名修改为 hexo-theme-LiuShen，以下是更新后的模板：
+
+```yaml
+name: Bug 报告
+description: 创建报告以帮助我们改进
 title: '[Bug]: '
 
 body:
   - type: markdown
     attributes:
       value: |
-        重要：請依照該模板來提交 
+        重要：请按照该模板提交
         Important: Please follow the template to create a new issue
 
   - type: input
-    id: butterfly-ver
+    id: liushen-ver
     attributes:
-      label: 使用的 Butterfly 版本？ | What version of Butterfly are you using?
-      description: 檢視主題的 package.json | Check the theme's package.json
+      label: 使用的 LiuShen 版本？ | 您使用的 LiuShen 版本是什么？
+      description: 查看主题的 package.json 文件 | Check the theme's package.json
     validations:
       required: true
 
   - type: dropdown
     id: modify
     attributes:
-      label: 是否修改過主題文件？ | Has the theme files been modified?
+      label: 是否修改过主题文件？ | 主题文件是否已被修改？
       options:
         - 是 (Yes)
         - 否 (No)
@@ -30,35 +33,35 @@ body:
   - type: dropdown
     id: browser
     attributes:
-      label: 使用的瀏覽器？ | What browser are you using?
+      label: 使用的浏览器？ | 您使用的是什么浏览器？
       options:
         - Chrome
         - Edge
         - Safari
         - Opera
-        - Other
+        - 其他 (Other)
     validations:
       required: true
 
   - type: dropdown
     id: platform
     attributes:
-      label: 使用的系統？ | What operating system are you using?
+      label: 使用的系统？ | 您使用的是什么操作系统？
       options:
         - Windows
         - macOS 
         - Linux
         - Android
         - iOS
-        - Other
+        - 其他 (Other)
     validations:
       required: true
 
   - type: textarea
     id: dependencies
     attributes:
-      label: 依賴插件 | Package dependencies information
-      description: 在 Hexo 根目錄下執行 `npm ls --depth 0` | Run `npm ls --depth 0` in Hexo root directory
+      label: 依赖插件 | 插件依赖信息
+      description: 在 Hexo 根目录下执行 `npm ls --depth 0` | Run `npm ls --depth 0` in Hexo root directory
       render: Text
     validations:
       required: true
@@ -66,9 +69,9 @@ body:
   - type: textarea
     id: description
     attributes:
-      label: 問題描述 | Describe the bug
-      description: 請描述你的問題現象 | A clear and concise description of what the bug is.
-      placeholder: 請儘量提供截圖來定位問題 | If applicable, add screenshots to help explain your problem
+      label: 问题描述 | 描述该 Bug
+      description: 请描述您的问题现象 | A clear and concise description of what the bug is.
+      placeholder: 请尽量提供截图帮助定位问题 | If applicable, add screenshots to help explain your problem
       value:
     validations:
       required: true
@@ -76,8 +79,9 @@ body:
   - type: input
     id: website
     attributes:
-      label: 出現問題的網站 | Website with the issue
-      description: 請提供可復現問題的網站地址 | Please provide a website URL where the problem can be reproduced.
-      placeholder: 請填寫具體的網址，不要填寫 localhost 網站 | Please provide a specific URL, do not use localhost. 
+      label: 出现问题的网站 | 出现问题的网站地址
+      description: 请提供可复现问题的网站地址 | Please provide a website URL where the problem can be reproduced.
+      placeholder: 请填写具体的网址，不要填写 localhost | Please provide a specific URL, do not use localhost.
     validations:
       required: true
+```
