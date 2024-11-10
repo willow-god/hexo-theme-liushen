@@ -1,8 +1,3 @@
-<p align="center">
-  <img src="https://fastly.jsdelivr.net/gh/god-willow/pic@main/pic/202411102329501.webp" alt="hexo-theme-LiuShen Icon" width="500" style="border-radius: 50%;">
-</p>
-
-
 <div align="center">
   <h1 style="background: linear-gradient(to right, #76CBEC, #F7A137); -webkit-background-clip: text; color: transparent; font-size: 4.4rem">hexo-theme-LiuShen</h1>
 </div>
