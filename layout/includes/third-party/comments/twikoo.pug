@@ -1,5 +1,7 @@
 - const { envId, region, option } = theme.twikoo
 - const { use, lazyload, count } = theme.comments
+- const twikooOption = Object.assign({}, option || {})
+- if (!twikooOption.prismCdn && theme.asset.prismjs_js) twikooOption.prismCdn = url_for(theme.asset.prismjs_js).replace(/\/prism(?:\.min)?\.js$/, '')
 
 script.
   (() => {
@@ -26,7 +28,7 @@ script.
         onCommentLoaded: () => {
           btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
         }
-      }, !{JSON.stringify(option)}))
+      }, !{JSON.stringify(twikooOption)}))
 
       !{count ? 'GLOBAL_CONFIG_SITE.isPost && getCount()' : ''}
     }

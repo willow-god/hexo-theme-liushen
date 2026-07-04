@@ -1,0 +1,16 @@
+.ai-summary
+    .ai-head
+        .ai-head-left
+            .ai-circle.ai-circle-1
+            .ai-circle.ai-circle-2
+            .ai-circle.ai-circle-3
+        
+        .ai-head-right
+            a.ai-about-ai(href=url_for(theme.ai_summary.about_ai_url))= __('关于AI')
+           
+    .ai-explanation(style="display: block;" data-summary=page.summary)=theme.ai_summary.loadingText
+    .ai-title 
+        .ai-title-left 
+            i.fa-brands.fa-slack
+            .ai-title-text=theme.ai_summary.title
+        .ai-tag#ai-tag= theme.ai_summary.modelName

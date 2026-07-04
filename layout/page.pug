@@ -20,15 +20,20 @@ block content
       when 'link'
         include includes/page/flink.pug
         +commentLoad
+      when 'rewards'
+        include includes/page/rewards.pug
+        +commentLoad
       when 'categories'
         include includes/page/categories.pug
         +commentLoad
-      when '404'
-        include includes/page/404.pug
       when 'devices'
         include includes/page/devices.pug
       when 'shuoshuo'
         include includes/page/shuoshuo.pug
+      when 'about'
+        include includes/page/about.pug
+      when '404'
+        include includes/page/404.pug
       default
         include includes/page/default-page.pug
         +commentLoad

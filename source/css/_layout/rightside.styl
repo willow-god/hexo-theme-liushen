@@ -104,3 +104,20 @@
 
           & + i
             display: block
+
+#live2d-widget
+  transition: transform .45s ease, opacity .35s ease
+  will-change: transform, opacity
+
+  &.is-end-hide
+    transform: translate3d(calc(-100% - 24px), 0, 0) !important
+    opacity: 0
+    pointer-events: none
+
++maxWidth600()
+  #rightside
+    #cat
+      display: none !important
+  #live2d-widget
+    display: none
+

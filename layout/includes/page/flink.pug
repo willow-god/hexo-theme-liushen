@@ -15,7 +15,7 @@
               - randomList.sort(() => Math.random() - 0.5)
             each item in randomList
               .flink-list-item
-                a(href=url_for(item.link)  title=item.name target="_blank")
+                a(href=url_for(item.link)  title=item.name target="_blank" rel='nofollow noopener')
                   .flink-item-icon
                     if theme.lazyload.enable
                       img.no-lightbox(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=item.name )
@@ -30,7 +30,7 @@
             if i.random
               - randomList.sort(() => Math.random() - 0.5)
             each item in randomList
-              a.flink-list-item(href=url_for(item.link) target='_blank' data-title=item.descr)
+              a.flink-list-item(href=url_for(item.link) target='_blank' data-title=item.descr rel='nofollow noopener')
                 .wrapper.cover
                   - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
                   if theme.lazyload.enable
@@ -51,21 +51,21 @@
             if i.random
               - randomList.sort(() => Math.random() - 0.5)
             each item in randomList
-              a.flink-list-item(target='_blank' rel='noopener' href=url_for(item.link))
+              a.flink-list-item(target='_blank' rel='nofollow noopener' href=url_for(item.link))
                 .img
                   - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
                   img.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
                 .info
                   img.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt='' )
                   span.title= item.name
-                  span.desc(title=item.descr)= item.descr
+                  span.desc= item.descr
         else if i.flink_style === 'smoothcard'
           .smoothcard-flink-list
             - let randomList = i.link_list.slice()
             if i.random
               - randomList.sort(() => Math.random() - 0.5)
             each item in randomList
-              a.flink-list-item(target='_blank' rel='noopener' href=url_for(item.link))
+              a.flink-list-item(target='_blank' rel='nofollow noopener' href=url_for(item.link))
                 .img
                   - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
                   img.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
@@ -81,7 +81,7 @@
               - randomList.sort(() => Math.random() - 0.5)
             each item in randomList
               .flink-list-item
-                a(href=url_for(item.link)  title=item.name target="_blank")
+                a(href=url_for(item.link)  title=item.name target="_blank" rel='nofollow noopener')
                   .flink-item-bar
                     sapn.flink-item-bar-yellow 
                     sapn.flink-item-bar-green 
@@ -99,7 +99,7 @@
             if i.random
               - randomList.sort(() => Math.random() - 0.5)
             each item in randomList
-              a.flink-list-item(href=url_for(item.link) target='_blank' title=item.descr)
+              a.flink-list-item(href=url_for(item.link) target='_blank' title=item.descr rel='nofollow noopener')
                 .ark-flink-progress-bar-A
                 .ark-flink-progress-bar-B
                 .ark-flink-progress-bar-C
@@ -118,4 +118,20 @@
                     - var siteshot = item.siteshot ? url_for(item.siteshot) : 'https://s0.wp.com/mshots/v1/' + item.link + '?w=400&h=300'
                     img.no-lightbox(src=siteshot onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'` alt='' )
 
+    if site.data.error_link
+      each i in site.data.error_link
+        if i.class_name
+          h2!= i.class_name
+        if i.class_desc
+          .flink-desc!=i.class_desc
+        if i.flink_style === 'error'
+          .tombstone-list
+            each item in i.link_list
+              .tombstone-item
+                if theme.lazyload.enable
+                  img.tombstone-avatar.no-lightbox(data-lazy-src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
+                else
+                  img.tombstone-avatar.no-lightbox(src=url_for(item.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
+                span.tombstone-name= item.name
+    
     != page.content

@@ -32,6 +32,37 @@ hexo.extend.filter.register('after_render:html', function (locals) {
   }
 }, 15)
 
+function echartsScript () {
+  const src = hexo.theme.config.asset?.echarts || getPluginFallback('echarts', '5.5.1', 'dist/echarts.simple.min.js')
+  return `<script src="${src}"></script>`
+}
+
+function getPluginFallback (name, version, file) {
+  const { CDN = {} } = hexo.theme.config
+  const provider = CDN.third_party_provider || 'jsdelivr'
+  const minFile = file.replace(/(?<!\.min)\.(js|css)$/g, ext => '.min' + ext)
+  const minCdnjsFile = minFile(file.replace(/^[lib|dist]*\/|browser\//g, ''))
+  const value = {
+    version,
+    name,
+    file,
+    cdnjs_file: file.replace(/^[lib|dist]*\/|browser\//g, ''),
+    min_file: minFile,
+    min_cdnjs_file: minCdnjsFile,
+    cdnjs_name: name
+  }
+  const verType = CDN.version === false ? '' : `@${version}`
+  const sources = {
+    local: `/pluginsSrc/${name}/${file}`,
+    jsdelivr: `https://cdn.jsdelivr.net/npm/${name}${verType}/${minFile}`,
+    unpkg: `https://unpkg.com/${name}${verType}/${file}`,
+    cdnjs: `https://cdnjs.cloudflare.com/ajax/libs/${name}/${version}/${minCdnjsFile}`,
+    custom: (CDN.custom_format || '').replace(/\$\{(.+?)\}/g, (match, key) => value[key])
+  }
+
+  return sources[provider] || sources.jsdelivr
+}
+
 function postsChart (startMonth) {
   const startDate = moment(startMonth || '2020-01')
   const endDate = moment()
@@ -54,7 +85,7 @@ function postsChart (startMonth) {
   const monthValueArr = JSON.stringify([...monthMap.values()])
 
   return `
-  <script src="https://jsd.qyliu.top/npm/echarts@5.5.1/dist/echarts.simple.min.js"></script>
+  ${echartsScript()}
   <script id="postsChart">
     var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
     var postsChart = echarts.init(document.getElementById('posts-chart'), 'light');
@@ -181,7 +212,7 @@ function tagsChart (len) {
   const tagArrJson = JSON.stringify(tagArr)
 
   return `
-  <script src="https://jsd.qyliu.top/npm/echarts@5.5.1/dist/echarts.simple.min.js"></script>
+  ${echartsScript()}
   <script id="tagsChart">
     var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
     var tagsChart = echarts.init(document.getElementById('tags-chart'), 'light');
@@ -323,7 +354,7 @@ function categoriesChart (dataParent) {
   const categoryArrParentJson = JSON.stringify(translateListToTree(categoryArr, '0'))
 
   return `
-  <script src="https://jsd.qyliu.top/npm/echarts@5.5.1/dist/echarts.simple.min.js"></script>
+  ${echartsScript()}
   <script id="categoriesChart">
     var color = document.documentElement.getAttribute('data-theme') === 'light' ? '#4c4948' : 'rgba(255,255,255,0.7)'
     var categoriesChart = echarts.init(document.getElementById('categories-chart'), 'light');

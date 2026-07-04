@@ -114,8 +114,12 @@ Snackbar:
   cht_to_chs: You have switched to Simplified Chinese
   day_to_night: You have switched to Dark Mode
   night_to_day: You have switched to Light Mode
+  theme_to_auto: You have switched to Auto Mode
 
 loading: Loading...
 load_more: Load More
 
 error404: Page Not Found
+
+music:
+  hit: 音乐已暂停

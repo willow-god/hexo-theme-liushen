@@ -1,0 +1,227 @@
+#article-container
+  .reward-page    
+    // 感谢图片
+    .thank-image
+      img
+        box-shadow: none
+        height: 200px
+      .img-alt
+        display: none
+    
+    // 收款码区域
+    .payment-codes
+      display: flex
+      justify-content: center
+      gap: 40px
+      margin: 30px 0
+      flex-wrap: wrap
+      
+      @media screen and (max-width: 768px)
+        gap: 20px
+      
+      .payment-item
+        text-align: center
+        transition: transform 0.3s ease
+        
+        &:hover
+          transform: translateY(-5px)
+        
+        .payment-content
+          display: flex
+          flex-direction: column
+          align-items: center
+          gap: 15px
+        
+        .payment-image
+          width: 180px
+          height: 180px
+          border-radius: 15px
+          overflow: hidden
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1)
+          
+          @media screen and (max-width: 768px)
+            width: 150px
+            height: 150px
+          
+          img
+            width: 100%
+            height: 100%
+            object-fit: cover
+        
+        .payment-info
+          .payment-name
+            font-size: 16px
+            color: var(--liushen-text)
+            font-weight: 600
+            margin-bottom: 5px
+    
+    // 赞赏者列表
+    .sponsors-list
+      margin-bottom: 30px
+      
+      // 头部区域
+      .sponsors-header
+        display: flex
+        flex-direction: row-reverse
+        
+        .sponsors-description
+          p
+            font-size: 16px
+            color: var(--liushen-secondtext)
+            font-style: italic
+      
+      .sponsors-container
+        display: flex
+        flex-wrap: wrap
+        justify-content: flex-start
+        margin: -8px // 抵消子元素的 margin
+
+        .sponsor-item
+          margin: 8px // 统一的 margin
+          // 默认宽度 (1列)
+          width: "calc(100% - %s)" % (8px * 2)
+          
+          // 800px 及以上 (2列)
+          @media screen and (min-width: 800px)
+            width: "calc(100% / 2 - %s)" % (8px * 2)
+          
+          // 1200px 及以上 (3列)
+          @media screen and (min-width: 1200px)
+            width: "calc(100% / 3 - %s)" % (8px * 2)
+
+          background-color: var(--liushen-card-bg)
+          border: var(--liushen-card-border)
+          border-radius: 12px
+          transition: all 0.3s ease
+          overflow: hidden
+
+          &:hover
+            transform: translateY(-2px)
+            .background-img
+              opacity: 0.5
+              transform: translateX(-50%) translateY(-50%) scale(1.3) !important
+            
+            .sponsor-avatar-title
+                opacity: 0 !important
+            .sponsor-desc
+                opacity: 1 !important
+
+          
+          .sponsor-card
+            display: flex
+            justify-content: space-between
+            height: 52px
+            width: 100%
+            align-items: center
+            padding: 10px
+            transition: all 0.3s ease
+            position: relative
+          
+            .background-img
+              position: absolute
+              transform: translateX(-50%) translateY(-50%)
+              width: 400px
+              height: 400px
+              border-radius: 50%
+              transition: all 0.3s ease
+              opacity: 0.7
+              z-index: 0
+              top: 50%
+              left: 10px
+            
+            .sponsor-card-left
+              display: flex
+              z-index: 1
+              align-items: center
+              gap: 15px
+              flex: 1
+              min-width: 0
+              
+              .sponsor-avatar-title
+                display: flex
+                height: 100%
+                align-items: center
+                gap: 10px
+                opacity: 1
+                transition: all 0.3s ease
+                
+                img
+                  width: 20px
+                  margin: 0
+                  height: 20px
+                  border-radius: 50%
+                  object-fit: cover
+                
+                .sponsor-name
+                  font-size: 16px
+                  font-weight: 600
+                  color: var(--liushen-text)
+                  transition: all 0.3s ease
+                  white-space: nowrap
+                  overflow: hidden
+                  text-overflow: ellipsis
+              
+              .sponsor-desc
+                position: absolute
+                transform: translateY(-50%)
+                z-index: 1
+                left: 20px
+                top: 50%
+                font-size: 16px
+                font-weight: 600
+                color: var(--liushen-text)
+                opacity: 0
+                transition: all 0.3s ease
+                white-space: nowrap
+                overflow: hidden
+                text-overflow: ellipsis
+                max-width: calc(100% - 180px)
+            
+            .sponsor-card-right
+              text-align: right
+              display: flex
+              gap:10px
+              
+              .sponsor-amount
+                font-size: 16px
+                font-weight: 600
+                line-height: 1
+                color: var(--default-bg-color)
+              
+              .sponsor-date
+                font-size: 16px
+                line-height: 1
+                color: var(--liushen-secondtext)
+                
+                .sponsor-card:hover &
+                  color: rgba(255, 255, 255, 0.8)
+
+      .statistics
+        display: flex
+        flex-direction: column
+        gap: 5px
+        font-size: 16px
+        color: var(--liushen-text)
+        margin-top: 20px
+        .stat-number
+          font-weight: 600
+          color: var(--default-bg-color)
+    
+    // 无数据提示
+    .no-sponsors
+      text-align: center
+      padding: 50px
+      color: var(--liushen-secondtext)
+      
+      p
+        font-size: 16px
+        margin: 0
+
+// 定义渐入动画
+@keyframes fadeInUp
+  from
+    opacity: 0
+    transform: translateY(20px)
+  to
+    opacity: 1
+    transform: translateY(0)

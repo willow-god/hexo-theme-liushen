@@ -256,11 +256,12 @@ beautify()
     padding: .5em 1.2em
     background-color: $noticeOutdate-bg
     color: $noticeOutdate-color
+    border: var(--liushen-card-border)
     addBorderRadius(12)
 
     if hexo-config('noticeOutdate.style') == 'flat'
       padding: .5em 1em .5em 2.6em
-      border-left: 5px solid $noticeOutdate-border
+      // border-left: 5px solid $noticeOutdate-border
 
       &:before
         @extend .fontawesomeIcon

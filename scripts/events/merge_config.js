@@ -7,7 +7,9 @@ hexo.extend.filter.register('before_generate', () => {
     nav: {
       logo: null,
       display_title: true,
-      fixed: false
+      fixed: false,
+      site_name: null,
+      right_items: null
     },
     menu: null,
     code_blocks: {
@@ -45,7 +47,7 @@ hexo.extend.filter.register('before_generate', () => {
     },
     error_img: {
       flink: '/img/friend_404.gif',
-      post_page: '/img/404.jpg'
+      post_page: '/img/404.png'
     },
     error_404: {
       enable: false,
@@ -69,8 +71,6 @@ hexo.extend.filter.register('before_generate', () => {
         label: true
       }
     },
-    index_site_info_top: null,
-    index_top_img_height: null,
     info_title: null,
     info_title_avatar: null,
     subtitle: {
@@ -78,12 +78,24 @@ hexo.extend.filter.register('before_generate', () => {
       effect: true,
       typed_option: null,
       source: false,
+      api: {
+        renjian: null,
+        hitokoto: null,
+        poetry: null
+      },
       sub: null
     },
     index_layout: 3,
     index_post_content: {
       method: 3,
       length: 500
+    },
+    index_swiper: {
+      enable: true,
+      limit: 5,
+      mousewheel: true,
+      speed: 550,
+      delay: 3200
     },
     toc: {
       post: true,
@@ -181,13 +193,15 @@ hexo.extend.filter.register('before_generate', () => {
       },
       card_author: {
         enable: true,
+        hello: 'Welcome',
         description: null,
         card_bg_img: null,
+        mood_icon: null,
         button: {
-          enable: true,
+          enable: false,
           icon: 'fab fa-github',
           text: 'Follow Me',
-          link: 'https://github.com/xxxxxx'
+          link: null
         }
       },
       card_announcement: {
@@ -206,6 +220,19 @@ hexo.extend.filter.register('before_generate', () => {
         limit: 6,
         storage: 10,
         avatar: true
+      },
+      card_welcome: {
+        enable: false,
+        title: 'Welcome',
+        icon: 'fa fa-user',
+        content: null,
+        error_text: 'Location service unavailable',
+        location: {
+          enable: false,
+          base_lng: null,
+          base_lat: null,
+          distance_label: 'site owner'
+        }
       },
       card_categories: {
         enable: true,
@@ -241,6 +268,21 @@ hexo.extend.filter.register('before_generate', () => {
         last_push_date: true,
         sort_order: null,
         runtime_date: null
+      }
+    },
+    location_api: {
+      api: null,
+      api_key: null,
+      cache_hours: 24
+    },
+    poem_card: {
+      enable: false,
+      api: null,
+      cache_minutes: 30,
+      fallback: {
+        sentence: '获取失败',
+        title: '《未知》',
+        author: '未知'
       }
     },
     rightside_bottom: null,
@@ -285,9 +327,9 @@ hexo.extend.filter.register('before_generate', () => {
       total_wordcount: true
     },
     busuanzi: {
-      site_uv: true,
-      site_pv: true,
-      page_pv: true
+      site_uv: false,
+      site_pv: false,
+      page_pv: false
     },
     math: {
       use: null,
@@ -445,6 +487,17 @@ hexo.extend.filter.register('before_generate', () => {
         token: null
       }
     },
+    shuoshuo: {
+      enable: false,
+      api: null,
+      base_url: null,
+      avatar: null,
+      cache_minutes: 30,
+      page_size: 30,
+      default_external_cover: null,
+      github_external_cover: null,
+      meting_api: null
+    },
     google_adsense: {
       enable: false,
       auto_ads: true,
@@ -563,6 +616,18 @@ hexo.extend.filter.register('before_generate', () => {
       icons: true,
       border_radius: 12,
       light_bg_offset: 0
+    },
+    chat_tag: {
+      myNickName: null,
+      myAvatar: null,
+      otherAvatars: null
+    },
+    link_tag: {
+      default_avatar: null,
+      domain_avatars: null,
+      whitelist: null,
+      internal_tip: 'Internal link',
+      external_tip: 'External link'
     },
     pjax: {
       enable: false,

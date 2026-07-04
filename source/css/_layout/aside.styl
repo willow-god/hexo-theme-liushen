@@ -31,14 +31,56 @@
     position: relative
     background: var(--author-card-bg)
 
+    .author-info-name
+      margin-top: 10px
+
+    .avatar-img
+      margin-top: 50px;
+
+    .author-info-detail
+      // 无法被选中
+      user-select: none
+      // background: var(--card-bg)
+      // border: var(--liushen-card-border)
+      width: calc(100% - 40px);
+      height: 34px;
+      position: absolute;
+      overflow: hidden;
+      left: 50%;
+      transform: translate(-50%, 0);
+      font-size: 14px;
+      padding: 2px 15px;
+      border-radius: 20px;
+      transition: width 0.5s ease-in-out, height 0.5s ease-in-out, border-radius 0.5s ease-in-out, padding 0.5s ease-in-out, background 0.5s ease-in-out;
+
+      .author-info-hello
+        border-radius: 20px;
+        width: 135px;
+        background: var(--card-bg)
+        margin: 0 auto;
+        transition: background 0.5s ease-in-out, border 0.5s ease-in-out
+      
+      author-info-desc
+        margin: 0 12px;
+        font-weight: 600;
+
     &:hover
       &::before
         opacity: 1
       
       .avatar-img
-        transform: scale(2)
-        opacity: 0
+        // 向左上角移动，同时缩小，稍微逆时针旋转30度
+        transform: translate(-90%, -85%) scale(0.4) rotate(-20deg);
+      
+      .author-info-detail
+        background: var(--card-bg)
+        height: 165px
+        border-radius: 10px
+        padding: 10px 15px
 
+        .author-info-hello
+          background: none
+          border: none
     &::before
       content: ''
       position: absolute
@@ -85,7 +127,7 @@
       color: var(--btn-color)
       text-align: center
       line-height: 2.4
-      addBorderRadius(7)
+      addBorderRadius(20)
 
       &:hover
         background-color: var(--btn-hover-color)
@@ -347,18 +389,29 @@
         color: #FF0000
 
 .avatar-img
-  overflow: hidden
+  position: relative
   margin: 0 auto
   width: 110px
   height: 110px
-  border-radius: 70px
   transition: transform .5s, opacity 0.5s ease, filter 0.5s ease
 
   img
+    border: 6px solid var(--white);
+    border-radius: 50%
     width: 100%
     height: 100%
     transition: filter 375ms ease-in .2s
     object-fit: cover
+  
+  .mood-icon
+    width: 38px;
+    height: 38px;
+    border: 6px solid var(--white);
+    border-radius: 50%
+    position: absolute
+    bottom: 0
+    right: 0
+    z-index: 1
 
 .site-data
   display: table

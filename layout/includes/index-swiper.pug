@@ -1,0 +1,39 @@
+- const swiperConfig = theme.index_swiper || {}
+- const showIndexSwiper = swiperConfig.enable && is_home() && (!page.current || page.current === 1) && site.posts.length > 0
+
+if showIndexSwiper
+  - const limitRaw = swiperConfig.limit === 0 ? site.posts.length : swiperConfig.limit || 5
+  - const swiperLimit = Math.max(limitRaw, 1)
+  - const fallbackCover = theme.default_top_img || theme.index_img || theme.avatar.img || theme.error_img.post_page
+  - const swiperPosts = site.posts.sort('date', -1).limit(swiperLimit)
+  .recent-post-item.homepage-swiper-item
+    #homepage-swiper.homepage-swiper.swiper(
+      data-mousewheel=swiperConfig.mousewheel === false ? 'false' : 'true'
+      data-speed=swiperConfig.speed || 550
+      data-delay=swiperConfig.delay || 3200
+    )
+      .homepage-swiper__wrapper.swiper-wrapper
+        - swiperPosts.each(function(article) {
+          - const link = article.link || article.path
+          - const title = article.title || _p('no_title')
+          - const cover = article.cover
+          - const isImageCover = article.cover_type === 'img' || !article.cover_type
+          - const description = article.description || truncate(article.content, 120)
+          .homepage-swiper__slide.swiper-slide
+            a.homepage-swiper__image(href=url_for(link) title=title)
+              if cover && !isImageCover
+                span.homepage-swiper__image-bg(style=`background: ${cover}`)
+              else
+                img(
+                  src=url_for(cover || fallbackCover)
+                  onerror=`this.onerror=null;this.src='${url_for(theme.error_img.post_page)}'`
+                  alt=title
+                )
+            .homepage-swiper__content
+              a.homepage-swiper__title(href=url_for(link) title=title)= title
+              time.homepage-swiper__date(datetime=date_xml(article.date) title=_p('post.created') + ' ' + full_date(article.date))= date(article.date, config.date_format)
+              p.homepage-swiper__desc= description
+              .homepage-swiper__actions
+                a.homepage-swiper__button(href=url_for(link) title=title)= _p('aside.more_button')
+        - })
+      .homepage-swiper__pagination.swiper-pagination

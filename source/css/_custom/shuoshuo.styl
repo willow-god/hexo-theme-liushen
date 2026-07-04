@@ -1,0 +1,245 @@
+/* 卡片初始化 */
+#talk
+    position: relative
+    width: 100%
+    min-height: 50vh
+    box-sizing: border-box
+
+    .talk_item
+        width: calc(33.333% - 6px)
+        background: var(--liushen-card-bg)
+        border: var(--liushen-card-border)
+        box-shadow: var(--card-box-shadow)
+        transition: box-shadow .3s ease-in-out
+        border-radius: 12px
+        display: flex
+        flex-direction: column
+        padding: 20px
+        margin-bottom: 9px
+        margin-right: 9px
+        &:hover
+            box-shadow: var(--card-hover-box-shadow)
+
+        .talk_meta
+            display: flex
+            align-items: center
+            width: 100%
+            padding-bottom: 10px
+            border-bottom: 1px dashed grey /* 添加灰色虚线边框 */
+
+            .avatar
+                margin: 0 !important
+                width: 60px
+                height: 60px
+                border-radius: 12px
+        
+            .info
+                display: flex
+                flex-direction: column
+                margin-left: 10px
+
+                .talk_nick
+                    color: #6dbdc3
+                    font-size: 1.2rem
+
+                svg.is-badge.icon
+                    width: 15px
+                    padding-top: 3px
+            
+                span.talk_date
+                    opacity: .6
+
+        .talk_bottom
+            display: flex
+            align-items: center
+            margin-top: 15px
+            padding-top: 10px
+            border-top: 1px dashed grey /* 添加灰色虚线边框 */
+            justify-content: space-between
+            opacity: .9
+
+            .icon
+                float: right
+                transition: all .3s
+                &:hover
+                    color: #49b1f5
+            
+            span.talk_tag,
+            span.location_tag
+                font-size: 14px
+                background-color: var(--liushen-card-secondbg)
+                border-radius: 12px
+                padding: 3px 15px 3px 10px
+                transition: box-shadow 0.3s ease
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+                &:hover
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3)
+            
+            span.location_tag
+                margin-left: 5px
+
+        .talk_content
+            margin-top: 10px
+            
+            .zone_imgbox
+                display: flex
+                flex-wrap: wrap
+                --w: calc(25% - 8px)
+                gap: 10px
+                margin-top: 10px
+
+                a
+                    display: block
+                    border-radius: 12px
+                    width: var(--w)
+                    aspect-ratio: 1/1
+                    position: relative
+                    &:first-child
+                        width: 100%
+                        aspect-ratio: 1.8
+
+                img
+                    border-radius: 10px
+                    width: 100%
+                    height: 100%
+                    margin: 0 !important
+                    object-fit: cover
+            
+            .douban-card
+                margin-top: 10px !important
+                text-decoration: none
+                align-items: center
+                border-radius: 12px
+                color: #faebd7
+                display: flex
+                justify-content: center
+                max-width: 400px
+                overflow: hidden
+                padding: 15px
+                position: relative
+
+                .douban-card-bgimg
+                    background-position: 50%
+                    background-repeat: no-repeat
+                    background-size: 100%
+                    filter: blur(15px) brightness(.6)
+                    height: 115%
+                    position: absolute
+                    width: 115%
+                
+                .douban-card-left
+                    align-items: center
+                    display: flex
+                    flex-direction: column
+                    position: relative
+
+                    .douban-card-img
+                        transition: all .5s ease
+                        height: 130px
+                        position: relative
+                        width: 80px
+                        background-position: 50%
+                        background-repeat: no-repeat
+                        background-size: 100%
+                        &:hover
+                            filter: blur(5px) brightness(.6)
+                            transform: perspective(800px) rotateX(180deg)
+
+                .douban-card-right
+                    color: #faebd7
+                    display: flex
+                    flex-direction: column
+                    font-size: 14px
+                    line-height: 1.5
+                    margin-left: 12px
+                    position: relative
+                    max-width: 60%
+
+                    .douban-card-item
+                        margin-top: 4px
+                        max-width: 95%
+                        overflow: hidden
+                        text-overflow: ellipsis
+                        white-space: nowrap
+
+// #talk .talk_item .talk_content>a
+//   margin: 0 3px
+//   color: #ff7d73 !important
+//   &:hover
+//     text-decoration: none !important
+//     color: #ff5143 !important
+
+/* 外链卡片 */
+            .shuoshuo-external-link
+                width: 100%
+                height: 80px
+                margin-top: 10px
+                border-radius: 12px
+                background-color: var(--liushen-card-secondbg)
+                color: var(--liushen-card-text)
+                border: var(--liushen-card-border)
+                transition: background-color .3s ease-in-out
+                &:hover
+                    background-color: var(--liushen-button-hover-bg)
+
+                .external-link
+                    display: flex
+                    color: var(--liushen-text) !important
+                    width: 100%
+                    height: 100%
+                    &:hover
+                        color: white !important
+                        text-decoration: none !important
+
+                    .external-link-left
+                        width: 60px
+                        height: 60px
+                        margin: 10px
+                        border-radius: 12px
+                        background-size: cover
+                        background-position: center
+
+                    .external-link-right
+                        display: flex
+                        flex-direction: column
+                        justify-content: center
+                        width: calc(100% - 80px)
+                        padding: 10px
+
+                        .external-link-title
+                            font-size: 1.0rem
+                            font-weight: 800
+                            white-space: nowrap
+                            overflow: hidden
+                            text-overflow: ellipsis
+
+                        i
+                            margin-left: 5px
+
+.limit
+  width: 100%
+  text-align: center
+  margin-top: 30px
+
+
+@media (max-width: 900px)
+  #talk .talk_item
+    width: calc(50% - 5px)
+
+  #talk .talk_item .talk_content .zone_imgbox
+    --w: calc(33% - 5px)
+
+  #talk .talk_item #post-comment
+    margin: 0 3px
+
+@media (max-width: 768px)
+  .zone_imgbox
+    gap: 6px
+    --w: calc(50% - 3px)
+
+  span.talk_date
+    font-size: 14px
+
+@media (max-width: 450px)
+  #talk .talk_item
+    width: 100%

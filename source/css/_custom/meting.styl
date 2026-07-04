@@ -1,0 +1,35 @@
+#talk
+    meting-js
+        display: block
+        height: 90px
+        border-radius: 12px
+        margin-top: 10px
+        overflow: hidden
+        border: var(--liushen-card-border)
+        box-shadow: var(--card-box-shadow)
+        transition: box-shadow 0.3s ease-in-out
+
+        &:hover
+            box-shadow: var(--card-hover-box-shadow)
+
+        .aplayer
+            .aplayer-body
+                background: var(--liushen-card-secondbg)
+                .aplayer-pic
+                    height: 80px !important
+                    width: 80px !important
+                    margin: 5px
+                    border-radius: 10px
+                .aplayer-info
+                    .aplayer-music
+                        .aplayer-author
+                            color: var(--liushen-secondtext)
+                        color: var(--liushen-text)
+                    .aplayer-lrc
+                        p
+                            color: var(--liushen-secondtext)
+                        &:after
+                            background: linear-gradient(to top, var(--liushen-card-secondbg), transparent)
+                        &:before
+                            background: linear-gradient(to bottom, var(--liushen-card-secondbg), transparent)
+        

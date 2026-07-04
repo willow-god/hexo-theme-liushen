@@ -1,125 +1,45 @@
 .note
-  $note-icons = hexo-config('note.icons')
   addBorderRadius()
+  border var(--liushen-card-border)
   position: relative
   margin: 0 0 20px
-  padding: 15px
+  padding: 15px 15px 7px 15px
+  background-color: var(--liushen-card-bg)
+  transition: transform 0.3s ease
 
-  // if hexo-config('note.border_radius') is a 'unit'
-  //   border-radius: unit(hexo-config('note.border_radius'), px)
+  &:hover
+    transform: translateY(-3px)
 
-  &.icon-padding
-    padding-left: 3em
+  &.note-warning
+    background-image: radial-gradient(circle at 4em -25em, #f0ad4e, transparent 30em),
+                linear-gradient(#f0ad4e -2000%, transparent)
+    .note-header
+      color: #f0ad4e
 
-  & > .note-icon
-    position: absolute
-    top: calc(50% - .5em)
-    left: .8em
-    font-size: larger
+  &.note-info
+    background-image: radial-gradient(circle at 4em -25em, #5cb85c, transparent 30em),
+                linear-gradient(#5cb85c -2000%, transparent)
+    .note-header
+      color: #5cb85c
 
-  for $type in $color-types
-    &.{$type}
-      &:not(.disabled)
-        border-left-color: lookup('$tagsP-' + $type + '-color') !important
+  &.note-error
+    background-image: radial-gradient(circle at 4em -25em, #d9534f, transparent 30em),
+                linear-gradient(#d9534f -2000%, transparent)
+    .note-header
+      color: #d9534f
 
-        &.modern
-          border-left-color: transparent !important
-          color: lookup('$tagsP-' + $type + '-color')
+  &.note-question
+    background-image: radial-gradient(circle at 4em -25em, #5bc0de, transparent 30em),
+                linear-gradient(#5bc0de -2000%, transparent)
+    .note-header
+      color: #5bc0de
 
-        &:not(.simple)
-          background: lighten(lookup('$tagsP-' + $type + '-color'), 85%) !important
-
-      & > .note-icon
-        color: lookup('$tagsP-' + $type + '-color')
-
-  &.simple
-    border: 1px solid #EEEEEE
-    border-left-width: 5px
-
-  &.modern
-    border: 1px solid transparent !important
-    background-color: #f5f5f5
-    color: $font-black
-
-  &.flat
-    border: initial
-    border-left: 5px solid #EEEEEE
-    background-color: lighten(#EEEEEE, 65%)
-    color: $font-black
-
-  h2,
-  h3,
-  h4,
-  h5,
-  h6
-    if $note-icons
-      margin-top: 3px
-    else
-      margin-top: 0
-
-    margin-bottom: 0
-    padding-top: 0 !important
-    border-bottom: initial
-
-  p,
-  ul,
-  ol,
-  table,
-  pre,
-  blockquote,
-  img
-    &:first-child
-      margin-top: 0 !important
-
-    &:last-child
-      margin-bottom: 0 !important
-
-  .img-alt
-    margin: 5px 0 10px
-
-  if $note-icons
-    &:not(.no-icon)
-      padding-left: 3em
-
-      &::before
-        position: absolute
-        top: calc(50% - .95em)
-        left: .8em
-        font-size: larger
-        @extend .fontawesomeIcon
-
-  for $type in $note-types
-    &.{$type}
-      &.flat
-        background: lookup('$note-' + $type + '-bg')
-
-      &.modern
-        border-color: lookup('$note-modern-' + $type + '-border')
-        background: lookup('$note-modern-' + $type + '-bg')
-        color: lookup('$note-modern-' + $type + '-text')
-
-        a
-          &:not(.btn)
-            color: lookup('$note-modern-' + $type + '-text')
-
-            &:hover
-              color: lookup('$note-modern-' + $type + '-hover')
-
-      &:not(.modern)
-        border-left-color: lookup('$note-' + $type + '-border')
-
-        h2,
-        h3,
-        h4,
-        h5,
-        h6
-          color: lookup('$note-' + $type + '-text')
-
-      if $note-icons
-        &:not(.no-icon)
-          &::before
-            content: lookup('$note-' + $type + '-icon')
-
-          &:not(.modern)
-            &::before
-              color: lookup('$note-' + $type + '-text')
+  .note-header
+    display: flex
+    align-items: center
+    font-weight: bold
+    margin-bottom: 10px
+    font-size: 1.0em
+    i.note-icon
+      margin-right: 10px
+      color: inherit

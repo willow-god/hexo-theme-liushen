@@ -9,6 +9,13 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
   head
     include ./head.pug
   body
+
+    //- float-box: https://kmar.top/posts/de06ec72/
+    .float-box.right.top
+    //- .float-box.left.top
+    //- .float-box.right.bottom
+    //- .float-box.left.bottom
+
     if theme.preloader.enable
       !=partial('includes/loading/index', {}, {cache: true})
 
@@ -37,3 +44,6 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
     include ./rightside.pug
     !=partial('includes/rightmenu', {}, {cache: true})
     include ./additional-js.pug
+  
+    if theme.capsule && theme.capsule.enable
+      include ./third-party/music.pug

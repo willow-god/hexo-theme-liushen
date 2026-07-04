@@ -1,0 +1,80 @@
+.error-flink-list
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-start
+  margin: -0.5 * 16px
+  align-items: stretch
+
+  & > .flink-list-item
+    @extend .cardHover
+    float: left
+    line-height: 1.2
+    background: var(--liushen-card-bg)
+    height: 60px
+    padding: 10px
+    margin: 0.5rem 0.25rem
+    border-radius: 8px
+    border: var(--liushen-card-border)
+    transition: all .3s ease-in-out
+
+    width: calc(100% / 6 - 0.5rem)
+    @media screen and (min-width: 2048px)
+      width: "calc(100% / 7 - %s)" % 16px
+    @media screen and (max-width: 768px)
+      width: "calc(100% / 5 - %s)" % 16px
+    @media screen and (max-width: 500px)
+      width: "calc(100% / 4 - %s)" % 16px
+
+    .flink-item-info
+      display: flex
+      align-items: center
+      height: 100%
+      padding: 0 8px
+      text-align: left
+
+      .flink-item-name
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        color: var(--liushen-text)
+        font-size: 1em
+        font-weight: bold
+
+.tombstone-list
+  display: flex
+  flex-wrap: wrap
+  gap: 12px
+  margin-top: 20px
+  margin-bottom: 40px
+  line-height: 1
+
+  .tombstone-item
+    display: inline-flex
+    align-items: center
+    line-height: 1
+    text-decoration: underline
+    text-underline-offset: 4px
+    text-decoration-color: var(--liushen-text)
+    text-decoration-style: dashed
+    color: var(--liushen-text)
+    transition: all 0.2s ease
+    white-space: nowrap
+
+    &:hover
+      color: var(--default-bg-color)
+      text-decoration-color: var(--default-bg-color)
+      transform: translateY(-2px)
+
+    .tombstone-avatar
+      width: 14px
+      height: 14px
+      border-radius: 50%
+      object-fit: cover
+      margin: 0 6px 0 0 !important
+      display: block
+      flex-shrink: 0
+
+    .tombstone-name
+      font-size: 14px
+      font-weight: 500
+      line-height: 1

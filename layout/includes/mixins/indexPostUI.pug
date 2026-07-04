@@ -2,6 +2,7 @@ mixin indexPostUI()
   - const indexLayout = theme.index_layout
   - const masonryLayoutClass = (indexLayout === 6 || indexLayout === 7) ? 'masonry' : ''
   #recent-posts.recent-posts.nc(class=masonryLayoutClass)
+    include ../index-swiper.pug
     #category-bar.category-bar.cardHover
       include ../categoryBar.pug
     .recent-post-items

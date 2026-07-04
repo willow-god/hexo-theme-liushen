@@ -114,8 +114,12 @@ Snackbar:
   cht_to_chs: 簡体字に切り替えました
   day_to_night: ダークモードに切り替えました
   night_to_day: ライトモードに切り替えました
+  theme_to_auto: 自動モードに切り替えました
 
 loading: ローディング中...
 load_more: もっと見る
 
 error404: ページが見つかりません
+
+music:
+  hit: 音楽が一時停止しました

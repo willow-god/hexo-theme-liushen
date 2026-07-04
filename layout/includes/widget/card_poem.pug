@@ -1,18 +1,110 @@
 #card-poem.card-widget
     #poem_sentence
     #poem_info
-        #poem_dynasty
+        #poem_title
         #poem_author
-script(src='/js/jinrishici.js', charset='utf-8')
-script(type='text/javascript').
-  jinrishici.load(function(result) {
-  var sentence = document.querySelector("#poem_sentence")
-  var author = document.querySelector("#poem_author")
-  var dynasty = document.querySelector("#poem_dynasty")
+- const poemCard = theme.poem_card || {}
+script(type='text/javascript' data-pjax).
+  (function() {
+    const CACHE_KEY = 'poem_cache';
+    const LEGACY_CACHE_KEYS = ['poem_cache_v3', 'poem_cache_v4', 'poem_cache_v5'];
+    const CACHE_TIME = Number(!{JSON.stringify(poemCard.cache_minutes || 30)}) * 60 * 1000;
+    const API_URL = !{JSON.stringify(poemCard.api || '')};
+    const fallbackPoem = !{JSON.stringify(poemCard.fallback || {})};
 
-  var sentenceText = result.data.content
-  sentenceText = sentenceText.substr(0, sentenceText.length - 1);
-  sentence.innerHTML = sentenceText
-  dynasty.innerHTML = result.data.origin.dynasty
-  author.innerHTML = result.data.origin.author + '《' + result.data.origin.title + '》'
-  });
+    function parsePoem(raw) {
+      const text = (raw || '').trim();
+      if (!text) return fallbackPoem;
+
+      const authorMatch = text.match(/[—-]+\s*([^—-《》]+?)\s*$/);
+      const author = authorMatch ? authorMatch[1].trim() : '未知';
+
+      const titleMatch = text.match(/《([^》]+)》/);
+      const title = titleMatch ? '《' + titleMatch[1].trim() + '》' : '《未知》';
+
+      const sentenceEndIndex = titleMatch ? titleMatch.index : (authorMatch ? authorMatch.index : text.length);
+      const sentence = text.slice(0, sentenceEndIndex).replace(/[，,\s]+$/g, '').trim() || '未知';
+
+      return { sentence, title, author };
+    }
+
+    function renderPoem(poem) {
+      const sentenceEl = document.querySelector('#poem_sentence');
+      const titleEl = document.querySelector('#poem_title');
+      const authorEl = document.querySelector('#poem_author');
+      if (!sentenceEl || !titleEl || !authorEl) return;
+
+      sentenceEl.innerText = poem.sentence || fallbackPoem.sentence;
+      titleEl.innerText = poem.title || fallbackPoem.title;
+      authorEl.innerText = poem.author || fallbackPoem.author;
+    }
+
+    function readCache() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+        if (cached && cached.t && cached.v && Date.now() - cached.t < CACHE_TIME) {
+          return cached.v;
+        }
+      } catch (err) {}
+
+      return null;
+    }
+
+    function writeCache(poem) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), v: poem }));
+      } catch (err) {}
+    }
+
+    function clearLegacyCache() {
+      try {
+        LEGACY_CACHE_KEYS.forEach(key => localStorage.removeItem(key));
+      } catch (err) {}
+    }
+
+    function fetchPoem() {
+      const state = window.__poemCardState || (window.__poemCardState = {});
+      if (state.inflight) return state.inflight;
+      if (!API_URL) return Promise.resolve(state.latest || readCache() || fallbackPoem);
+
+      state.inflight = fetch(API_URL)
+        .then(response => response.json())
+        .then(json => {
+          const poem = parsePoem(typeof json?.data === 'string' ? json.data : '');
+          state.latest = poem;
+          writeCache(poem);
+          return poem;
+        })
+        .catch(error => {
+          console.error('poem fetch error', error);
+          return state.latest || readCache() || fallbackPoem;
+        })
+        .finally(() => {
+          state.inflight = null;
+        });
+
+      return state.inflight;
+    }
+
+    function initPoemCard() {
+      if (!document.querySelector('#card-poem')) return;
+
+      const state = window.__poemCardState || (window.__poemCardState = {});
+      clearLegacyCache();
+      const cachedPoem = readCache();
+
+      if (cachedPoem) {
+        state.latest = cachedPoem;
+        renderPoem(cachedPoem);
+        return;
+      }
+
+      if (state.latest) {
+        renderPoem(state.latest);
+      }
+
+      fetchPoem().then(renderPoem);
+    }
+
+    initPoemCard();
+  })();

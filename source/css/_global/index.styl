@@ -44,10 +44,19 @@
   --better-footer-icon-bg: $better-footer-icon-bg
   --better-footer-hover: $better-footer-hover
 
+  // nav
+  --liushen-nav-bg: rgba(255, 255, 255, 0.8)
+  --liushen-nav-shadow: rgba(133, 133, 133, 0.6) 0px 5px 6px -5px
+
+  // ai_summary
+  --liushen-title-font-color: #0883b7
+  --liushen-maskbg: rgba(255, 255, 255, 0.85)
+  --liushen-ai-bg: conic-gradient(from 1.5708rad at 50% 50%, #d6b300 0%, #42A2FF 54%, #d6b300 100%)
+
   // card
   --liushen-card-bg: #fff
   --liushen-card-secondbg: #f1f3f8
-  --liushen-card-border: #e3e8f7
+  --liushen-card-border: 1px solid #e3e8f7
 
   // button
   --liushen-button-bg: #f1f3f8
@@ -78,8 +87,7 @@
 		rgba(255, 255, 255, 0.0),
 		rgba(255, 255, 255, 0.3),
 		rgba(255, 255, 255, 0.6),
-		rgba(255, 255, 255, 0.7)),
-		url(/config/img/dog.jpg)
+		rgba(255, 255, 255, 0.7))
 
 body
   position: relative
@@ -148,6 +156,7 @@ h6
 
 .table-wrap
   overflow-x: scroll
+  background: var(--liushen-card-bg)
   margin: 0 0 20px
 
   if hexo-config('rounded_corners_ui')
@@ -253,9 +262,9 @@ if hexo-config('lazyload.enable') && hexo-config('lazyload.blur') && !hexo-confi
     text-decoration: none !important
 
 blockquote
-  margin: 0 0 20px
-  padding: 7px 15px
-  border-left: 4px solid $blockquote-padding-color
+  margin: 10px 0 10px
+  padding: 10px 18px
+  border: 1px solid $blockquote-padding-color
   background-color: var(--blockquote-bg)
   color: var(--blockquote-color)
   addBorderRadius()

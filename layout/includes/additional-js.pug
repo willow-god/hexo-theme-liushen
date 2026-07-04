@@ -1,12 +1,13 @@
 div
+  script(src=url_for(theme.asset.others))
   script(src=url_for(theme.asset.utils))
   script(src=url_for(theme.asset.main))
-  script(src=url_for(theme.asset.jquery))
-  script(src=url_for(theme.asset.others))
+  //- script(src=url_for(theme.asset.jquery))
   script(src=url_for(theme.asset.echarts))
   script(src=url_for(theme.asset.rightmenu))
-  script(src="/js/jinrishici.js")
-
+  if theme.index_swiper && theme.index_swiper.enable
+    script(src=url_for(theme.asset.swiper_js))
+    script(src=url_for(theme.asset.homepage_swiper))
   if theme.translate.enable
     script(src=url_for(theme.asset.translate))
 
@@ -19,8 +20,8 @@ div
   if theme.lazyload.enable
     script(src=url_for(theme.asset.lazyload))
 
-  if theme.snackbar.enable
-    script(src=url_for(theme.asset.snackbar))
+  //- if theme.snackbar.enable
+  //-   script(src=url_for(theme.asset.snackbar))
 
   if theme.pangu.enable
     != partial("includes/third-party/pangu.pug", {}, { cache: true })

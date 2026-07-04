@@ -1,0 +1,15 @@
+.more-app-btn
+    i.fa-solid.fa-fingerprint.fa-fw
+    .more-app-list-groups
+        .more-app-list-groups-container
+            each group in theme.nav.menu
+                .more-app-list-group
+                    .more-app-list-title= group.title
+                    .more-app-list
+                        each item in group.item
+                            a.more-app-list-item(href=url_for(item.link) title=item.title rel="nofollow noopener" target="_blank")
+                                if item.icon.startsWith('http') || item.icon.startsWith('/')
+                                    img.more-app-item-icon(src=item.icon alt=item.name)
+                                else
+                                    i.more-app-item-icon(class=item.icon)
+                                span.more-app-item-text= item.name

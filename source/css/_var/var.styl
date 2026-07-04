@@ -30,12 +30,12 @@ $beautifyEnable = hexo-config('beautify.enable')
 $title-prefix-icon = $beautifyEnable && hexo-config('beautify.title_prefix_icon') ? hexo-config('beautify.title_prefix_icon') : '\f0c1'
 $title-prefix-icon-color = $beautifyEnable && hexo-config('beautify.title_prefix_icon_color') ? convert(hexo-config('beautify.title_prefix_icon_color')) : $light-red
 // Global Variables
-$font-size = hexo-config('font.global_font_size') ? convert(hexo-config('font.global_font_size')) : 14px
+$font-size = hexo-config('font.global_font_size') ? convert(hexo-config('font.global_font_size')) : 0.9375rem
 $code-font-size = hexo-config('font.code_font_size') ? convert(hexo-config('font.code_font_size')) : var(--global-font-size)
 $font-color = #1F2D3D
 $text-line-height = 2
-$index_top_img_height = hexo-config('index_top_img_height') ? convert(hexo-config('index_top_img_height')) : 100vh
-$index_site_info_top = hexo-config('index_site_info_top') ? convert(hexo-config('index_site_info_top')) : 37%
+$index_top_img_height = 100vh
+$index_site_info_top = 37%
 
 // better_footer
 $better-footer-bottom-bg = #fff
@@ -62,8 +62,8 @@ $card-border-radius = 12
 // code
 $line-height-code-block = 1.6
 $blockquote-color = #6a737d
-$blockquote-padding-color = $themeColorEnable && hexo-config('theme_color.blockquote_padding_color') ? convert(hexo-config('theme_color.blockquote_padding_color')) : #49B1F5
-$blockquote-background-color = #EAFFFF // $themeColorEnable && hexo-config('theme_color.blockquote_background_color') ? alpha(convert(hexo-config('theme_color.blockquote_background_color')), .1) : alpha($blockquote-padding-color, .1)
+$blockquote-padding-color = rgb(128, 128, 128) // $themeColorEnable && hexo-config('theme_color.blockquote_padding_color') ? convert(hexo-config('theme_color.blockquote_padding_color')) : #49B1F5
+$blockquote-background-color = rgb(245, 245, 245)// $themeColorEnable && hexo-config('theme_color.blockquote_background_color') ? alpha(convert(hexo-config('theme_color.blockquote_background_color')), .1) : alpha($blockquote-padding-color, .1)
 // page
 $body-bg = #fff
 $a-link-color = #99a9bf

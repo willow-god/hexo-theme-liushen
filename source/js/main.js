@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       $nav = document.getElementById('nav')
     }
 
-    const hideMenuIndex = window.innerWidth <= 870 || headerContentWidth > $nav.offsetWidth - 120
+    const hideMenuIndex = window.innerWidth <= 920 || headerContentWidth > $nav.offsetWidth - 120
     $nav.classList.toggle('hide-menu', hideMenuIndex)
   }
 
@@ -389,23 +389,39 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const scrollFn = () => {
     const $rightside = document.getElementById('rightside')
+    let $navMusic = document.getElementById('nav-music')
+    let $live2dWidget = document.getElementById('live2d-widget')
     const innerHeight = window.innerHeight + 56
     let initTop = 0
     const $header = document.getElementById('page-header')
     const isChatBtn = typeof chatBtn !== 'undefined'
     const isShowPercent = GLOBAL_CONFIG.percent.rightside
 
-    // 檢查文檔高度是否小於視窗高度
-    const checkDocumentHeight = () => {
-      if (document.body.scrollHeight <= innerHeight) {
-        $rightside.classList.add('rightside-show')
-        return true
-      }
-      return false
+    const getFooterOverlapWidgets = () => {
+      if (!$navMusic || !$navMusic.isConnected) $navMusic = document.getElementById('nav-music')
+      if (!$live2dWidget || !$live2dWidget.isConnected) $live2dWidget = document.getElementById('live2d-widget')
+      return [$navMusic, $live2dWidget].filter(Boolean)
     }
 
+    const updateFloatingUI = (currentTop, showRightside) => {
+      const scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
+      const remainingDistance = scrollHeight - window.innerHeight - currentTop
+      const shouldHideFooterWidgets = window.innerWidth <= 1600 && remainingDistance <= 120
+
+      $rightside.classList.toggle('rightside-show', showRightside)
+      getFooterOverlapWidgets().forEach(widget => {
+        widget.classList.toggle('is-end-hide', shouldHideFooterWidgets)
+      })
+    }
+
+    // 檢查文檔高度是否小於視窗高度
+    const isShortDocument = () => document.body.scrollHeight <= innerHeight
+
     // 如果文檔高度小於視窗高度,直接返回
-    if (checkDocumentHeight()) return
+    if (isShortDocument()) {
+      updateFloatingUI(window.scrollY || document.documentElement.scrollTop, true)
+      return
+    }
 
     // find the scroll direction
     const scrollDirection = currentTop => {
@@ -421,7 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentTop > 56) {
         if (flag === '') {
           $header.classList.add('nav-fixed')
-          $rightside.classList.add('rightside-show')
         }
 
         if (isDown) {
@@ -442,14 +457,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentTop === 0) {
           $header.classList.remove('nav-fixed', 'nav-visible')
         }
-        $rightside.classList.remove('rightside-show')
       }
 
       isShowPercent && rightsideScrollPercent(currentTop)
-      checkDocumentHeight()
+      updateFloatingUI(currentTop, currentTop > 56 || isShortDocument())
     }, 300)
 
     btf.addEventListenerPjax(window, 'scroll', scrollTask, { passive: true })
+    scrollTask()
   }
 
   /**
@@ -598,15 +613,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
       newEle.addEventListener('click', clickFn)
     },
-    darkmode: () => { // switch between light and dark mode
-      const willChangeMode = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
+    darkmode: () => { // switch between light, dark and auto mode
+      const currentTheme = btf.saveToLocal.get('theme')
+      let willChangeMode
+      
+      // 循环切换: light -> dark -> auto -> light
+      if (currentTheme === 'light') {
+        willChangeMode = 'dark'
+      } else if (currentTheme === 'dark') {
+        willChangeMode = 'auto'
+      } else {
+        willChangeMode = 'light'
+      }
+      
       if (willChangeMode === 'dark') {
         btf.activateDarkMode()
         GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.day_to_night)
-      } else {
+      } else if (willChangeMode === 'light') {
         btf.activateLightMode()
         GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.night_to_day)
+      } else {
+        // auto 模式：根据 autoChangeMode 配置决定使用哪种自动切换方式
+        const autoChangeMode = GLOBAL_CONFIG.autoChangeMode
+        let shouldUseDark = false
+        
+        if (autoChangeMode === 1) {
+          // 跟随系统主题
+          shouldUseDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        } else if (autoChangeMode === 2) {
+          // 根据时间判断（默认 6:00-18:00 为亮色）
+          const hour = new Date().getHours()
+          shouldUseDark = hour < 6 || hour >= 18
+        } else {
+          // 默认跟随系统
+          shouldUseDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        }
+        
+        if (shouldUseDark) {
+          btf.activateDarkMode()
+        } else {
+          btf.activateLightMode()
+        }
+        GLOBAL_CONFIG.Snackbar !== undefined && btf.snackbarShow(GLOBAL_CONFIG.Snackbar.theme_to_auto)
       }
+      
       btf.saveToLocal.set('theme', willChangeMode, 2)
       handleThemeChange(willChangeMode)
     },
@@ -807,27 +857,6 @@ document.addEventListener('DOMContentLoaded', () => {
     btf.addEventListenerPjax(cardCategory, 'click', handleToggleBtn, true)
   }
 
-  /**
-   * 实现功能：切换类别条的显示
-   */ 
-  const setCategoryBarActive = () => {
-    const categoryBar = document.querySelector("#category-bar");
-    const currentPath = decodeURIComponent(window.location.pathname);
-    const isHomePage = currentPath === GLOBAL_CONFIG.root;
-
-    if (categoryBar) {
-        const categoryItems = categoryBar.querySelectorAll(".category-bar-item");
-        categoryItems.forEach(item => item.classList.remove("select"));
-
-        const activeItemId = isHomePage ? "category-bar-home" : currentPath.split("/").slice(-2, -1)[0];
-        const activeItem = document.getElementById(activeItemId);
-
-        if (activeItem) {
-            activeItem.classList.add("select");
-        }
-    }
-};
-
   const switchComments = () => {
     const switchBtn = document.getElementById('switch-btn')
     if (!switchBtn) return
@@ -844,18 +873,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const addPostOutdateNotice = () => {
-    const { limitDay, messagePrev, messageNext, position } = GLOBAL_CONFIG.noticeOutdate
+    const { limitDay, messagePrev, messageNext } = GLOBAL_CONFIG.noticeOutdate
     const diffDay = btf.diffDate(GLOBAL_CONFIG_SITE.postUpdate)
     if (diffDay >= limitDay) {
-      const ele = document.createElement('div')
-      ele.className = 'post-outdate-notice'
-      ele.textContent = `${messagePrev} ${diffDay} ${messageNext}`
       const $targetEle = document.getElementById('article-container')
-      if (position === 'top') {
-        $targetEle.insertBefore(ele, $targetEle.firstChild)
-      } else {
-        $targetEle.appendChild(ele)
-      }
+      // 插入script标签，弹窗显示文章过期
+      const script = document.createElement('script')
+      script.innerHTML = `btf.snackbarShow("😯${messagePrev} ${diffDay} ${messageNext}", time=15000);`;
+      $targetEle.appendChild(script);
     }
   }
 
@@ -910,8 +935,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (GLOBAL_CONFIG.autoDarkmode) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (btf.saveToLocal.get('theme') !== undefined) return
-        e.matches ? handleThemeChange('dark') : handleThemeChange('light')
+        const currentTheme = btf.saveToLocal.get('theme')
+        // 只在未设置主题或设置为 auto 且 autoChangeMode 为 1 时响应系统主题变化
+        if (currentTheme !== undefined && currentTheme !== 'auto') return
+        // 如果是 auto 模式，还需要检查 autoChangeMode 是否为 1（跟随系统）
+        if (currentTheme === 'auto' && GLOBAL_CONFIG.autoChangeMode !== 1) return
+        
+        if (e.matches) {
+          btf.activateDarkMode()
+          handleThemeChange('dark')
+        } else {
+          btf.activateLightMode()
+          handleThemeChange('light')
+        }
       })
     }
   }
@@ -928,6 +964,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const refreshFn = () => {
+    addTableWrap()
     initAdjust()
     justifiedIndexPostUI()
 
@@ -939,7 +976,6 @@ document.addEventListener('DOMContentLoaded', () => {
       GLOBAL_CONFIG.runtime && addRuntime()
       addLastPushDate()
       toggleCardCategory()
-      setCategoryBarActive()
     }
 
     GLOBAL_CONFIG_SITE.isHome && scrollDownInIndex()

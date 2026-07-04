@@ -1,10 +1,11 @@
 nav#nav
+  != partial('includes/header/more_app', {}, {cache: true})
   span#blog-info
     a.nav-site-title(href=url_for('/') title=config.title)
       if theme.nav.logo
         img.site-icon(src=url_for(theme.nav.logo) alt='Logo')
       if theme.nav.display_title
-        span.site-name=config.title
+        span.site-name= theme.nav.site_name || config.title
     //- if is_post() // 新版将头像改了，我感觉不好看，所以注释掉了
     //-   a.nav-page-title(href=url_for('/'))
     //-     span.site-name=(page.title || config.title)
@@ -16,15 +17,11 @@ nav#nav
       a(id="page-name" href="javascript:btf.scrollToDest(0, 500)") PAGE_NAME
     
   #nav-right
-    #travellings
-      a.site-page(href=url_for('https://www.travellings.cn/go.html') title="友链接力-随机开往")
-        i.fa-solid.fa-bus.fa-fw
-    #ten-years
-      a.site-page(href=url_for('https://foreverblog.cn/go.html') title="友链接力-十年之约")
-        i.fa-brands.fa-nfc-symbol.fa-fw
-    #random
-      a.site-page(href=url_for('javascript:randomPost()') title="随机前往一个文章")
-        i.fa-solid.fa-shuffle.fa-fw
+    if theme.nav.right_items
+      each item in theme.nav.right_items
+        div(id=item.id)
+          a(class=item.class || 'site-page', href=item.raw_link ? item.link : url_for(item.link), title=item.title)
+            i(class=item.icon)
     if theme.search.use
       #search-button
         span.site-page.social-icon.search
@@ -32,6 +29,6 @@ nav#nav
 
       #toggle-menu
         span.site-page(href="javascript:void(0);" title="展开菜单")
-          i.fas.fa-bars.fa-fw
+          i.fas.fa-indent.fa-fw
 
 

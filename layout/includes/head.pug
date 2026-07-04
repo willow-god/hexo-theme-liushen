@@ -43,9 +43,11 @@ if (theme.pwa && theme.pwa.enable)
 link(rel='stylesheet', href=url_for(theme.asset.main_css))
 link(rel='stylesheet', href=url_for(theme.asset.custom_css))
 link(rel='stylesheet', href=url_for(theme.asset.fontawesome))
+if theme.index_swiper && theme.index_swiper.enable
+  link(rel='stylesheet', href=url_for(theme.asset.swiper_css), media='print', onload="this.media='all'")
 
-if (theme.snackbar && theme.snackbar.enable)
-  link(rel='stylesheet', href=url_for(theme.asset.snackbar_css) media="print" onload="this.media='all'")
+//- if (theme.snackbar && theme.snackbar.enable)
+//-   link(rel='stylesheet', href=url_for(theme.asset.snackbar_css) media="print" onload="this.media='all'")
 
 if theme.lightbox === 'fancybox'
   link(rel='stylesheet' href=url_for(theme.asset.fancybox_css) media="print" onload="this.media='all'")
@@ -68,6 +70,3 @@ if theme.blog_title_font && theme.blog_title_font.font_link
 include ./head/config_site.pug
 
 !=fragment_cache('injectHead', function(){return injectHtml(theme.inject.head)})
-
-//- 昼夜模式切换动画
-include ./sun_moon.pug

@@ -8,7 +8,9 @@
         include ./card_post_toc.pug
     else
       !=partial('includes/widget/card_author', {}, {cache: true})
-      !=partial('includes/widget/card_poem', {}, {cache: true})
+      if theme.poem_card && theme.poem_card.enable
+        !=partial('includes/widget/card_poem', {}, {cache: true})
+      !=partial('includes/widget/card_rewards', {}, {cache: true})
       !=partial('includes/widget/card_announcement', {}, {cache: true})
       !=partial('includes/widget/card_top_self', {}, {cache: true})
       .sticky_layout
@@ -22,7 +24,9 @@
     //- page
     !=partial('includes/widget/card_author', {}, {cache: true})
     !=partial('includes/widget/card_welcome', {}, {cache: true})
-    !=partial('includes/widget/card_poem', {}, {cache: true})
+    if theme.poem_card && theme.poem_card.enable
+      !=partial('includes/widget/card_poem', {}, {cache: true})
+    !=partial('includes/widget/card_rewards', {}, {cache: true})
     !=partial('includes/widget/card_announcement', {}, {cache: true})
     !=partial('includes/widget/card_top_self', {}, {cache: true})
 

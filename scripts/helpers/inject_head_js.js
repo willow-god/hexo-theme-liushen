@@ -83,6 +83,11 @@ hexo.extend.helper.register('inject_head_js', function () {
       btf.activateLightMode = activateLightMode
 
       const theme = saveToLocal.get('theme')
+      
+      const applyAutoTheme = () => {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        prefersDark ? activateDarkMode() : activateLightMode()
+      }
     `
 
     switch (darkmode.autoChangeMode) {
@@ -91,7 +96,7 @@ hexo.extend.helper.register('inject_head_js', function () {
           const mediaQueryDark = window.matchMedia('(prefers-color-scheme: dark)')
           const mediaQueryLight = window.matchMedia('(prefers-color-scheme: light)')
           
-          if (theme === undefined) {
+          if (theme === undefined || theme === 'auto') {
             if (mediaQueryLight.matches) activateLightMode()
             else if (mediaQueryDark.matches) activateDarkMode()
             else {
@@ -99,8 +104,8 @@ hexo.extend.helper.register('inject_head_js', function () {
               const isNight = hour <= ${start} || hour >= ${end}
               isNight ? activateDarkMode() : activateLightMode()
             }
-            mediaQueryDark.addEventListener('change', () => {
-              if (saveToLocal.get('theme') === undefined) {
+            mediaQueryDark.addEventListener('change', (e) => {
+              if (saveToLocal.get('theme') === 'auto') {
                 e.matches ? activateDarkMode() : activateLightMode()
               }
             })
@@ -113,13 +118,17 @@ hexo.extend.helper.register('inject_head_js', function () {
         darkmodeJs += `
           const hour = new Date().getHours()
           const isNight = hour <= ${start} || hour >= ${end}
-          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          if (theme === undefined || theme === 'auto') isNight ? activateDarkMode() : activateLightMode()
           else theme === 'light' ? activateLightMode() : activateDarkMode()
         `
         break
       default:
         darkmodeJs += `
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+          if (theme === 'auto') {
+            applyAutoTheme()
+          } else {
+            theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+          }
         `
     }
 

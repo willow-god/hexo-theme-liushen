@@ -4,16 +4,8 @@
 
 "use strict";
 
-// 预定义头像数组
-const avatars = [
-  "https://i.p-i.vip/30/20240920-66ed9a608c2cf.png",
-  "https://i.p-i.vip/30/20240920-66ed9b0655cba.png",
-  "https://i.p-i.vip/30/20240920-66ed9b18a56ee.png",
-  "https://i.p-i.vip/30/20240920-66ed9b2c199bf.png",
-  "https://i.p-i.vip/30/20240920-66ed9b3350ed1.png",
-  "https://i.p-i.vip/30/20240920-66ed9b5181630.png",
-  // 可以继续添加更多头像
-];
+const chatTagConfig = hexo.theme.config.chat_tag || {};
+const avatars = chatTagConfig.otherAvatars || [];
 
 // 用来记录已经分配头像的用户
 const userAvatarMap = new Map();
@@ -48,11 +40,10 @@ function postChat(args) {
 
   // 判断是否是我的消息
   const isMe = name.toLowerCase() === "me";
-  const chatName = isMe ? hexo.config.author : name;
+  const chatName = isMe ? (chatTagConfig.myNickName || hexo.config.author) : name;
   const chatClass = isMe ? "me" : "";
 
-  // 固定的头像链接
-  const myAvatar = "https://cdn.qyliu.top/i/2024/03/29/66061417537af.png";
+  const myAvatar = chatTagConfig.myAvatar || hexo.theme.config.avatar?.img || "";
   let avatarUrl;
 
   if (isMe) {
@@ -62,11 +53,11 @@ function postChat(args) {
     avatarUrl = `https://q1.qlogo.cn/g?b=qq&nk=${qqNumber}&s=100`;
   } else {
     // 如果没有 QQ 号，从预定义的头像数组中分配
-    if (!userAvatarMap.has(name)) {
+    if (avatars.length && !userAvatarMap.has(name)) {
       userAvatarMap.set(name, avatars[avatarIndex % avatars.length]);
       avatarIndex++;
     }
-    avatarUrl = userAvatarMap.get(name);
+    avatarUrl = userAvatarMap.get(name) || hexo.theme.config.avatar?.img || "";
   }
 
   // 生成 HTML 布局

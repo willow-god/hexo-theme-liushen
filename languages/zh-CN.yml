@@ -3,9 +3,9 @@ footer:
   theme: 主题
 
 copy:
-  success: 复制成功
-  error: 复制失败
-  noSupport: 浏览器不支持
+  success: 😋复制啦！请注意版权信息呀！
+  error: 😪呜呜，复制失败了！
+  noSupport: 🤐浏览器不支持呢，你用的啥玩意？
 
 page:
   articles: 全部文章
@@ -115,8 +115,12 @@ Snackbar:
   cht_to_chs: 已切换为简体中文
   day_to_night: 已切换为深色模式
   night_to_day: 已切换为浅色模式
+  theme_to_auto: 已切换为自动模式
 
 loading: 加载中...
 load_more: 加载更多
 
 error404: 页面未找到
+
+music:
+  hit: 音乐已暂停

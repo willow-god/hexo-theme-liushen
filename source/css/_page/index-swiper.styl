@@ -1,0 +1,206 @@
+#recent-posts
+  .homepage-swiper-item
+    display: block !important
+    width: 100% !important
+    padding: 0
+    overflow: hidden
+
+    &:hover
+      .homepage-swiper__image img
+      .homepage-swiper__image-bg
+        transform: scale(1.04)
+
+  .homepage-swiper
+    position: relative
+    overflow: hidden
+    height: 200px
+
+    +maxWidth768()
+      height: 500px
+
+    &.is-static
+      .homepage-swiper__pagination
+        display: none
+
+      .homepage-swiper__title,
+      .homepage-swiper__date,
+      .homepage-swiper__desc,
+      .homepage-swiper__actions
+        opacity: 1
+        transform: none
+
+  .homepage-swiper__slide
+    display: flex
+    align-items: stretch
+    gap: 24px
+    height: 100%
+    padding: 10px
+
+    +maxWidth768()
+      flex-direction: column
+      gap: 16px
+      padding: 10px
+
+  .homepage-swiper__image
+    display: block
+    flex-shrink: 0
+    width: 35%
+    height: 100%
+    overflow: hidden
+    border-radius: 5px
+    background: var(--liushen-card-secondbg)
+    border: var(--liushen-card-border)
+
+    +maxWidth768()
+      width: 100%
+      height: 220px
+
+    img,
+    .homepage-swiper__image-bg
+      width: 100%
+      height: 100%
+      transition: transform .35s ease
+
+    img
+      display: block
+      object-fit: cover
+
+    .homepage-swiper__image-bg
+      display: block
+      background-position: center
+      background-size: cover
+
+  .homepage-swiper__content
+    display: flex
+    flex: 1
+    flex-direction: column
+    min-width: 0
+    height: 100%
+
+    +maxWidth768()
+      align-items: center
+      padding-top: 10px
+      text-align: center
+
+  .homepage-swiper__title
+    display: -webkit-box
+    margin: 0
+    overflow: hidden
+    color: var(--text-highlight-color)
+    font-size: 18px
+    font-weight: 700
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 2
+
+    &:hover
+      color: $text-hover
+
+  .homepage-swiper__date
+    display: inline-flex
+    align-items: center
+    align-self: flex-start
+    max-width: 100%
+    margin: 5px 0 8px
+    padding: 3px 6px
+    line-height: 1
+    font-size: 14px
+    overflow: hidden
+    border: var(--liushen-card-border)
+    border-radius: 6px
+    background: var(--card-bg)
+    color: var(--liushen-secondtext)
+    text-overflow: ellipsis
+    white-space: nowrap
+
+    +maxWidth768()
+      align-self: center
+
+  .homepage-swiper__desc
+    display: -webkit-box
+    margin: 0
+    overflow: hidden
+    color: var(--font-color)
+    -webkit-box-orient: vertical
+    -webkit-line-clamp: 3
+
+  .homepage-swiper__actions
+    display: none !important
+
+    +maxWidth768()
+      display: flex !important
+      width: 100%
+      margin-top: auto
+
+  .homepage-swiper__button
+    display: block
+    width: 100%
+    padding: 4px 14px
+    border-radius: 10px
+    color: var(--btn-color)
+    background: var(--btn-bg)
+    text-align: center
+    transition: all .25s ease
+
+    &:hover
+      color: var(--btn-color)
+      background: var(--btn-hover-color)
+
+  .homepage-swiper__pagination
+    position: absolute
+    top: 50%
+    bottom: auto !important
+    right: 14px !important
+    left: auto !important
+    z-index: 2
+    display: flex
+    flex-direction: column
+    gap: 8px
+    width: auto !important
+    transform: translateY(-50%)
+
+    +maxWidth768()
+      top: 242px
+      bottom: auto !important
+      right: auto !important
+      left: 50% !important
+      flex-direction: row
+      transform: translateX(-50%)
+
+    .swiper-pagination-bullet
+      margin: 0 !important
+      width: 10px
+      height: 10px
+      border-radius: 20px
+      background: var(--font-color)
+      opacity: .22
+      transition: all .25s ease
+
+    .swiper-pagination-bullet-active
+      height: 30px
+      background: var(--btn-bg)
+      opacity: 1
+
+      +maxWidth768()
+        width: 30px
+        height: 10px
+
+  .homepage-swiper .swiper-slide-active
+    .homepage-swiper__title,
+    .homepage-swiper__date,
+    .homepage-swiper__desc,
+    .homepage-swiper__actions
+      opacity: 1
+      transform: none
+
+  +minWidth768()
+    .homepage-swiper__content
+      padding-right: 24px
+      padding-top: 8px
+
+  .homepage-swiper__title,
+  .homepage-swiper__date,
+  .homepage-swiper__desc,
+  .homepage-swiper__actions
+    opacity: 0
+    transform: translateY(18px)
+    transition: all 0.2s ease-in-out

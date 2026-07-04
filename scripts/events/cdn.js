@@ -39,6 +39,11 @@ hexo.extend.filter.register('before_generate', () => {
       file: 'js/others.js',
       version
     },
+    homepage_swiper: {
+      name: 'hexo-theme-liushen',
+      file: 'js/homepage-swiper.js',
+      version
+    },
     // jquery: {
     //   name: 'hexo-theme-liushen',
     //   file: 'js/jquery-3.7.1.slim.min.js',

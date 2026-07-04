@@ -78,11 +78,14 @@
         top 45px
         width 80px
         height 80px
+        // 图片居中覆盖80*80的区域，超出部分隐藏
+        object-fit cover
         border-radius 50% !important
         box-shadow 0 0 10px rgba(0, 0, 0, .3)
         z-index 1
         text-align center
         pointer-events none
+        display: block
       span
         padding 20px 10% 60px 10%
         font-size 16px

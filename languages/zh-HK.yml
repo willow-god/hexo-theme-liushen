@@ -114,8 +114,12 @@ Snackbar:
   cht_to_chs: 已切換為簡體中文
   day_to_night: 已切換為深色模式
   night_to_day: 已切換為淺色模式
+  theme_to_auto: 已切換為自動模式
 
 loading: 正在加載...
 load_more: 加載更多
 
 error404: 未找到頁面
+
+music:
+  hit: 音樂已暫停

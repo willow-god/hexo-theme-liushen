@@ -1,56 +1,31 @@
 #article-container
-  .btn-center
-    margin: 0 0 20px
-    text-align: center
-
   .btn-beautify
+    @extend .cardHover
     display: inline-block
-    margin: 0 4px 6px
-    padding: 0 15px
-    background-color: var(--btn-beautify-color, $btn-default-color)
-    color: $btn-color
-    line-height: 2
+    margin: 0 4px
+    padding: 8px 16px
+    background-color: var(--liushen-button-hover-bg)
+    color: #fff
+    line-height: 1.5
+    text-align: center
+    vertical-align: middle
+    cursor: pointer
     addBorderRadius()
-
-    for $type in $color-types
-      &.{$type}
-        --btn-beautify-color: lookup('$tagsP-' + $type + '-color')
-
-    &:hover
-      background-color: var(--btn-hover-color)
-
-    i + span
-      margin-left: 6px
-
-    &:not(.block) + .btn-beautify:not(.block)
-      margin: 0 4px 20px
-
-    &.block
-      display: block
-      margin: 0 0 20px
-      width: fit-content
-      width: -moz-fit-content
-
-      &.center
-        margin: 0 auto 20px
-
-      &.right
-        margin: 0 0 20px auto
-
-    &.larger
-      padding: 6px 15px
 
     &:hover
       text-decoration: none
 
-    &.outline
-      border: 1px solid transparent
-      border-color: var(--btn-beautify-color, $btn-default-color)
-      background-color: transparent
-      color: var(--btn-beautify-color, $btn-default-color)
+    i + span
+      margin-left: 8px
 
-      &:hover
-        background-color: var(--btn-beautify-color, $btn-default-color)
+    &:not(.block) + .btn-beautify:not(.block)
+      margin: 0 6px 20px
 
-      &:hover
-        color: white !important
+    &.block
+      display: block
+      margin: 0 auto 20px
+      width: fit-content
+      width: -moz-fit-content
+
+    &:hover
+      text-decoration: none

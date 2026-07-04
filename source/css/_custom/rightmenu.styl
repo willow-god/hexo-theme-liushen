@@ -1,31 +1,32 @@
 #rightMenu
     display: none
+    opacity 0
+    transform: translateY(40px) scale(0.95);
     position: fixed
     padding: 0 .25rem
     width: 11rem
     height: fit-content
     top: 10%
     left: 10%
-    background-color: rgba(238, 255, 255, .85)
-    -webkit-backdrop-filter: blur(20px)
-    backdrop-filter: blur(20px)
-    color: #363636
+    background-color: var(--liushen-nav-bg)
+    backdrop-filter: blur(10px)
+    color: var(--liushen-text)
     border-radius: 12px
-    z-index: 99994
+    z-index: 9994
     border: #e3e8f7
-    user-select: none
-    box-shadow: rgba(0, 0, 0, .05)
-    transition: 0.3s
+    // user-select: none
+    box-shadow: var(--liushen-nav-shadow)
+    transition: all 0.3s ease-in-out
 
     a
-        color: #363636
+        color: var(--liushen-text)
 
     .rightMenu-group
         padding: .35rem .3rem
         transition: 0.3s
 
     .rightMenu-line
-        border-top: 1px dashed #4259ef23
+        border-top: 1px dashed var(--liushen-secondtext)
 
     .rightMenu-group.rightMenu-small
         display: flex
@@ -45,7 +46,7 @@
         display: flex
 
     .rightMenu-group .rightMenu-item:hover
-        background-color: #6f42c1
+        background-color: var(--liushen-button-hover-bg)
         color: #fff
 
     .rightMenu-group .rightMenu-item:active
@@ -82,7 +83,7 @@
     display: none
     z-index: 101
     margin: 0 !important
-    z-index: 99993
+    z-index: 9993
 
 /* 设置评论弹窗的一些参数 */
 /* 遮罩层样式 */
@@ -110,18 +111,18 @@
     transform translate(-50%, -50%)
     background-color var(--liushen-card-bg)
     padding 20px
-    border 1px solid var(--liushen-card-border)
-    z-index 1000
+    border var(--liushen-card-border)
+    z-index 9992
     max-height 80%
     overflow-y auto
     border-radius 20px
     opacity 0 /* 初始透明度为 0 */
     transition opacity 0.3s /* 过渡效果，持续时间为 0.3 秒 */
+    width: 768px
+
+    @media (max-width: 800px)
+        width 90%
+    
     
     .tk-comments-container 
         display none
-
-// [data-theme=dark] .popup
-//     background-color rgba(44, 44, 44, 0.7)
-//     border 1px solid #666
-

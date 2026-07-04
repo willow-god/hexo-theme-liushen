@@ -63,6 +63,7 @@
       cht_to_chs: _p("Snackbar.cht_to_chs"),
       day_to_night: _p("Snackbar.day_to_night"),
       night_to_day: _p("Snackbar.night_to_day"),
+      theme_to_auto: _p("Snackbar.theme_to_auto"),
       bgLight: theme.snackbar.bg_light,
       bgDark: theme.snackbar.bg_dark,
       position: theme.snackbar.position,
@@ -78,6 +79,14 @@
       messageNext: theme.noticeOutdate.message_next,
     })
   }
+
+  const shuoshuo = JSON.stringify(theme.shuoshuo || {})
+  const welcome = JSON.stringify(theme.aside.card_welcome || {})
+  const locationApi = JSON.stringify(theme.location_api || {})
+  const commentPopup = JSON.stringify({
+    artalk: theme.artalk || {},
+    enabled: Boolean(theme.artalk && theme.artalk.server && theme.artalk.site)
+  })
 
   let highlight = 'undefined'
   let syntaxHighlighter = config.syntax_highlighter
@@ -122,6 +131,10 @@ script.
     copyright: !{copyright},
     lightbox: '!{ theme.lightbox || 'null' }',
     Snackbar: !{Snackbar},
+    shuoshuo: !{shuoshuo},
+    welcome: !{welcome},
+    locationApi: !{locationApi},
+    commentPopup: !{commentPopup},
     infinitegrid: {
       js: '!{url_for(theme.asset.egjs_infinitegrid)}',
       buttonText: '!{_p("load_more")}'
@@ -133,5 +146,6 @@ script.
       toc: !{theme.toc.scroll_percent},
       rightside: !{theme.rightside_scroll_percent},
     },
-    autoDarkmode: !{theme.darkmode.enable && theme.darkmode.autoChangeMode === 1}
+    autoDarkmode: !{theme.darkmode.enable && theme.darkmode.autoChangeMode === 1},
+    autoChangeMode: !{theme.darkmode.autoChangeMode || 'false'}
   }

@@ -1,0 +1,75 @@
+body
+    overflow-y: auto !important
+
+.artalk
+    .atk-comment
+        .atk-badge-wrap
+            display: flex
+            align-items: center
+            
+            .atk-pinned-badge
+                margin-left: 6px
+
+        .atk-avatar img
+            border-radius: 12px
+
+    img
+        border-radius: 12px
+
+    .atk-main-editor
+        border-radius: 12px
+        background-color: var(--liushen-card-bg)
+        border: var(--liushen-card-border)
+        box-shadow: var(--card-box-shadow)
+        transition: box-shadow 0.3s ease-in-out
+
+        &:hover
+            box-shadow: var(--card-hover-box-shadow)
+
+        .atk-textarea-wrap .atk-textarea
+            background-color: var(--liushen-card-bg)
+
+        .atk-bottom .atk-send-btn
+            border-radius: 8px
+
+    .atk-list
+        .atk-list-body
+            border-radius: 12px
+            margin-bottom: 10px
+        // 作用于最外层的 .atk-comment-wrap
+        .atk-comment-wrap
+            border-radius: 12px
+            padding: 5px
+            margin-bottom: 20px
+            background-color: var(--liushen-card-bg)
+            border: var(--liushen-card-border)
+            box-shadow: var(--card-box-shadow)
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out
+
+            .atk-content
+                img[atk-emoticon]
+                    height: 30px
+                    border-radius: 2px
+            
+            .atk-main-editor
+                    margin: 5px 15px 15px 0
+
+            &:hover
+                box-shadow: var(--card-hover-box-shadow)
+
+        // 清除嵌套的 .atk-comment-wrap 样式，使其回归默认
+        .atk-comment-wrap .atk-comment-wrap
+            border-radius: unset
+            padding: unset
+            margin-bottom: unset
+            background-color: unset
+            border: unset
+            box-shadow: unset
+            transition: unset
+
+            &:hover
+                box-shadow: unset
+
+.popup
+    .artalk .atk-list
+        display: none

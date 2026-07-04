@@ -1,7 +1,7 @@
 /* ========================twikoo美化====================== */
 
 /* 隐藏评论者头像 */
-#twikoo .tk-comments .tk-submit .tk-avatar.tk-has-avatar
+#twikoo .tk-comments .tk-submit .tk-avatar
   display: none
 
 /* 下面表情和按钮那一栏的设置 */
@@ -53,7 +53,7 @@
   --liushen-border-color: #e3e8f7
   --liushen-card-bg: #fff
   --liushen-card-border: #e3e8f7
-  --style-border-always: 1px solid var(--liushen-card-border)
+  --style-border-always: var(--liushen-card-border)
   --liushen-blue: #425AEF
 
 /* 深色模式颜色 */
@@ -61,7 +61,7 @@
   --liushen-border-color: #42444a
   --liushen-card-bg: #2c2c2c
   --liushen-card-border: #42444a
-  --style-border-always: 1px solid var(--liushen-card-border)
+  --style-border-always: var(--liushen-card-border)
   --liushen-blue: #0084FF
 
 /* 评论区评论大框 */
@@ -138,6 +138,7 @@
 /* 加载更多按钮 */
 .twikoo .tk-expand
   /* 圆角 */
+  background: var(--liushen-card-secondbg)
   border-radius: var(--liushen-radius)
 
 /* 浅色模式加载更多按钮 */

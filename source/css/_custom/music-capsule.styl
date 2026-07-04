@@ -1,0 +1,235 @@
+@keyframes changeright
+  0%, 50%, 100%
+    transform: rotate(0deg) scale(1.1)
+    box-shadow: 0 0 2px #ffffff00
+  25%, 75%
+    transform: rotate(90deg) scale(1.1)
+    box-shadow: 0 0 14px #ffffff
+
+@keyframes playingShadow
+  0%, 100%
+    box-shadow: 0 0px 12px -3px #00000000
+  50%
+    box-shadow: 0 0px 12px 0px var(--default-bg-color)
+
+@keyframes lightBar
+  0%, 100%
+    opacity: 0.1
+  60%
+    opacity: 0.3
+
+.aplayer.aplayer-narrow
+  .aplayer-body,
+  .aplayer-pic
+    height: 66px
+    width: 66px
+
+#nav-music
+  display: flex
+  align-items: center
+  position: fixed
+  z-index: 10000
+  bottom: 10px
+  left: 10px
+  cursor: pointer
+  transition: all 0.5s, left 0s
+  transform-origin: left bottom
+  box-shadow: var(--liushen-nav-shadow)
+  border-radius: 40px
+  overflow: hidden
+
+  &.is-end-hide
+    transform: translate3d(calc(-100% - 24px), 0, 0)
+    opacity: 0
+    pointer-events: none
+
+  &:active
+    transform: scale(0.97)
+
+  &.playing
+    border: var(--liushen-card-border)
+    box-shadow: 0 0px 12px -3px #00000000
+    animation: playingShadow 5s linear infinite
+
+    .aplayer.aplayer-withlrc
+      .aplayer-pic
+        box-shadow: 0 0 14px #ffffffa6
+        transform: rotate(0deg) scale(1.1)
+        border-color: white
+        animation-play-state: running
+
+      .aplayer-info
+        color: white
+
+    #nav-music-hoverTips
+      width: 0
+
+    .aplayer
+      background: var(--default-bg-color)
+      border: var(--liushen-card-border)
+      backdrop-filter: saturate(180%) blur(20px)
+      transform: translateZ(0)
+
+    .aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played
+      animation-play-state: running
+
+  &:hover:not(.playing) #nav-music-hoverTips
+    opacity: 1
+
+  .aplayer.aplayer-withlrc
+    .aplayer-pic
+      height: 25px
+      width: 25px
+      border-radius: 40px
+      z-index: 1
+      transition: 0.3s
+      transform: rotate(0deg) scale(1)
+      border: var(--liushen-card-border)
+      animation: changeright 24s linear infinite
+      animation-play-state: paused
+
+    .aplayer-info
+      height: 100%
+      color: var(--liushen-text)
+      margin: 0
+      padding: 0
+      display: flex
+      align-items: center
+
+  #nav-music-hoverTips
+    color: white
+    background: var(--default-bg-color)
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    align-items: center
+    justify-content: center
+    display: flex
+    border-radius: 40px
+    opacity: 0
+    font-size: 12px
+    z-index: 2
+    transition: 0.3s
+
+  .aplayer
+    background: var(--liushen-card-bg)
+    border-radius: 60px
+    height: 41px
+    display: flex
+    margin: 0
+    transition: 0.3s
+    border: var(--liushen-card-border)
+    box-shadow: none
+
+    .aplayer-notice,
+    .aplayer-miniswitcher,
+    .aplayer-list
+      display: none
+
+    .aplayer-body
+      position: relative
+      display: flex
+      align-items: center
+      min-width: 180px
+
+    .aplayer-info
+      .aplayer-music
+        margin: 0
+        display: flex
+        align-items: center
+        padding: 0 12px 0 8px
+        cursor: pointer
+        z-index: 1
+        height: 100%
+
+        .aplayer-title
+          cursor: pointer
+          line-height: 1
+          display: inline-block
+          white-space: nowrap
+          max-width: 120px
+          overflow: hidden
+          text-overflow: ellipsis
+          transition: 0.3s
+          user-select: none
+
+      .aplayer-controller
+        position: absolute
+        width: 100%
+        height: 100%
+        top: 0
+        left: 0
+
+        .aplayer-bar-wrap
+          margin: 0
+          padding: 0
+
+          .aplayer-bar
+            height: 100%
+            background: 0 0
+
+            .aplayer-loaded
+              display: none
+
+            .aplayer-played
+              height: 100%
+              opacity: 0.1
+              background-color: white !important
+              animation: lightBar 5s ease infinite
+              animation-play-state: paused
+
+    .aplayer-pic
+      pointer-events: none
+
+      .aplayer-button
+        bottom: 50%
+        right: 50%
+        transform: translate(50%, 50%)
+        margin: 0
+        transition: 0.3s
+        pointer-events all
+
+      &:has(.aplayer-button.aplayer-play)
+        animation-play-state: paused
+        transform: rotate(0deg) scale(1) !important
+
+      margin-left: 8px
+
+    .aplayer-info .aplayer-controller .aplayer-time,
+    .aplayer-info .aplayer-music .aplayer-author
+      display: none
+
+    &.aplayer-withlist .aplayer-info
+      border: none
+
+    .aplayer-lrc
+      width: 0
+      opacity: 0
+      transition: 0.3s
+      margin-bottom: -26px
+
+      p.aplayer-lrc-current
+        color: white
+        border: none
+        min-height: 20px
+        filter: none
+
+      &:after,
+      &:before
+        display: none
+
+      p
+        color: #ffffffb3
+        filter: blur(.8px)
+
+@media screen and (min-width: 600px)
+  #nav-music.stretch .aplayer.aplayer-withlrc .aplayer-lrc
+    width: 200px
+    margin-left: 8px
+    opacity: 1
+
+.aplayer-thumb
+  width: 0 !important
+  height: 0 !important

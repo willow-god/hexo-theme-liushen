@@ -226,11 +226,24 @@ if hexo-config('code_blocks.height_limit')
         & + pre
           margin-bottom: 1.8em
 
-      &:not(.expand-done)
-        & ~ table,
-        & ~ pre
-          overflow: hidden
-          height: unit(hexo-config('code_blocks.height_limit'), px)
+    .code-expand-btn ~ table
+      display: grid !important
+      grid-template-rows: 0fr
+      transition: grid-template-rows 0.3s ease-out
+      overflow-y: hidden !important
+
+    .code-expand-btn ~ table > tbody
+      min-height: 300px
+
+    .code-expand-btn.expand-done ~ table
+      grid-template-rows: 1fr
+
+
+      // &:not(.expand-done)
+      //   & ~ table,
+      //   & ~ pre
+      //     overflow: hidden
+      //     height: unit(hexo-config('code_blocks.height_limit'), px)
   
   @keyframes code-expand-key
     0%

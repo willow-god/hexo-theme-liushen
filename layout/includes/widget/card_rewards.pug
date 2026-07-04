@@ -1,0 +1,152 @@
+.card-widget.card-reward
+  .item-headline
+    .headline-content
+      i.fa-solid.fa-person-praying
+      span 能量榜
+    .show-more-inline
+      - var pageUrl = site.data.rewards.donate.page_url || '/reward/'
+      a(href=url_for(pageUrl) class="btn-show-more-inline")
+        span 前往赞赏
+  .item-content
+    if site.data.rewards && site.data.rewards.donate && site.data.rewards.donate.list.length > 0
+      - var allSponsors = site.data.rewards.donate.list.slice()
+      - allSponsors.sort(function() { return Math.random() - 0.5 })
+      - var carouselSponsors = allSponsors.slice(0, 40)
+      - var listSponsors = allSponsors.slice(0, 20)
+      
+      if carouselSponsors.length > 0
+        .top-sponsor-carousel
+          .carousel-container
+            .carousel-item
+              a.sponsor-link-card(target="_blank" rel="nofollow noopener")
+                .sponsor-avatar
+                  img.sponsor-avatar-img(src=url_for(carouselSponsors[0].avatar) alt=carouselSponsors[0].name onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
+                .sponsor-info
+                  .sponsor-name= carouselSponsors[0].name
+                  .sponsor-desc= carouselSponsors[0].description
+        
+        if listSponsors.length > 1
+          .sponsors-list
+            each sponsor in listSponsors
+              if sponsor.website
+                a.sponsor-item(href=sponsor.website target="_blank" rel="nofollow noopener")
+                  .sponsor-small-name= sponsor.name
+              else
+                .sponsor-item
+                  .sponsor-small-name= sponsor.name
+
+            if allSponsors.length > 20
+              - var pageUrl = site.data.rewards.donate.page_url || '/reward/'
+              a.sponsor-item.more-sponsor(href=url_for(pageUrl) target="_blank" rel="nofollow noopener")
+                .sponsor-small-name
+                  |  查看更多
+                  i.fa-solid.fa-angles-right
+          
+          .sponsors-note
+            p 你们的赞赏是我最大的动力
+            p ※ 此处数据随机显示
+        
+        script.
+          if (!window.sponsorsData) {
+            window.sponsorsData = !{JSON.stringify(carouselSponsors)};
+          }
+          
+          function initRewardCarousel() {
+            const container = document.querySelector('.carousel-container');
+            const link = container.querySelector('.sponsor-link-card');
+            const avatar = container.querySelector('.sponsor-avatar-img');
+            const name = container.querySelector('.sponsor-name');
+            const desc = container.querySelector('.sponsor-desc');
+            
+            if (!container || sponsorsData.length === 0) return;
+            
+            let currentIndex = 0;
+            let intervalId = null;
+            let isTransitioning = false;
+            
+            function updateSponsorInfo(sponsor) {
+              if (sponsor.website) {
+                link.href = sponsor.website;
+                // 确保有链接时移除 pointer-events 样式
+                link.style.pointerEvents = '';
+                link.style.cursor = 'pointer';
+              } else {
+                link.removeAttribute('href');
+                // 只有在没有链接时才添加 pointer-events: none
+                link.style.pointerEvents = 'none';
+                link.style.cursor = 'default';
+              }
+              
+              avatar.src = sponsor.avatar;
+              avatar.alt = sponsor.name;
+              
+              name.textContent = sponsor.name;
+              desc.textContent = sponsor.description;
+            }
+            
+            function showSponsor(index) {
+              if (index < 0 || index >= sponsorsData.length || isTransitioning) return;
+              
+              isTransitioning = true;
+              const sponsor = sponsorsData[index];
+              
+              container.style.opacity = '0';
+              
+              setTimeout(() => {
+                updateSponsorInfo(sponsor);
+                container.style.opacity = '1';
+                currentIndex = index;
+                
+                setTimeout(() => {
+                  isTransitioning = false;
+                }, 300);
+              }, 300);
+            }
+            
+            function nextSponsor() {
+              const nextIndex = (currentIndex + 1) % sponsorsData.length;
+              showSponsor(nextIndex);
+            }
+            
+            function startAutoPlay() {
+              if (intervalId) clearInterval(intervalId);
+              intervalId = setInterval(nextSponsor, 3000);
+            }
+            
+            function stopAutoPlay() {
+              if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+              }
+            }
+            
+            const carousel = document.querySelector('.top-sponsor-carousel');
+            if (carousel) {
+              carousel.addEventListener('mouseenter', stopAutoPlay);
+              carousel.addEventListener('mouseleave', startAutoPlay);
+            }
+            
+            container.style.transition = 'opacity 0.3s ease-in-out';
+            
+            // 初始化第一个赞助者信息
+            updateSponsorInfo(sponsorsData[0]);
+            
+            startAutoPlay();
+            
+            return {
+              showSponsor,
+              nextSponsor,
+              startAutoPlay,
+              stopAutoPlay
+            };
+          }
+          initRewardCarousel();
+          //- document.addEventListener("pjax:complete", function() {
+          //-   initRewardCarousel();
+          //- });
+      else
+        .no-sponsors
+          p 暂无赞助者，成为第一个支持本站的朋友吧！
+    else
+      .no-sponsors
+        p 暂无赞助者数据

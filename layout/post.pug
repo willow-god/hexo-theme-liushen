@@ -5,7 +5,10 @@ block content
     if top_img === false
       include includes/header/post-info.pug
 
-    article#article-container.post-content!=page.content
+    article#article-container.post-content
+      if page.summary && theme.ai_summary.enable
+        include includes/post/post-summary.pug
+      !=page.content
     include includes/post/post-copyright.pug
     .tag_share
       if (page.tags.length > 0 && theme.post_meta.post.tags)

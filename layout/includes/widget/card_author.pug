@@ -1,9 +1,16 @@
 if theme.aside.card_author.enable
   .card-widget.card-info.is-center
+    .author-info-detail
+      if theme.aside.card_author.hello
+        p.author-info-hello!= theme.aside.card_author.hello
+      if theme.aside.card_author.description || config.description
+        p.author-info-desc!= theme.aside.card_author.description || config.description
     .avatar-img
+      if theme.aside.card_author.mood_icon
+        img.mood-icon(src=url_for(theme.aside.card_author.mood_icon) alt="mood" onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'`)
       img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
     .author-info-name= config.author
-    .author-info-description!= theme.aside.card_author.description || config.description
+    
 
     .site-data
       a(href=url_for(config.archive_dir) + '/')
@@ -16,7 +23,7 @@ if theme.aside.card_author.enable
         .headline= _p('aside.categories') 
         .length-num= site.categories.length
 
-    if theme.aside.card_author.button.enable
+    if theme.aside.card_author.button.enable && theme.aside.card_author.button.link
       a#card-info-btn(href=theme.aside.card_author.button.link)
         i(class=theme.aside.card_author.button.icon)
         span=theme.aside.card_author.button.text

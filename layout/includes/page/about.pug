@@ -1,0 +1,130 @@
+#about-container
+  - const aboutData = site.data.about
+  - const personal = aboutData.personal_info
+  - const social = aboutData.description_and_social_links
+  - const personality = aboutData.personality
+
+  section.top-section
+    .top-content
+      .float-texts
+        each text, index in aboutData.top_info.float_text.slice(0, 4)
+          .float-text(class=`float-text-${index + 1}`) #{text}
+      .avatar-container
+        img.no-lightbox.avatar(src=url_for(aboutData.top_info.avatar) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="")
+      .float-texts
+        each text, index in aboutData.top_info.float_text.slice(4, 8)
+          .float-text(class=`float-text-${index + 5}`) #{text}
+    .site-name #{aboutData.top_info.site_name}
+    .motto #{aboutData.top_info.motto}
+
+  section.about-shell
+    .about-shell__lead.card
+      .lead-copy
+        span.eyebrow About
+        h2.lead-title 你好，我是#{personal.name}
+        p.lead-text #{social.description}
+        .lead-tags
+          span.lead-tag #{personal.school}
+          span.lead-tag #{personal.major}
+          span.lead-tag #{personal.address}
+          span.lead-tag #{personality.type} · #{personality.type_name}
+      .lead-social
+        each link in social.social_links
+          a.social-card(href=link.url, target="_blank", rel="noopener nofollow")
+            img.no-lightbox(src=url_for(link.icon) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt=link.platform)
+            span= link.platform
+
+    .about-shell__grid
+      .about-shell__main
+        .about-panel.about-panel--profile.card
+          .panel-head
+            span.panel-kicker Identity
+            h3.panel-title 基础信息
+          .info-list
+            .info-item
+              span.label 姓名
+              span.value #{personal.name}
+            .info-item
+              span.label 性别
+              span.value #{personal.gender}
+            .info-item
+              span.label 学校
+              span.value #{personal.school}
+            .info-item
+              span.label 专业
+              span.value #{personal.major}
+            .info-item
+              span.label 年级
+              span.value #{personal.grade}
+            .info-item
+              span.label 生日
+              span.value #{personal.birthday}
+            .info-item
+              span.label 地址
+              span.value #{personal.address}
+            .info-item
+              span.label 邮箱
+              a.value(href=`mailto:${personal.email}`)= personal.email
+            .info-item
+              span.label QQ
+              span.value #{personal.QQ}
+
+        .about-panel.about-panel--skills.card
+          .panel-head
+            span.panel-kicker Capabilities
+            h3.panel-title 技能与工具
+          .skills-stack
+            .skills-row
+              each skill in aboutData.skills.technical
+                .skill-chip
+                  img.no-lightbox(src=url_for(skill) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="技术图标")
+              each skill in aboutData.skills.general
+                .skill-chip
+                  img.no-lightbox(src=url_for(skill) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="通用图标")
+          p.skills-note #{aboutData.skills.learning}
+
+        .about-panel.about-panel--projects.card
+          .panel-head
+            span.panel-kicker Projects
+            h3.panel-title 在做的事
+          .project-list
+            each project in aboutData.projects
+              a.project-item(href=project.url, target="_blank", rel="noopener nofollow")
+                h4= project.name
+                p= project.description
+
+      .about-shell__side
+        .about-panel.about-panel--personality.card
+          .panel-head
+            span.panel-kicker Personality
+            h3.panel-title 性格侧写
+          .personality-card
+            .personality-copy
+              p.personality-type #{personality.type}
+              p.personality-name #{personality.type_name}
+              a.personality-link(href=url_for(personality.url), target="_blank", rel="noopener nofollow") 查看详情
+            .personality-illustration
+              img.no-lightbox(src=personality.svg onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="Personality SVG")
+
+        .about-panel.about-panel--hobbies.card
+          .panel-head
+            span.panel-kicker Lifestyle
+            h3.panel-title 兴趣偏好
+          .hobby-list
+            each hobby in aboutData.hobbies
+              span.hobby-pill= hobby
+
+        .about-panel.about-panel--evaluation.card
+          .panel-head
+            span.panel-kicker Snapshot
+            h3.panel-title 自我评价
+          .evaluation-list
+            .evaluation-item
+              span.label 思想
+              p #{aboutData.self_evaluation.thoughts}
+            .evaluation-item
+              span.label 工作
+              p #{aboutData.self_evaluation.work}
+            .evaluation-item
+              span.label 总结
+              p #{aboutData.self_evaluation.summary}

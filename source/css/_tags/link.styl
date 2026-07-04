@@ -1,48 +1,41 @@
-:root
-  --tag-link-bg-color white
-  --tag-link-text-color black
-  --tag-link-border-color white
-  --tag-link-hover-bg-color rgb(141, 216, 233)
-  --tag-link-hover-border-color black
-  --tag-link-tips-border-color black
-  --tag-link-sitename-color rgb(144, 144, 144)
-  --tag-link-hover-sitename-color black
-
-[data-theme=dark]
-  --tag-link-bg-color #2d2d2d
-  --tag-link-text-color white
-  --tag-link-border-color black
-  --tag-link-hover-bg-color #339297
-  --tag-link-hover-border-color white
-  --tag-link-tips-border-color white
-  --tag-link-sitename-color rgb(144, 144, 144)
-  --tag-link-hover-sitename-color white
-
 #article-container
   .tag-Link
-    background var(--tag-link-bg-color)
+    background var(--liushen-card-bg)
     border-radius 12px !important
     display flex
-    border 1px solid var(--tag-link-border-color)
+    border var(--liushen-card-border)
     flex-direction column
     padding 0.5rem 1rem
     margin-top 1rem
     text-decoration none !important
-    color var(--tag-link-text-color)
+    color var(--liushen-text)
     margin-bottom 10px
-    transition background-color 0.3s, border-color 0.3s, box-shadow 0.3s
+    transition background-color 0.3s ease-in-out , color 0.3s ease-in-out
 
     &:hover
-      border-color var(--tag-link-hover-border-color)
-      background-color var(--tag-link-hover-bg-color)
-      box-shadow 0 0 5px rgba(0, 0, 0, 0.2)
+      color white
+      background-color var(--liushen-button-hover-bg)
+      .tag-link-tips
+        color white
+        border-bottom 1px solid white
+      .tag-link-bottom
+        .tag-link-right
+          .tag-link-sitename
+            color rgb(210, 210, 210)
 
     .tag-link-tips
-      color var(--tag-link-text-color)
-      border-bottom 1px solid var(--tag-link-tips-border-color)
+      color var(--liushen-text)
+      border-bottom 1px solid var(--liushen-text)
       padding-bottom 4px
       font-size 0.6rem
       font-weight normal
+      transition color 0.3s ease-in-out
+      overflow hidden
+      text-overflow ellipsis
+      display -webkit-box
+      -webkit-line-clamp 1
+      -webkit-box-orient vertical
+      transition border 0.3s ease-in-out !important
 
     .tag-link-bottom
       display flex
@@ -63,16 +56,27 @@
         .tag-link-title
           font-size 1rem
           line-height 1.2
+          // 不超过两行，超出部分显示省略号
+          overflow hidden
+          text-overflow ellipsis
+          display -webkit-box
+          -webkit-line-clamp 2
+          -webkit-box-orient vertical
 
         .tag-link-sitename
           font-size 0.7rem
-          color var(--tag-link-sitename-color)
+          color var(--liushen-secondtext)
           font-weight normal
           margin-top 4px
-          transition color 0.3s
+          transition color 0.3s  ease-in-out
+          overflow: hidden
+          text-overflow: ellipsis
+          display: -webkit-box
+          -webkit-line-clamp: 2
+          -webkit-box-orient: vertical
 
         &:hover .tag-link-sitename
-          color var(--tag-link-hover-sitename-color)
+          color white
 
       i
         margin-left auto

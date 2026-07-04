@@ -31,20 +31,27 @@
     .info
       margin-top: 8px
       height: 55px
+      position: relative
+      padding-left: 40px
+      overflow: hidden
+      transition: padding-left 0.4s ease
       img
+        position: absolute
+        top: 0
+        left: 0
         width: 32px
         height: 32px
         pointer-events:none;
         border-radius: 16px !important
-        float: left
-        margin-right: 8px !important
-        transition: height 0.5s ease, width 0.5s ease, margin 0.5s ease !important
+        transition: transform 0.4s ease, opacity 0.4s ease !important
+        transform-origin: center center
       span
         display: block
+        min-width: 0
       .title
         font-weight: 600
         font-size: var(--global-font-size)
-        color: #444
+        color: var(--liushen-text)
         display: -webkit-box
         -webkit-box-orient: vertical
         overflow: hidden
@@ -61,9 +68,9 @@
         -webkit-line-clamp: 2
     &:hover
       .info
+        padding-left: 0
         img
-          width: 0px
-          height: 0px
-          margin-right: 0px
+          transform: scale(0)
+          opacity: 0
         .title
           color: #ff5722

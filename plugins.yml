@@ -95,7 +95,7 @@ fontawesome:
   name: '@fortawesome/fontawesome-free'
   file: css/all.min.css
   other_name: font-awesome
-  version: 6.6.0
+  version: 6.7.2
 gitalk:
   name: gitalk
   file: dist/gitalk.min.js
@@ -143,9 +143,9 @@ mermaid:
   file: dist/mermaid.min.js
   version: 11.3.0
 meting_js:
-  name: butterfly-extsrc
-  file: metingjs/dist/Meting.min.js
-  version: 1.1.4
+  name: meting
+  file: dist/Meting.min.js
+  version: 2.0.1
 pace_default_css:
   name: pace-js
   other_name: pace
@@ -195,10 +195,18 @@ snackbar_css:
   name: node-snackbar
   file: dist/snackbar.min.css
   version: 0.1.16
+swiper_css:
+  name: swiper
+  file: swiper-bundle.min.css
+  version: 11.1.14
+swiper_js:
+  name: swiper
+  file: swiper-bundle.min.js
+  version: 11.1.14
 twikoo:
   name: twikoo
-  file: dist/twikoo.all.min.js
-  version: 1.6.39
+  file: dist/twikoo.min.js
+  version: 1.6.41
 typed:
   name: typed.js
   file: dist/typed.umd.js

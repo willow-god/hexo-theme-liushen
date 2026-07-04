@@ -14,7 +14,7 @@
     z-index: 103
     overflow-x: hidden
     overflow-y: scroll
-    padding-left: 5px
+    // padding-left: 5px
     width: $sidebar-width
     height: 100%
     background: var(--sidebar-bg)
@@ -25,10 +25,24 @@
 
     & > .avatar-img
       margin: 20px auto
+
+    .add-menu-container
+      position: absolute
+      top: 0
+      left: 15px
+      display: flex
+      width: 50px
+      padding: 10px 0 10px 0
+      font-size: 1.2em
+      flex-direction: column
+      align-items: center
+      background-color: var(--liushen-card-bg)
+      border-radius: 0 0 30px 30px
+      
     
     #card-info-btn
       display: block
-      margin: 0.3rem 1rem 0 1rem
+      margin: 10px 20px 0 20px
       background-color: var(--btn-bg)
       color: var(--btn-color)
       text-align: center
@@ -40,19 +54,23 @@
       &:hover
         background-color: var(--btn-hover-color)
     
-    .menu-info-social-icons
-      margin: 0.5rem 0 0 0
-      .social-icon
-        display: inline
-        color: var(--font-color)
-        padding: 0 0.7rem 0 0.7rem
+    // .menu-info-social-icons
+    //   margin: 0.5rem 0 0 0
+    //   .social-icon
+    //     display: inline
+    //     color: var(--font-color)
+    //     padding: 0 0.7rem 0 0.7rem
+    //     font-size: 1.2rem
+    //     transition: color .3s
+    //     &:hover
+    //       color: var(--btn-hover-color)
 
     .site-data
       padding: 0 10px
       margin-top: 0.5rem
     
     #sidebar-avatar
-      margin-top: 0.2rem
+      margin-top: 2rem
 
       .author-info__name
         font-weight: 500
@@ -77,10 +95,12 @@
         color: var(--font-color)
         font-size: 1.15em
         cursor: pointer
+        transition: all .3s
         addBorderRadius(6)
 
         &:hover
           background: var(--text-bg-hover)
+          padding-left: 20px
           color: var(--white)
 
         i:first-child

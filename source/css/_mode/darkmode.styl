@@ -26,7 +26,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --white: alpha(#FFFFFF, .9)
     --text-highlight-color: alpha(#FFFFFF, .9)
     --blockquote-color: alpha(#FFFFFF, .7)
-    --blockquote-bg: lighten(#00344D, 10)
+    --blockquote-bg: lighten(#222222, 10)
     --reward-pop: lighten(#121212, 10)
     --toc-link-color: alpha(#FFFFFF, .6)
     --scrollbar-color: lighten(#121212, 25)
@@ -38,9 +38,18 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --better-footer-icons-bg: linear-gradient(0deg, rgba(24, 40, 72, .4), rgba(24, 40, 72, .0))
     --better-footer-icon-bg: #4f5b66
 
+    //nav
+    --liushen-nav-bg: rgba(18,18,18,.8)
+    --liushen-nav-shadow: rgba(133, 133, 133, 0) 0px 5px 6px -5px
+
+    // ai_summary
+    --liushen-maskbg: rgba(0, 0, 0, 0.85)
+    --liushen-ai-bg: conic-gradient(from 1.5708rad at 50% 50%,rgba(214, 178, 0, 0.46) 0%,rgba(66, 161, 255, 0.53) 54%,rgba(214, 178, 0, 0.49) 100%)
+
+
     // card
-    --liushen-card-bg: #181818
-    --liushen-card-secondbg: #30343f
+    --liushen-card-bg: #2d2d2d
+    --liushen-card-secondbg: #3e3f41
     --liushen-card-border: 1px solid #42444a
 
     // button
@@ -71,8 +80,7 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
     --author-card-bg-before: linear-gradient(to bottom, rgba(24, 40, 72, .1),
       rgba(35, 37, 58, .3),
       rgba(35, 37, 58, .6),
-      rgba(24, 40, 72, .7)), 
-      url(/config/img/dog.jpg)
+      rgba(24, 40, 72, .7))
 
     // 改动设置夜间模式下的背景，从配置文件中获取，如果没设置则不使用
     #web_bg
@@ -113,6 +121,12 @@ if hexo-config('darkmode.enable') || hexo-config('display_mode') == 'dark'
       &.not-top-img > #nav
         background: alpha(#121212, .8)
         box-shadow: 0 5px 6px -5px rgba(133, 133, 133, 0)
+      
+      &.full_page
+        background-image: url(hexo-config('default_dark_top_img')) !important
+
+      &.not-home-page
+        background-image: url(hexo-config('default_dark_top_img')) !important
 
     #post-comment
       .comment-switch

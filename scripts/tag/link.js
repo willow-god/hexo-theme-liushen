@@ -1,70 +1,38 @@
-function link(args) {
-    args = args.join(' ').split(',');
-    let title = args[0];
-    let sitename = args[1];
-    let link = args[2];
+function getRootDomain(url) {
+  const hostname = new URL(url).hostname;
+  const domainParts = hostname.split('.').reverse();
+  if (domainParts.length > 1) return domainParts[1] + '.' + domainParts[0];
+  return hostname;
+}
 
-    // 定义不同域名对应的头像URL
-    const avatarUrls = {
-        'github.com': 'https://cdn.qyliu.top/i/2024/07/27/66a461a3098aa.webp',
-        'csdn.net': 'https://cdn.qyliu.top/i/2024/07/27/66a461b627dc2.webp',
-        'gitee.com': 'https://cdn.qyliu.top/i/2024/07/27/66a461c3dea80.webp',
-        'zhihu.com': 'https://cdn.qyliu.top/i/2024/07/27/66a461cc20eb4.webp',
-        'stackoverflow.com': 'https://cdn.qyliu.top/i/2024/07/27/66a461d3be02e.webp',
-        'wikipedia.org': 'https://cdn.qyliu.top/i/2024/07/27/66a461db48579.webp',
-        'baidu.com': 'https://cdn.qyliu.top/i/2024/07/27/66a461e1ae5b5.webp',
-        'qyliu.top': 'https://cdn.qyliu.top/i/2024/08/01/66aae601dbc9b.webp',
-        'liushen.fun': 'https://cdn.qyliu.top/i/2024/08/01/66aae601dbc9b.webp',
-        'lius.me': 'https://cdn.qyliu.top/i/2024/08/01/66aae601dbc9b.webp',
-    };
-    
-    // 定义白名单域名
-    const whitelistDomains = [
-        'lius.me', 'qyliu.top', 'liushen.fun'
-    ];
+function tagLink(args) {
+  args = args.join(' ').split(',');
+  const title = args[0];
+  const sitename = args[1];
+  const link = args[2];
+  const linkTagConfig = hexo.theme.config.link_tag || {};
+  const avatarUrls = linkTagConfig.domain_avatars || {};
+  const whitelistDomains = linkTagConfig.whitelist || [];
 
-    // 获取URL的根域名
-    function getRootDomain(url) {
-        const hostname = new URL(url).hostname;
-        const domainParts = hostname.split('.').reverse();
-        if (domainParts.length > 1) {
-            return domainParts[1] + '.' + domainParts[0];
-        }
-        return hostname;
+  function getAvatarUrl(url) {
+    const rootDomain = getRootDomain(url);
+    for (const domain in avatarUrls) {
+      if (domain.endsWith(rootDomain)) return avatarUrls[domain];
     }
+    return linkTagConfig.default_avatar || hexo.theme.config.avatar?.img || '';
+  }
 
-    // 根据URL获取对应的头像URL
-    function getAvatarUrl(url) {
-        const rootDomain = getRootDomain(url);
-        for (const domain in avatarUrls) {
-            if (domain.endsWith(rootDomain)) {
-                return avatarUrls[domain];
-            }
-        }
-        return 'https://cdn.qyliu.top/i/2024/07/27/66a4632bbf06e.webp';  // 默认头像URL
-    }
+  function isWhitelisted(url) {
+    const rootDomain = getRootDomain(url);
+    return whitelistDomains.some(domain => rootDomain.endsWith(domain));
+  }
 
-    // 检查是否在白名单中
-    function isWhitelisted(url) {
-        const rootDomain = getRootDomain(url);
-        for (const domain of whitelistDomains) {
-            if (rootDomain.endsWith(domain)) {
-                return true;
-            }
-        }
-        return false;
-    }
+  const imgUrl = getAvatarUrl(link);
+  const tipMessage = isWhitelisted(link)
+    ? (linkTagConfig.internal_tip || 'Internal link')
+    : (linkTagConfig.external_tip || 'External link');
 
-    // 获取对应的头像URL
-    let imgUrl = getAvatarUrl(link);
-
-    // 判断并生成提示信息
-    // 判断并生成提示信息
-    let tipMessage = isWhitelisted(link)
-        ? "✅来自本站，本站可确保其安全性，请放心点击跳转"
-        : "🪧引用站外地址，不保证站点的可用性和安全性";
-
-    return `<div class='liushen-tag-link'><a class="tag-Link" target="_blank" href="${link}">
+  return `<div class='liushen-tag-link'><a class="tag-Link" target="_blank" href="${link}">
     <div class="tag-link-tips">${tipMessage}</div>
     <div class="tag-link-bottom">
         <div class="tag-link-left" style="background-image: url(${imgUrl});"></div>
@@ -77,4 +45,4 @@ function link(args) {
     </a></div>`;
 }
 
-hexo.extend.tag.register('link', link, { ends: false });
+hexo.extend.tag.register('link', tagLink, { ends: false });

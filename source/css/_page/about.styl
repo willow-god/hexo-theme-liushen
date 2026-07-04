@@ -1,0 +1,444 @@
+#about-container
+    display: flex
+    flex-direction: column
+    gap: 24px
+
+    .card
+        @extend .cardHover
+        background-color: var(--liushen-card-bg)
+        border: var(--liushen-card-border)
+        border-radius: 12px
+        position: relative
+        overflow: visible
+
+    .top-section
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        border-bottom: var(--liushen-card-border)
+        width: 100%
+        padding-bottom: 20px
+        margin-bottom: 4px
+        
+        .top-content
+            display: flex
+            align-items: center
+            margin-bottom: 20px
+
+            .float-texts
+                font-size: 14px
+                font-weight: bold
+                +maxWidth600()
+                    display: none
+                
+                .float-text
+                    margin-top: 10px
+                    background-color: var(--liushen-card-secondbg)
+                    border-radius: 20px
+                    padding: 1px 20px
+                    border: var(--liushen-card-border)
+                    width: fit-content
+                    @keyframes floatUpDown
+                        0%
+                            transform: translateY(0px)
+                        50%
+                            transform: translateY(-4px)
+                        100%
+                            transform: translateY(0px)
+                    animation: floatUpDown 4s ease-in-out infinite
+                    
+                    &.float-text-1,
+                    &.float-text-4,
+                    &.float-text-6,
+                    &.float-text-7
+                        margin-left: 20px
+                    
+                    &.float-text-1,
+                    &.float-text-5
+                        animation-delay: 0.5s
+                    &.float-text-2,
+                    &.float-text-6
+                        animation-delay: 1.0s
+                    &.float-text-3,
+                    &.float-text-7
+                        animation-delay: 1.5s
+                    &.float-text-4,
+                    &.float-text-8
+                        animation-delay: 2.0s
+
+            .avatar-container
+                background-color: var(--liushen-card-bg)
+                width: 180px
+                height: 180px
+                border-radius: 50%
+                padding: 15px
+                margin: 0 10px
+
+                .avatar
+                    width: 100%
+                    height: 100%
+                    border-radius: 50%
+
+        .site-name
+            font-size: 20px
+            font-weight: bold
+        
+        .motto
+            font-size: 14px
+            font-weight: bold
+
+    .about-shell
+        display: flex
+        flex-direction: column
+        gap: 24px
+
+    .about-shell__lead
+        display: grid
+        grid-template-columns: minmax(0, 1.5fr) minmax(260px, 0.85fr)
+        gap: 24px
+        padding: 34px 28px 28px
+        background-color: var(--liushen-card-bg)
+
+        +maxWidth900()
+            grid-template-columns: 1fr
+
+    .lead-copy
+        display: flex
+        flex-direction: column
+        gap: 14px
+        justify-content: flex-start
+
+    .eyebrow
+        width: fit-content
+        padding: 6px 12px
+        border-radius: 999px
+        background: var(--liushen-card-secondbg)
+        color: var(--theme-color)
+        font-size: 12px
+        line-height: 1.2
+        font-weight: 700
+        letter-spacing: 0.08em
+        text-transform: uppercase
+
+    .lead-title
+        margin: 0
+        font-size: clamp(28px, 4vw, 40px)
+        line-height: 1.12
+        color: var(--liushen-text)
+
+    .lead-text
+        margin: 0
+        font-size: 15px
+        line-height: 1.9
+        color: var(--liushen-secondtext)
+
+    .lead-tags
+        display: flex
+        flex-wrap: wrap
+        gap: 10px
+
+    .lead-tag
+        padding: 8px 14px
+        border-radius: 999px
+        background: var(--liushen-card-secondbg)
+        border: var(--liushen-card-border)
+        color: var(--liushen-text)
+        font-size: 13px
+
+    .lead-social
+        display: grid
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+        gap: 12px
+        align-content: start
+
+        +maxWidth500()
+            grid-template-columns: 1fr
+
+    .social-card
+        display: flex
+        align-items: center
+        gap: 12px
+        padding: 14px
+        border-radius: 18px
+        background: var(--liushen-card-secondbg)
+        border: var(--liushen-card-border)
+        color: var(--liushen-text)
+        transition: transform .3s ease
+
+        &:hover
+            transform: translateY(-3px)
+
+        img
+            width: 44px
+            height: 44px
+            border-radius: 14px
+            object-fit: cover
+
+        span
+            font-size: 14px
+            font-weight: 600
+
+    .about-shell__grid
+        display: grid
+        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr)
+        gap: 24px
+        align-items: start
+
+        +maxWidth900()
+            grid-template-columns: 1fr
+
+    .about-shell__main,
+    .about-shell__side
+        display: flex
+        flex-direction: column
+        gap: 24px
+        align-self: start
+
+    .about-panel
+        padding: 24px
+        height: auto
+
+    .panel-head
+        display: flex
+        flex-direction: column
+        gap: 6px
+        margin-bottom: 18px
+
+    .panel-kicker
+        font-size: 12px
+        font-weight: 700
+        letter-spacing: 0.08em
+        text-transform: uppercase
+        color: var(--theme-color)
+
+    .panel-title
+        margin: 0
+        font-size: 24px
+        line-height: 1.2
+        color: var(--liushen-text)
+
+    .info-list
+        display: grid
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+        gap: 14px
+
+        +maxWidth600()
+            grid-template-columns: 1fr
+
+    .info-item
+        display: flex
+        flex-direction: column
+        gap: 6px
+        padding: 14px 16px
+        border-radius: 18px
+        background-color: var(--liushen-card-secondbg)
+        border: var(--liushen-card-border)
+
+        .label
+            font-size: 12px
+            color: var(--liushen-secondtext)
+            text-transform: uppercase
+            letter-spacing: 0.06em
+
+        .value
+            color: var(--liushen-text)
+            font-size: 15px
+            line-height: 1.6
+            word-break: break-word
+
+    .skills-stack
+        display: flex
+        flex-direction: column
+        gap: 14px
+
+    .skills-row
+        display: flex
+        flex-wrap: wrap
+        gap: 12px
+
+    .skill-chip
+        width: 78px
+        height: 78px
+        padding: 10px
+        border-radius: 20px
+        background-color: var(--liushen-card-secondbg)
+        border: var(--liushen-card-border)
+        display: flex
+        align-items: center
+        justify-content: center
+        transition: transform .3s ease
+
+        &:hover
+            transform: translateY(-4px)
+
+        img
+            width: 54px
+            height: 54px
+            object-fit: cover
+            border-radius: 14px
+
+    .skills-note
+        margin: 18px 0 0
+        color: var(--liushen-secondtext)
+        font-size: 14px
+
+    .project-list
+        display: grid
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+        gap: 16px
+
+        +maxWidth700()
+            grid-template-columns: 1fr
+
+    .project-item
+        display: flex
+        flex-direction: column
+        gap: 10px
+        padding: 18px
+        border-radius: 20px
+        background-color: var(--liushen-card-secondbg)
+        border: var(--liushen-card-border)
+        min-height: 120px
+        transition: transform .3s ease
+
+        &:hover
+            transform: translateY(-4px)
+
+        h4
+            margin: 0
+            color: var(--liushen-text)
+            font-size: 18px
+
+        p
+            margin: 0
+            color: var(--liushen-secondtext)
+            line-height: 1.8
+            font-size: 14px
+
+    .personality-card
+        display: grid
+        grid-template-columns: minmax(0, 1fr) 120px
+        gap: 18px
+        align-items: center
+
+        +maxWidth500()
+            grid-template-columns: 1fr
+
+    .personality-copy
+        display: flex
+        flex-direction: column
+        gap: 10px
+
+    .personality-type
+        margin: 0
+        font-size: 14px
+        font-weight: 700
+        color: var(--theme-color)
+
+    .personality-name
+        margin: 0
+        font-size: 30px
+        font-weight: 800
+        color: var(--liushen-text)
+
+    .personality-link
+        width: fit-content
+        padding: 9px 14px
+        border-radius: 999px
+        background: var(--liushen-card-secondbg)
+        color: var(--liushen-text)
+        border: var(--liushen-card-border)
+
+    .personality-illustration
+        display: flex
+        align-items: center
+        justify-content: center
+
+        img
+            width: 100%
+            max-width: 120px
+            transition: transform .35s ease
+
+        &:hover img
+            transform: rotate(8deg) scale(1.04)
+
+    .hobby-list
+        display: flex
+        flex-wrap: wrap
+        gap: 12px
+
+    .hobby-pill
+        padding: 10px 14px
+        border-radius: 999px
+        background: var(--liushen-card-secondbg)
+        border: var(--liushen-card-border)
+        color: var(--liushen-text)
+        font-size: 14px
+
+    .evaluation-list
+        display: flex
+        flex-direction: column
+        gap: 16px
+
+    .evaluation-item
+        padding: 16px 18px
+        border-radius: 18px
+        background-color: var(--liushen-card-secondbg)
+        border: var(--liushen-card-border)
+
+        .label
+            display: inline-block
+            margin-bottom: 8px
+            color: var(--theme-color)
+            font-size: 12px
+            font-weight: 700
+            letter-spacing: 0.06em
+            text-transform: uppercase
+
+        p
+            margin: 0
+            color: var(--liushen-text)
+            line-height: 1.9
+            font-size: 14px
+
+    +maxWidth768()
+        gap: 20px
+
+        .about-shell
+            gap: 20px
+
+        .about-shell__grid
+            gap: 20px
+
+        .about-shell__main,
+        .about-shell__side
+            gap: 20px
+
+        .about-shell__lead,
+        .about-panel
+            padding: 20px
+
+    .about-shell,
+    .about-shell__lead,
+    .about-shell__grid,
+    .about-shell__main,
+    .about-shell__side,
+    .about-panel,
+    .info-list,
+    .info-item,
+    .project-list,
+    .project-item,
+    .personality-card,
+    .evaluation-list,
+    .evaluation-item
+        height: auto !important
+        min-height: 0 !important
+        max-height: none !important
+
+    .about-shell__lead,
+    .about-panel,
+    .info-item,
+    .project-item,
+    .evaluation-item
+        overflow: visible !important

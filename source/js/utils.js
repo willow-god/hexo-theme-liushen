@@ -72,18 +72,20 @@
       }
     },
 
-    snackbarShow: (text, showAction = false, duration = 4000) => {
-      const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar
-      const bg = document.documentElement.getAttribute('data-theme') === 'light' ? bgLight : bgDark
-      Snackbar.show({
-        text,
-        backgroundColor: bg,
-        showAction,
-        duration,
-        pos: position,
-        customClass: 'snackbar-css'
-      })
-    },
+    snackbarShow: (text, time = 3500) => ShowPost.pushInfo({text, time}, null),
+
+    // snackbarShow: (text, showAction = false, duration = 4000) => {
+    //   const { position, bgLight, bgDark } = GLOBAL_CONFIG.Snackbar
+    //   const bg = document.documentElement.getAttribute('data-theme') === 'light' ? bgLight : bgDark
+    //   Snackbar.show({
+    //     text,
+    //     backgroundColor: bg,
+    //     showAction,
+    //     duration,
+    //     pos: position,
+    //     customClass: 'snackbar-css'
+    //   })
+    // },
 
     diffDate: (inputDate, more = false) => {
       const dateNow = new Date()

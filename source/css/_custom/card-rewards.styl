@@ -1,0 +1,154 @@
+#aside-content
+    .card-widget.card-reward
+        padding: 8px
+        .item-headline
+            margin: 4px 4px 0 4px
+            display: flex
+            justify-content: space-between
+            align-items: center
+            
+            .headline-content
+                i
+                    font-size: 1.1em
+                    
+                span
+                    font-size: 1em
+                    font-weight: 600
+                    color: var(--liushen-text)
+                
+            .show-more-inline
+                .btn-show-more-inline
+                    display: inline-flex
+                    align-items: center
+                    padding: 4px 12px
+                    background-color: var(--liushen-card-bg)
+                    border: var(--liushen-card-border)
+                    color: var(--liushen-text)
+                    text-decoration: none
+                    border-radius: 15px
+                    font-size: 12px
+                    font-weight: 500
+                    transition: all 0.3s ease
+
+                    span
+                        margin-left: 0
+                        
+                    &:hover
+                        background-color: var(--default-bg-color)
+                        color: #fff
+                        transform: translateY(-1px)
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15)
+                        
+        .item-content
+            margin: 0 4px 4px 4px
+            
+            .top-sponsor-carousel
+                // position: relative
+                margin-bottom: 15px
+                
+                .carousel-container
+                    .carousel-item
+                        width: 100%
+                        display: flex !important
+                        align-items: center
+                        padding: 8px
+                        background-color: var(--liushen-card-bg)
+                        border-radius: 12px
+                        border: var(--liushen-card-border)
+                        
+                        &.carousel-item-new
+                            animation: slideIn 0.5s ease-out
+                        
+                        a
+                            display: flex
+                            align-items: center
+                            text-decoration: none
+                            color: var(--liushen-text)
+                            width: 100%
+                            
+                        .sponsor-avatar
+                            width: 60px
+                            height: 60px
+                            margin-right: 10px
+                            
+                            img
+                                width: 100%
+                                height: 100%
+                                border-radius: 50%
+                                object-fit: cover
+                                border: 4px solid var(--liushen-card-secondbg)
+                                
+                        .sponsor-info
+                            min-width: 0
+                            
+                            .sponsor-name
+                                font-size: 18px
+                                font-weight: 600
+                                line-height: 1
+                                margin-bottom: 12px
+                                color: var(--liushen-text)
+                                overflow: hidden
+                                text-overflow: ellipsis
+                                white-space: nowrap
+                                
+                            .sponsor-desc
+                                font-size: 14px
+                                line-height: 1
+                                color: var(--liushen-secondtext)
+                                overflow: hidden
+                                text-overflow: ellipsis
+                                white-space: nowrap
+            
+            .sponsors-list
+                display: flex
+                flex-wrap: wrap
+                gap: 10px
+                margin-bottom: 12px
+                
+                .sponsor-item
+                    display: flex
+                    align-items: center
+                    line-height: 1.2
+                    text-decoration: underline
+                    text-underline-offset: 4px
+                    text-decoration-color: var(--liushen-text)
+                    text-decoration-style: dashed
+
+                    color: var(--liushen-text)
+                    transition: all 0.2s ease
+                    white-space: nowrap
+                    border: 1px solid transparent
+                    
+                    &:hover
+                        color: var(--default-bg-color)
+                        text-decoration-color: var(--default-bg-color)
+                        transform: translateY(-2px)
+                        
+                    .sponsor-small-name
+                        font-size: 14px
+                        font-weight: 500
+                        
+            .sponsors-note
+                text-align: center
+                font-size: 12px
+                color: var(--liushen-secondtext)
+                opacity: 0.8
+
+                p
+                    margin: 0
+                
+            .no-sponsors
+                text-align: center
+                padding: 20px
+                color: var(--liushen-secondtext)
+                
+                p
+                    font-size: 14px
+
+@keyframes slideIn
+    from
+        opacity: 0
+        transform: translateX(20px)
+    to
+        opacity: 1
+        transform: translateX(0)

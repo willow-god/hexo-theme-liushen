@@ -16,7 +16,7 @@
           else
             a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
               i(class=`${i.icon}`)
-      if theme.footer_better.footer_icons.footer_logo.enable
+      if theme.footer_better.footer_icons.footer_logo.enable && theme.footer_better.footer_icons.footer_logo.url
         .footer_logo_container(onclick='btf.scrollToDest(0,500)', title='返回顶部')
           img.footer_logo(src=`${theme.footer_better.footer_icons.footer_logo.url}`)
       div
@@ -57,8 +57,13 @@
             button(title='换一批', href='javascript:;', onclick='liushen.randomLink()')
               i.fa-solid.fa-rotate-right
           .footer-links
-            - for (var i = 0; i < theme.footer_better.footer_group.footer_friend_links.number; i++)
-              a.footer-item(target='_blank', href='https://blog.liushen.fun')= '测试' + (i + 1)
+            -
+              const friendGroups = site.data.link || []
+              const footerFriends = friendGroups.reduce((result, group) => result.concat(group.link_list || []), [])
+              const friendNumber = theme.footer_better.footer_group.footer_friend_links.number || 5
+            if footerFriends.length
+              - for (var i = 0; i < Math.min(friendNumber, footerFriends.length); i++)
+                a.footer-item(target='_blank', rel='noopener external nofollow', href=footerFriends[i].link)= footerFriends[i].name
             a.footer-item(href='/link/', data-pjax-state) 查看更多
 
   #footer-bottom
@@ -71,21 +76,33 @@
           - var link = theme.footer_better.footer_bottom.copyright.link
           - var author = theme.footer_better.footer_bottom.copyright.author
           if since && since != nowYear
-            span.copyright!= `&copy;${since} - ${nowYear} By `
-              a(target='_blank', rel='noopener', href=`${link}`, title=`点击访问"${author}"的主页`, style='margin-left:5px')=author
+            span.copyright
+              i.fa-regular.fa-copyright(style='margin-right:5px')
+              | #{since} - #{nowYear} 
+              if link
+                a(target='_blank', rel='noopener', href=`${link}`, title=`点击访问"${author}"的主页`, style='margin-left:5px')=author
+              else
+                span(style='margin-left:5px')=author
           else
-            span.copyright!= `&copy;${nowYear} By `
-              a(target='_blank', rel='noopener', href=`${link}`, title=`点击访问"${author}"的主页`, style='margin-left:5px')=author
+            span.copyright
+              i.fa-regular.fa-copyright(style='margin-right:5px')
+              | #{nowYear}
+              if link
+                a(target='_blank', rel='noopener', href=`${link}`, title=`点击访问"${author}"的主页`, style='margin-left:5px')=author
+              else
+                span(style='margin-left:5px')=author
         div
           if theme.footer_better.footer_bottom.left.length != 0
             each i in theme.footer_better.footer_bottom.left
-              a.footer-bottom-link(target='_blank', href=`${i.link}`, rel='noopener external nofollow', title=`${i.desrc}`)=i.text
+              if i.link
+                a.footer-bottom-link(target='_blank', href=`${i.link}`, rel='noopener external nofollow', title=`${i.desrc}`)=i.text
       .footer-bottom-right 
         if theme.footer_better.footer_bottom.runtime.enable 
           #runtime(title='本站运行时间') 本站已苟活：0 天 0 时 0 分 0 秒
         div 
           if theme.footer_better.footer_bottom.right.length != 0
             each i in theme.footer_better.footer_bottom.right
-              a.footer-bottom-link(target='_blank', href=`${i.link}`, rel='noopener external nofollow', title=`${i.desrc}`)=i.text
+              if i.link
+                a.footer-bottom-link(target='_blank', href=`${i.link}`, rel='noopener external nofollow', title=`${i.desrc}`)=i.text
 
 include ./randomlink.pug

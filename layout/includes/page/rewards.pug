@@ -1,0 +1,103 @@
+#article-container
+  if top_img === false
+    h1.page-title= page.title
+  
+  .reward-page
+    // 感谢图片
+    .thank-image
+      img.no-lightbox(
+        src=site.data.rewards.donate.thank_img 
+        alt="感谢" 
+        onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post) + `'`
+      )
+    
+    // 收款码区域
+    .payment-codes
+      .payment-item.alipay
+        .payment-content
+          .payment-image
+            img(src=site.data.rewards.donate.alipay.image alt=site.data.rewards.donate.alipay.name)
+          .payment-info
+            .payment-name= site.data.rewards.donate.alipay.name
+            //- .payment-desc 支付宝扫一扫
+      .payment-item.wechat
+        .payment-content
+          .payment-image
+            img(src=site.data.rewards.donate.wechat.image alt=site.data.rewards.donate.wechat.name)
+          .payment-info
+            .payment-name= site.data.rewards.donate.wechat.name
+            //- .payment-desc 微信扫一扫
+    
+    // 赞赏者列表
+    .sponsors-list
+      .sponsors-header
+        .sponsors-description
+          p 你的每一份支持都是对我的莫大鼓励
+      
+      .sponsors-container
+        if site.data.rewards && site.data.rewards.donate && site.data.rewards.donate.list.length > 0
+          // 反转列表，因为最新的在最后
+          - var sortedSponsors = site.data.rewards.donate.list.slice().reverse()
+          
+          // 计算统计数据
+          - var totalCount = sortedSponsors.length
+          - var totalAmount = 0
+          - sortedSponsors.forEach(function(sponsor) {
+          -   var amount = parseFloat(String(sponsor.amount).replace('¥', ''));
+          -   if (!isNaN(amount)) {
+          -     totalAmount += amount;
+          -   }
+          - })
+          
+          each sponsor, index in sortedSponsors
+            .sponsor-item
+              if sponsor.website
+                a.sponsor-card(href=sponsor.website target="_blank" rel="noopener noreferrer" style="text-decoration: none;")
+                  .background-img(
+                    style=`background-image:url(${sponsor.avatar});background-repeat:no-repeat;background-size:cover;background-position:right;mask-image:linear-gradient(to left, transparent, black);-webkit-mask-image:linear-gradient(to left, transparent, black);`
+                    onerror=`this.onerror=null;this.style.backgroundImage='url("` + url_for(theme.error_img.post_page) + `")'`
+                  )
+                  .sponsor-card-left
+                    .sponsor-avatar-title
+                      img.no-lightbox(
+                        src=sponsor.avatar 
+                        alt='' 
+                        onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'`
+                      )
+                      .sponsor-name= sponsor.name
+                    .sponsor-desc= sponsor.description
+                  .sponsor-card-right
+                    .sponsor-amount= sponsor.amount
+                    .sponsor-date= sponsor.date ? String(sponsor.date).slice(0, 10) : ''
+              else
+                .sponsor-card(style="pointer-events: none; cursor: default;")
+                  .background-img(
+                    style=`background-image:url(${sponsor.avatar});background-repeat:no-repeat;background-size:cover;background-position:right;mask-image:linear-gradient(to left, transparent, black);-webkit-mask-image:linear-gradient(to left, transparent, black);`
+                    onerror=`this.onerror=null;this.style.backgroundImage='url("` + url_for(theme.error_img.post_page) + `")'`
+                  )
+                  .sponsor-card-left
+                    .sponsor-avatar-title
+                        img.no-lightbox(
+                          src=sponsor.avatar 
+                          alt=''
+                          onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.post_page) + `'`
+                        )
+                        .sponsor-name= sponsor.name
+                    .sponsor-desc= sponsor.description
+                  .sponsor-card-right
+                    .sponsor-amount= sponsor.amount
+                    .sponsor-date= sponsor.date ? String(sponsor.date).slice(0, 10) : ''
+          
+        else
+          .no-sponsors
+            p 暂无赞赏者数据
+
+      // 统计信息
+      .statistics
+        .total-count 共计 
+          span.stat-number= totalCount
+          |  笔打款
+        .total-amount 累计金额 
+          span.stat-number ¥#{totalAmount.toFixed(2)}
+
+  != page.content
