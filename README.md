@@ -3,343 +3,135 @@
 </div>
 
 <p align="center">
-  一个基于 hexo-theme-butterfly 的定制化 Hexo 博客主题，具有卡片式布局、丰富组件和多种可选增强功能，保持可爱、轻量和易自定义。
+  一个基于 hexo-theme-butterfly 的定制化 Hexo 博客主题，具有独特的风格和各种各样的功能，可爱又不臃肿，漂亮而不奢华！
 </p>
 
 <p align="center">
   <img src="https://fastly.jsdelivr.net/gh/god-willow/pic@main/pic/202411102327875.webp" alt="hexo-theme-LiuShen">
 </p>
 
-hexo-theme-liushen 是一个基于 [hexo-theme-butterfly](https://github.com/jerryc127/hexo-theme-butterfly) 深度调整的 Hexo 主题。主题保留 Butterfly 的核心使用体验，同时整理了卡片式布局、首页轮播、侧栏组件、评论系统、内容标签、搜索、暗色模式和若干视觉增强功能。
+## 🚧 正在开发
 
-> 当前项目仍在整理和稳定阶段，暂不计划发布 npm 包或镜像版本。推荐通过本地主题目录安装，待结构、文档和版本稳定后，再考虑 npm、镜像或其他分发方式。
+目前此主题仍在开发中，功能尚未完善，可能无法正常使用。如对 Hexo 主题配置不熟悉，请暂勿使用。
 
-## 状态说明
+---
 
-- 当前版本仍属于开源前整理阶段，配置项和部分自定义页面可能继续调整。
-- 主题默认配置会尽量保持干净，不内置作者私人站点、私有接口、图床 token 或个人页面链接。
-- 第三方服务均需要用户自行启用并填写配置，例如评论、统计、搜索、广告、说说、诗句卡片等。
-- 若你需要最稳定的基础体验，可以先关闭高级组件，只启用导航、文章、归档、标签、分类、搜索和评论等常规功能。
+## 说明
 
-## 功能概览
+hexo-theme-LiuShen 是基于 [hexo-theme-butterfly](https://github.com/jerryc127/hexo-theme-butterfly.git) 的个性化改进版本。除了延续 Butterfly 的设计风格，本主题加入了更多样化的视觉效果和功能，适合喜爱极简设计又注重功能性的用户。
 
-### 基础布局
+### 💻 安装方法
 
-- 响应式页面布局，支持桌面端与移动端访问。
-- 首页文章列表支持多种排版方式。
-- 首页顶部文章轮播，可配置显示数量、切换速度和自动播放间隔。
-- 文章页支持目录、阅读进度、版权声明、上一篇/下一篇和相关文章。
-- 支持归档页、标签页、分类页、普通页面和 404 页面。
+#### Git 安装（推荐）
 
-### 视觉与交互
-
-- 卡片式 UI，支持圆角样式和暗色模式。
-- 代码块支持多主题、复制按钮、语言显示、高度限制、自动换行和全屏查看。
-- 支持 lazyload、lightbox、PJAX、Pangu 中英文空格、Snackbar 通知。
-- 可选加载动画、页面过渡、鼠标点击特效、canvas ribbon、canvas nest 等视觉增强。
-
-### 侧栏组件
-
-- 作者卡片。
-- 公告卡片。
-- 最近文章。
-- 最新评论。
-- 分类、标签、归档。
-- 文章系列。
-- 站点信息。
-- 欢迎卡片和诗句卡片。
-- 自定义顶部/底部侧栏内容。
-
-### 搜索与内容增强
-
-- 支持本地搜索。
-- 支持 Algolia 搜索。
-- 支持 DocSearch。
-- 支持 Mermaid 图表。
-- 支持 ABCJS 乐谱渲染。
-- 支持系列文章标签、按钮、标签、隐藏内容、图库、时间线、聊天气泡、链接卡片等自定义标签插件。
-
-### 评论与统计
-
-主题集成多种评论系统模板，按需开启：
-
-- Disqus / DisqusJS
-- Gitalk
-- Valine
-- Waline
-- Twikoo
-- Artalk
-- Giscus
-- Utterances
-- Remark42
-- Facebook Comments
-- Livere
-
-统计与分析按需开启：
-
-- Busuanzi
-- Google Analytics
-- Cloudflare Web Analytics
-- Microsoft Clarity
-- Umami
-
-### 第三方扩展
-
-- 分享：Share.js、AddToAny。
-- 音乐：APlayer / Meting。
-- 聊天入口：Chatra、Tidio、DaoVoice、Crisp。
-- 广告：Google AdSense、自定义广告位。
-- PWA：可配合 `hexo-offline` 等插件启用。
-
-## 环境要求
-
-建议环境：
-
-- Node.js 18 或更高版本。
-- Hexo 6 或更高版本。
-- 已安装 Pug 与 Stylus 渲染器。
-
-在 Hexo 站点根目录安装渲染器：
-
-```bash
-npm install hexo-renderer-pug hexo-renderer-stylus --save
-```
-
-如需启用字数统计、搜索、PWA、站点地图等功能，请按自己的站点需求安装对应 Hexo 插件。
-
-## 本地安装
-
-进入 Hexo 站点根目录，将主题克隆到 `themes/liushen`：
+在博客根目录中，执行以下命令，安装最新版本：
 
 ```bash
 git clone https://github.com/willow-god/hexo-theme-liushen.git themes/liushen
 ```
 
-然后修改 Hexo 根目录的 `_config.yml`：
+#### npm 安装（仅支持 Hexo 5.0.0 以上版本）
 
-```yaml
-theme: liushen
-```
-
-清理并重新生成：
+在博客根目录中执行：
 
 ```bash
-hexo clean
-hexo generate
-hexo server
+npm i hexo-theme-liushen
 ```
 
-## 暂不支持 npm 安装
+### ⚙ 应用主题
 
-当前主题暂无 npm 包发布计划，因此不建议使用：
+1. 打开 Hexo 的配置文件 `_config.yml`
+2. 将 `theme` 字段修改为 `liushen`：
 
-```bash
-npm install hexo-theme-liushen
-```
+   ```yaml
+   theme: liushen
+   ```
 
-后续会在主题结构、配置兼容性、文档和版本号稳定后，再考虑发布 npm 包、镜像包或其他分发形式。
+> 注意：请确保已安装 pug 和 stylus 渲染器，执行以下命令进行安装：
+>
+> ```bash
+> npm install hexo-renderer-pug hexo-renderer-stylus --save
+> ```
 
-## 推荐配置方式
-
-建议不要直接大量修改主题目录内的 `_config.yml`。更推荐在 Hexo 站点根目录创建主题覆盖配置：
-
-```yaml
-# _config.liushen.yml
-```
-
-然后将需要覆盖的主题配置写入 `_config.liushen.yml`。这样升级主题时更容易合并变更。
-
-如果你习惯直接修改主题配置，也可以编辑：
-
-```text
-themes/liushen/_config.yml
-```
-
-但升级前请先备份自己的改动。
-
-## 配置入口
-
-主题主要配置集中在 `_config.yml`。常用配置块如下：
-
-| 配置项 | 说明 |
-| --- | --- |
-| `nav` | 导航栏 logo、站点名、右侧快捷入口 |
-| `menu` | 顶部导航菜单 |
-| `social` | 社交链接 |
-| `avatar` | 站点头像 |
-| `cover` | 文章封面显示规则 |
-| `index_swiper` | 首页轮播 |
-| `toc` | 文章目录 |
-| `post_copyright` | 文章版权 |
-| `aside` | 侧栏与卡片组件 |
-| `search` | 搜索 |
-| `comments` | 评论系统选择 |
-| `artalk` / `waline` / `twikoo` 等 | 对应评论系统配置 |
-| `share` | 分享功能 |
-| `darkmode` | 暗色模式 |
-| `lazyload` | 图片懒加载 |
-| `CDN` | 静态资源来源 |
-| `inject` | 自定义 head/body 注入 |
-
-## 基础配置示例
-
-```yaml
-nav:
-  logo:
-  site_name:
-  display_title: true
-  fixed: true
-  right_items:
-    # - id: random
-    #   link: javascript:randomPost()
-    #   title: 随机文章
-    #   icon: fa-solid fa-shuffle fa-fw
-    #   class: site-page
-    #   raw_link: true
-
-menu:
-  首页: / || fas fa-home
-  归档: /archives/ || fas fa-archive
-  标签: /tags/ || fas fa-tags
-  分类: /categories/ || fas fa-folder-open
-
-social:
-  fab fa-github: https://github.com/example || GitHub || "#24292e"
-  fas fa-rss: /atom.xml || RSS || "#ee802f"
-```
-
-## 评论配置
-
-先选择评论系统：
-
-```yaml
-comments:
-  use: Artalk
-  text: true
-  lazyload: false
-  count: false
-  card_post_count: false
-```
-
-再填写对应服务配置。例如 Artalk：
-
-```yaml
-artalk:
-  server: https://artalk.example.com
-  site: your-site-name
-  visitor: false
-  option:
-```
-
-主题只保留 Artalk 的基础初始化、PJAX 销毁、暗色模式切换和评论图片灯箱支持。图片上传、鉴权、图床、表情包、邮件通知等能力请在 Artalk 服务端或站点自定义脚本中自行配置，主题内不会内置作者私有上传接口或 token。
-
-## 搜索配置
-
-本地搜索示例：
-
-```yaml
-search:
-  use: local_search
-  placeholder: 搜索文章
-  local_search:
-    preload: false
-    top_n_per_article: 1
-    unescape: false
-    CDN:
-```
-
-Algolia 和 DocSearch 需要自行申请服务并填写 `appId`、`apiKey`、`indexName` 等配置。
-
-## 第三方接口说明
-
-主题默认不会启用作者个人接口。以下功能如需使用，需要自行填写接口地址：
-
-- `subtitle.api`：首页副标题接口。
-- `location_api.api`：欢迎卡片定位接口。
-- `poem_card.api`：诗句卡片接口。
-- `shuoshuo.api`：说说页面数据接口。
-- `shuoshuo.meting_api`：音乐解析接口。
-
-如果配置为空，相关功能应保持关闭或回退到静态内容。
-
-## 目录结构
-
-```text
-.
-├── _config.yml                 # 主题默认配置
-├── languages/                  # 多语言文本
-├── layout/                     # Pug 模板
-│   ├── includes/               # 页面局部模板
-│   ├── page.pug                # 普通页面入口
-│   ├── post.pug                # 文章页入口
-│   └── index.pug               # 首页入口
-├── scripts/                    # Hexo 扩展脚本、过滤器、标签插件、辅助函数
-├── source/                     # 静态资源
-│   ├── css/                    # Stylus 样式
-│   ├── img/                    # 主题图片
-│   └── js/                     # 前端脚本
-├── plugins.yml                 # CDN 资源映射
-├── package.json                # 包信息与渲染器依赖
-└── README.md                   # 项目说明
-```
-
-## 常用页面
-
-主题包含多种页面模板，使用时通常需要在 Hexo 的 `source/` 下创建对应页面，并在 front-matter 中指定类型。
-
-示例：
-
-```yaml
 ---
-title: 友链
-type: flink
+
+## 🎉 主题特色功能
+
+### 设计风格
+
+- **卡片化设计**：支持卡片式排版，使内容层次更清晰。
+- **自定义圆角/直角设计**：用户可以自由选择卡片样式，以适配不同审美。
+- **响应式布局**：支持 PC 和移动端自适应，体验一致。
+- **支持暗黑模式**：自动或手动切换夜间模式，保护眼睛。
+
+### 页面布局
+
+- **双栏布局**：双栏内容展示，方便浏览和导航。
+- **二级目录支持**：支持复杂文章目录层级，适合长文结构化展示。
+- **动态文章封面**：展示文章封面，提升视觉吸引力。
+
+### 内容展示
+
+- **多样化代码高亮配色**：支持 darker、pale night、light、ocean 等多种代码主题风格，满足不同的审美需求。
+- **文章阅读模式**：增强文章阅读体验，加入 TOC 目录、字数统计等小功能。
+- **简繁体切换**：支持简体、繁体内容切换。
+- **过期文章提醒**：可自定义设置过期提示，确保信息有效性。
+
+### 功能扩展
+
+- **搜索功能**：提供 Algolia 搜索、本地搜索等多种选择，帮助用户快速找到内容。
+- **评论系统**：集成 Disqus、Gitalk、Valine 等多种评论工具，并支持双评论系统。
+- **社交分享**：支持 Sharejs、Addtoany 等多种分享选项，提升内容传播。
+- **访客统计**：集成不蒜子访客统计，实时记录站点访客情况。
+
+### 特效和交互
+
+- **动态背景**：提供静态和彩带、Canvas Nest 动态背景，让网页更具趣味性。
+- **鼠标点击特效**：多种鼠标点击效果，如烟花、爱心等，提升互动体验。
+- **加载动画**：内置 Preloader 动画和 pace.js 加载动画条，提升网页加载视觉体验。
+
+### 工具与增强
+
+- **PWA 支持**：支持 Progressive Web App，提升移动端访问体验。
+- **SEO 优化**：支持站长验证及优化的 SEO 配置。
+- **多种图表支持**：内置 Mermaid 图表展示、照片墙等插件，适合丰富的内容展示场景。
+
 ---
+
+## 🔧 常见问题
+
+### 如何切换暗黑模式？
+
+进入 `_config.yml` 配置文件，找到 `dark_mode` 配置项，选择 `true` 即可开启夜间模式：
+
+```yaml
+dark_mode: true
 ```
 
-常见类型包括：
+### 如何更改主题配色？
 
-- `tags`
-- `categories`
-- `flink`
-- `about`
-- `devices`
-- `rewards`
-- `shuoshuo`
-- `404`
+LiuShen 主题允许通过配置文件 `_config.yml` 更改站点的整体配色。找到 `theme_color` 项，填写所需颜色值：
 
-具体页面依赖的数据文件和字段会继续整理，建议开源初期按需启用。
-
-## 自定义建议
-
-- 私人导航、社交链接、备案、统计 ID、评论密钥、搜索密钥等都应放在站点自己的配置中。
-- 不建议把个人 token、上传接口、私有图床、邮箱密钥提交到主题仓库。
-- 如需自定义 Artalk 上传，可通过 Artalk 官方配置、服务端配置或站点注入脚本实现。
-- 如需自定义 CSS/JS，优先使用 `inject` 或站点自己的静态资源目录，减少直接改主题源码的成本。
-
-## 开发命令
-
-在 Hexo 站点根目录中测试主题：
-
-```bash
-hexo clean
-hexo generate
-hexo server
+```yaml
+theme_color: "#FF6B6B"  # 示例颜色
 ```
 
-如果需要查看依赖：
+---
 
-```bash
-npm ls --depth 0
-```
+## 📝 常见问题与支持
 
-## 开源前检查清单
+1. **主题不完整或功能缺失**  
+   由于主题仍在开发中，部分功能可能尚未完善，如遇到问题可在 GitHub 提交 Issue。
 
-- 默认配置不包含作者私人域名、私人页面、私有接口或 token。
-- README 不提供不可用的 npm 安装方式。
-- 评论、搜索、统计、广告等第三方功能默认关闭或需要用户自行配置。
-- Issue 模板可直接被 GitHub 识别。
-- 主题可以通过本地 `themes/liushen` 目录安装使用。
+2. **代码高亮或特效异常**  
+   若部分特效或代码高亮异常，可尝试在配置文件中关闭或选择其他模式。
 
-## 许可证
+3. **其他问题**  
+   如有其他问题，建议查看 [hexo-theme-butterfly](https://github.com/jerryc127/hexo-theme-butterfly.git) 的文档，本主题基于 Butterfly，许多配置方法通用。
 
-本项目基于 Apache-2.0 许可证开源。主题基于 hexo-theme-butterfly 调整开发，感谢原项目及相关开源项目。
+---
+
+### 📜 版权与声明
+
+- 本项目基于 Butterfly 开发，但保留部分独有功能。
+- 若引用请遵循开源协议注明来源。

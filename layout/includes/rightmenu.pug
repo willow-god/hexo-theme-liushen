@@ -1,4 +1,8 @@
-#rightMenu
+- const rightMenuConfig = theme.right_menu || {}
+- const rightMenuEnable = rightMenuConfig.enable !== false
+- const rightMenuItems = rightMenuConfig.items || []
+if rightMenuEnable
+  #rightMenu
     .rightMenu-group.rightMenu-small
         .rightMenu-item#menu-backward
             i.fa-solid.fa-arrow-left
@@ -15,7 +19,8 @@
         a.rightMenu-item#reply(href="javascript:rm.replySelect();")
             i.fa-regular.fa-comment
             span='评论选中段落'
-    .rightMenu-group.rightMenu-line.rightMenuOther
+    if rightMenuConfig.show_default_links !== false
+      .rightMenu-group.rightMenu-line.rightMenuOther
         a.rightMenu-item.menu-link(href='/archives/')
             i.fa-solid.fa-archive
             span='文章时间线'
@@ -26,9 +31,6 @@
             i.fa-solid.fa-tags
             span='文章小标签'
     .rightMenu-group.rightMenu-line.rightMenuNormal
-        a.rightMenu-item.menu-link#menu-radompage(href='/comment/')
-            i.fa-solid.fa-shoe-prints
-            span='随心留言板'
         .rightMenu-item#menu-translate
             i.fa-solid.fa-earth-asia
             span='繁简模式切换'
@@ -38,7 +40,10 @@
         .rightMenu-item#menu-print
             i.fa-solid.fa-print.fa-fw
             span='打印整个页面'
-        a.rightMenu-item.menu-link#statement(href='/statement/')
-            i.fa-regular.fa-copyright.fa-fw
-            span='网站声明'
-#rightmenu-mask
+        if rightMenuItems.length
+            each item in rightMenuItems
+                a.rightMenu-item.menu-link(id=item.id href=item.raw_link ? item.link : url_for(item.link))
+                    if item.icon
+                        i(class=item.icon)
+                    span= item.title
+  #rightmenu-mask

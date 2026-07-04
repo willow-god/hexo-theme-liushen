@@ -1,7 +1,7 @@
 {
   "name": "hexo-theme-liushen",
   "version": "5.0.0",
-  "description": "A clean, card-style Hexo theme based on Butterfly",
+  "description": "A Simple and Card UI Design theme for Hexo",
   "main": "package.json",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,21 +10,21 @@
     "hexo",
     "theme",
     "liushen",
-    "card-ui",
+    "Card UI Design",
     "hexo-theme-liushen"
   ],
   "repository": {
-    "type": "git",
-    "url": "https://github.com/willow-god/hexo-theme-liushen.git"
+    "type" : "git",
+    "url" : "https://github.com/your-name/hexo-theme-liushen.git"
   },
   "bugs": {
-    "url": "https://github.com/willow-god/hexo-theme-liushen/issues"
+    "url": "https://github.com/your-name/hexo-theme-liushen/issues"
   },
   "dependencies": {
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-renderer-pug": "^3.0.0"
   },
-  "homepage": "https://github.com/willow-god/hexo-theme-liushen",
+  "homepage": "https://github.com/your-name/hexo-theme-liushen",
   "author": "",
   "license": "Apache-2.0"
 }

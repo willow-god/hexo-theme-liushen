@@ -74,8 +74,8 @@ window.oncontextmenu = function (event) {
         const rightMenuOther = document.querySelector('.rightMenuOther');
         // const readmode = document.getElementById('menu-readmode');
 
-        rightMenuNormal.style.display = 'block';
-        rightMenuOther.style.display = 'block';
+        if (rightMenuNormal) rightMenuNormal.style.display = 'block';
+        if (rightMenuOther) rightMenuOther.style.display = 'block';
 
         if (pageX + rmWidth > window.innerWidth) {
             pageX -= rmWidth;

@@ -23,7 +23,46 @@ script.
         site: '!{site}',
         darkMode: document.documentElement.getAttribute('data-theme') === 'dark',
         ...option,
-        pageKey: isShuoshuo ? pageKey : (option && option.pageKey) || pageKey
+        pageKey: isShuoshuo ? pageKey : (option && option.pageKey) || pageKey,
+
+        // define imgUploader function
+        imgUploader: function(file) {
+          const token = "Bearer " + "2277|gx1GgSJfiQ99iA09EOf4zgExLaG4UcBBTY0TQ9Gf";
+          const api = "https://7bu.top/api/v1/upload";
+
+          let headers = new Headers();
+          headers.set('Accept', 'application/json');
+          headers.set('Authorization', token);
+
+          let formData = new FormData();
+          formData.append('file', file);
+
+          const upload = (api, formData, headers) => {
+            return fetch(api, {
+              method: 'POST',
+              body: formData,
+              headers: headers
+            }).then((resp) => resp.json())
+              .then((resp) => {
+                const url = resp?.data?.links?.url;
+
+                if (!url) {
+                  console.error('Image upload failed: invalid response payload', resp);
+                  btf.snackbarShow('可能由于未知原因，评论区图床失效，如有必要，可以直接联系作者在其他平台交流。');
+                  return null;
+                }
+
+                return url;
+              })
+              .catch((error) => {
+                console.error('Image upload failed:', error);
+                btf.snackbarShow('可能由于未知原因，评论区图床失效，如有必要，可以直接联系作者在其他平台交流。');
+                return null;
+              });
+          };
+
+          return upload(api, formData, headers);
+        },
       })
 
       if (GLOBAL_CONFIG.lightbox === 'null') return

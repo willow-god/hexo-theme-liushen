@@ -1,8 +1,21 @@
+- const footerBetter = theme.footer_better || {}
+- const footerIcons = footerBetter.footer_icons || {}
+- const footerIconLeft = Array.isArray(footerIcons.left) ? footerIcons.left : []
+- const footerIconRight = Array.isArray(footerIcons.right) ? footerIcons.right : []
+- const footerGroup = footerBetter.footer_group || {}
+- const footerGroupLinks = Array.isArray(footerGroup.footer_group_link) ? footerGroup.footer_group_link : []
+- const footerFriendLinks = footerGroup.footer_friend_links || {}
+- const footerBottom = footerBetter.footer_bottom || {}
+- const footerCopyright = footerBottom.copyright || {}
+- const footerBottomLeft = Array.isArray(footerBottom.left) ? footerBottom.left : []
+- const footerBottomRight = Array.isArray(footerBottom.right) ? footerBottom.right : []
+- const footerRuntime = footerBottom.runtime || {}
+
 #footer-wrap(style='background: transparent')
-  if theme.footer_better.footer_icons.enable
+  if footerIcons.enable && (footerIconLeft.length || footerIconRight.length || (footerIcons.footer_logo && footerIcons.footer_logo.url))
     #footer_icons
       div
-        each i in theme.footer_better.footer_icons.left
+        each i in footerIconLeft
           if i.class == "in"
             if theme.pjax.enable
               a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
@@ -16,11 +29,11 @@
           else
             a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
               i(class=`${i.icon}`)
-      if theme.footer_better.footer_icons.footer_logo.enable && theme.footer_better.footer_icons.footer_logo.url
+      if footerIcons.footer_logo && footerIcons.footer_logo.enable && footerIcons.footer_logo.url
         .footer_logo_container(onclick='btf.scrollToDest(0,500)', title='返回顶部')
-          img.footer_logo(src=`${theme.footer_better.footer_icons.footer_logo.url}`)
+          img.footer_logo(src=`${footerIcons.footer_logo.url}`)
       div
-        each i in theme.footer_better.footer_icons.right
+        each i in footerIconRight
           if i.class == "in"
             if theme.pjax.enable
               a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
@@ -34,23 +47,25 @@
           else
             a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
               i(class=`${i.icon}`)
-  if theme.footer_better.footer_group.enable
+  if footerGroup.enable && (footerGroupLinks.length || footerFriendLinks.enable)
     #footer_content
-      each item in theme.footer_better.footer_group.footer_group_link
-        .footer-group
-          h3.footer-title=item.group_title
-          .footer-links
-            each i in item.footer_links
-              if i.class == "in"
-                if pjaxenable
-                  a.footer-item(href=`${i.link}`, data-pjax-state)=i.text
+      each item in footerGroupLinks
+        - const links = Array.isArray(item.footer_links) ? item.footer_links : []
+        if links.length
+          .footer-group
+            h3.footer-title=item.group_title
+            .footer-links
+              each i in links
+                if i.class == "in"
+                  if pjaxenable
+                    a.footer-item(href=`${i.link}`, data-pjax-state)=i.text
+                  else 
+                    a.footer-item(href=`${i.link}`)=i.text
+                else if i.class == "out"
+                  a.footer-item(target='_blank', href=`${i.link}`)=i.text
                 else 
                   a.footer-item(href=`${i.link}`)=i.text
-              else if i.class == "out"
-                a.footer-item(target='_blank', href=`${i.link}`)=i.text
-              else 
-                a.footer-item(href=`${i.link}`)=i.text
-      if theme.footer_better.footer_group.footer_friend_links.enable
+      if footerFriendLinks.enable
         .footer-group#friend-links-in-footer
           h3.footer-title
             | 友链
@@ -60,7 +75,7 @@
             -
               const friendGroups = site.data.link || []
               const footerFriends = friendGroups.reduce((result, group) => result.concat(group.link_list || []), [])
-              const friendNumber = theme.footer_better.footer_group.footer_friend_links.number || 5
+              const friendNumber = footerFriendLinks.number || 5
             if footerFriends.length
               - for (var i = 0; i < Math.min(friendNumber, footerFriends.length); i++)
                 a.footer-item(target='_blank', rel='noopener external nofollow', href=footerFriends[i].link)= footerFriends[i].name
@@ -69,12 +84,12 @@
   #footer-bottom
     .footer-bottom-content
       .footer-bottom-left
-        if theme.footer_better.footer_bottom.copyright.enable 
+        if footerCopyright.enable 
           - var now = new Date()
           - var nowYear = now.getFullYear()
-          - var since = theme.footer_better.footer_bottom.copyright.since
-          - var link = theme.footer_better.footer_bottom.copyright.link
-          - var author = theme.footer_better.footer_bottom.copyright.author
+          - var since = footerCopyright.since
+          - var link = footerCopyright.link
+          - var author = footerCopyright.author
           if since && since != nowYear
             span.copyright
               i.fa-regular.fa-copyright(style='margin-right:5px')
@@ -92,16 +107,16 @@
               else
                 span(style='margin-left:5px')=author
         div
-          if theme.footer_better.footer_bottom.left.length != 0
-            each i in theme.footer_better.footer_bottom.left
+          if footerBottomLeft.length
+            each i in footerBottomLeft
               if i.link
                 a.footer-bottom-link(target='_blank', href=`${i.link}`, rel='noopener external nofollow', title=`${i.desrc}`)=i.text
       .footer-bottom-right 
-        if theme.footer_better.footer_bottom.runtime.enable 
+        if footerRuntime.enable 
           #runtime(title='本站运行时间') 本站已苟活：0 天 0 时 0 分 0 秒
         div 
-          if theme.footer_better.footer_bottom.right.length != 0
-            each i in theme.footer_better.footer_bottom.right
+          if footerBottomRight.length
+            each i in footerBottomRight
               if i.link
                 a.footer-bottom-link(target='_blank', href=`${i.link}`, rel='noopener external nofollow', title=`${i.desrc}`)=i.text
 

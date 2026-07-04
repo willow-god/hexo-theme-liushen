@@ -12,6 +12,11 @@ hexo.extend.filter.register('before_generate', () => {
       right_items: null
     },
     menu: null,
+    right_menu: {
+      enable: true,
+      show_default_links: true,
+      items: null
+    },
     code_blocks: {
       theme: 'light',
       macStyle: false,
@@ -79,9 +84,9 @@ hexo.extend.filter.register('before_generate', () => {
       typed_option: null,
       source: false,
       api: {
-        renjian: null,
-        hitokoto: null,
-        poetry: null
+        renjian: 'https://v1.nsuuu.com/api/renjian',
+        hitokoto: 'https://v1.nsuuu.com/api/yiyan?type=hitokoto',
+        poetry: 'https://v1.nsuuu.com/api/yiyan?type=poetry'
       },
       sub: null
     },
@@ -271,13 +276,13 @@ hexo.extend.filter.register('before_generate', () => {
       }
     },
     location_api: {
-      api: null,
+      api: 'https://v1.nsuuu.com/api/ipip',
       api_key: null,
       cache_hours: 24
     },
     poem_card: {
       enable: false,
-      api: null,
+      api: 'https://v1.nsuuu.com/api/yiyan?type=poetry',
       cache_minutes: 30,
       fallback: {
         sentence: '获取失败',
