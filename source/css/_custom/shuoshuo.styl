@@ -1,3 +1,116 @@
+/* 首页说说顶栏 */
+#main_top
+  display: flex
+  justify-content: center
+  z-index: 1
+  max-width: 1200px
+  margin: 40px auto 0
+  width: 100%
+  padding: 0 15px
+
+.hide-aside #main_top
+  width: 80%
+
+.hide-aside #main_top #bber-talk
+  max-width: 936px
+
+@media screen and (min-width: 2000px)
+  .hide-aside #main_top #bber-talk
+    max-width: 80%
+
+  #main_top
+    max-width: 70%
+
+@media screen and (max-width: 1210px)
+  .hide-aside #main_top
+    padding: 0 12px
+
+@media screen and (max-width: 900px)
+  .hide-aside #main_top
+    width: 100%
+    padding: 0 15px
+
+@media screen and (max-width: 768px)
+  .hide-aside #main_top
+    padding: 0 5px
+
+  div#main_top
+    margin-top: 20px
+    padding: 0 5px
+
+#bber-talk
+  box-sizing: border-box
+  cursor: pointer
+  width: 100%
+  min-height: 50px
+  padding: .5rem 1rem
+  display: flex
+  align-items: center
+  overflow: hidden
+  font-weight: 700
+
+#bber-talk,
+#bber-talk a
+  color: var(--font-color)
+
+#bber-talk svg.icon
+  width: 1em
+  height: 1em
+  vertical-align: -.15em
+  fill: currentColor
+  overflow: hidden
+  font-size: 20px
+
+#bber-talk .item i
+  margin-left: 5px
+
+#bber-talk .talk-resource-icons
+  display: inline-flex
+  align-items: center
+
+#bber-talk > i
+  font-size: 1.1rem
+
+#bber-talk .talk-list
+  flex: 1
+  max-height: 32px
+  font-size: 16px
+  padding: 0
+  margin: 0
+  overflow: hidden
+  position: relative
+
+#bber-talk .talk-list:hover
+  color: var(--default-bg-color)
+  transition: all .2s ease-in-out
+
+#bber-talk .talk-list li
+  list-style: none
+  width: 100%
+  white-space: nowrap
+  text-overflow: ellipsis
+  overflow: hidden
+  margin-left: 10px
+  opacity: 0
+  transform: translateY(12px)
+  filter: blur(4px)
+  transition: opacity .36s ease, transform .36s ease, filter .36s ease
+
+#bber-talk .talk-list li.is-active
+  opacity: 1
+  transform: translateY(0)
+  filter: blur(0)
+
+#bber-talk .talk-list li.is-leaving
+  opacity: 0
+  transform: translateY(-12px)
+  filter: blur(4px)
+
+@media screen and (min-width: 770px)
+  #bber-talk .talk-list
+    text-align: center
+    margin-right: 20px
+
 /* 卡片初始化 */
 #talk
     position: relative

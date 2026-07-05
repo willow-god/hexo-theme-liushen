@@ -98,8 +98,6 @@ favicon: /img/favicon.ico
 avatar:
   # 头像图片地址。
   img: /img/butterfly-icon.png
-  # 是否开启头像旋转/动效。
-  effect: false
 
 # 禁用所有页面顶部图片
 disable_top_img: false

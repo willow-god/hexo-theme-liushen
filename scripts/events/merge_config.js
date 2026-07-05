@@ -30,8 +30,7 @@ hexo.extend.filter.register('before_generate', () => {
     social: null,
     favicon: '/img/favicon.png',
     avatar: {
-      img: '/img/butterfly-icon.png',
-      effect: false
+      img: '/img/butterfly-icon.png'
     },
     disable_top_img: false,
     default_top_img: null,

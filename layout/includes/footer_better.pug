@@ -12,41 +12,43 @@
 - const footerRuntime = footerBottom.runtime || {}
 
 #footer-wrap(style='background: transparent')
-  if footerIcons.enable && (footerIconLeft.length || footerIconRight.length || (footerIcons.footer_logo && footerIcons.footer_logo.url))
+  if footerIcons.enable
     #footer_icons
-      div
-        each i in footerIconLeft
-          if i.class == "in"
-            if theme.pjax.enable
-              a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
+      if footerIconLeft.length
+        div
+          each i in footerIconLeft
+            if i.class == "in"
+              if theme.pjax.enable
+                a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
+                  i(class=`${i.icon}`)
+              else
+                a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
+                  i(class=`${i.icon}`)
+            else if i.class == "out"
+              a.icon_link(rel='noopener external nofollow', href=`${i.link}`, title=`${i.desrc}`, target='_blank')
                 i(class=`${i.icon}`)
             else
               a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
                 i(class=`${i.icon}`)
-          else if i.class == "out"
-            a.icon_link(rel='noopener external nofollow', href=`${i.link}`, title=`${i.desrc}`, target='_blank')
-              i(class=`${i.icon}`)
-          else
-            a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
-              i(class=`${i.icon}`)
       if footerIcons.footer_logo && footerIcons.footer_logo.enable && footerIcons.footer_logo.url
         .footer_logo_container(onclick='btf.scrollToDest(0,500)', title='返回顶部')
           img.footer_logo(src=`${footerIcons.footer_logo.url}`)
-      div
-        each i in footerIconRight
-          if i.class == "in"
-            if theme.pjax.enable
-              a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
+      if footerIconRight.length
+        div
+          each i in footerIconRight
+            if i.class == "in"
+              if theme.pjax.enable
+                a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
+                  i(class=`${i.icon}`)
+              else
+                a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
+                  i(class=`${i.icon}`)
+            else if i.class == "out"
+              a.icon_link(rel='noopener external nofollow', href=`${i.link}`, title=`${i.desrc}`, target='_blank')
                 i(class=`${i.icon}`)
             else
               a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
                 i(class=`${i.icon}`)
-          else if i.class == "out"
-            a.icon_link(rel='noopener external nofollow', href=`${i.link}`, title=`${i.desrc}`, target='_blank')
-              i(class=`${i.icon}`)
-          else
-            a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
-              i(class=`${i.icon}`)
   if footerGroup.enable && (footerGroupLinks.length || footerFriendLinks.enable)
     #footer_content
       each item in footerGroupLinks
