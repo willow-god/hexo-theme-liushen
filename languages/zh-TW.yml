@@ -12,6 +12,10 @@ rightmenu:
   copy_failed: 複製失敗
   copy_exit_tip: 點擊彈窗外任意部分即可退出
 
+others:
+  sitemap_missing: 😭找不到 sitemap.xml 檔案，無法跳轉頁面
+  pjax_failed: Pjax 無法取得元素
+
 page:
   articles: 所有文章
   tag: 標籤

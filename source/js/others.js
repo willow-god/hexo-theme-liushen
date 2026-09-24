@@ -323,7 +323,7 @@ function randomPost() {
             pjax.loadUrl(relativeUrl);  // 使用 PJAX 跳转
         })
         .catch(() => {
-            btf.snackbarShow("😭无法找到sitemap.xml文件，没法跳转页面");
+            btf.snackbarShow(GLOBAL_CONFIG.others && GLOBAL_CONFIG.others.sitemapMissing);
         });
 }
 
@@ -554,7 +554,7 @@ function showWelcome(ipLocation) {
         const distanceText = dist === null ? '' : `<br>Distance to ${welcomeConfig.distance_label || 'site owner'}: <b><span style="color: var(--default-bg-color)">${dist}</span></b> km`;
         welcomeInfoElement.innerHTML = `Welcome from<br><b><span style="color: var(--default-bg-color)">${pos || 'Unknown'}</span></b>${distanceText}<br>Your IP: <b><span class="ip-address" style="font-size: 15px;">${ip || 'Unknown'}</span></b><br>`;
     } else {
-        console.log("Pjax无法获取元素");
+        console.log(GLOBAL_CONFIG.others && GLOBAL_CONFIG.others.pjaxFailed);
     }
 }
 

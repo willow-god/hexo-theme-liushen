@@ -12,6 +12,10 @@ rightmenu:
   copy_failed: 복사 실패
   copy_exit_tip: 팝업 바깥 아무 곳이나 클릭하면 닫힙니다
 
+others:
+  sitemap_missing: 😭 sitemap.xml 을 찾을 수 없어 페이지로 이동할 수 없습니다
+  pjax_failed: Pjax 가 요소를 가져오지 못했습니다
+
 page:
   articles: 記事一覧
   tag: タグ

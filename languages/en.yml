@@ -12,6 +12,10 @@ rightmenu:
   copy_failed: Copy failed
   copy_exit_tip: Click anywhere outside the popup to exit
 
+others:
+  sitemap_missing: 😭 sitemap.xml not found, cannot jump to a random page
+  pjax_failed: Pjax failed to fetch element
+
 page:
   articles: All Articles
   tag: Tag

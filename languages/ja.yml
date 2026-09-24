@@ -12,6 +12,10 @@ rightmenu:
   copy_failed: コピーに失敗しました
   copy_exit_tip: ポップアップの外側をクリックすると閉じます
 
+others:
+  sitemap_missing: 😭 sitemap.xml が見つからないため、ページに移動できません
+  pjax_failed: Pjax が要素を取得できません
+
 page:
   articles: 記事一覧
   tag: タグ

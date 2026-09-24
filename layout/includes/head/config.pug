@@ -92,6 +92,10 @@
     copyFailed: _p('rightmenu.copy_failed'),
     copyExitTip: _p('rightmenu.copy_exit_tip')
   })
+  const others = JSON.stringify({
+    sitemapMissing: _p('others.sitemap_missing'),
+    pjaxFailed: _p('others.pjax_failed')
+  })
 
   let highlight = 'undefined'
   let syntaxHighlighter = config.syntax_highlighter
@@ -122,6 +126,7 @@ script.
       noSupport: '!{_p("copy.noSupport")}'
     },
     rightmenu: !{rightmenu},
+    others: !{others},
     relativeDate: {
       homepage: !{theme.post_meta.page.date_format === 'relative'},
       post: !{theme.post_meta.post.date_format === 'relative'}
