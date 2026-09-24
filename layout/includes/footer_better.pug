@@ -14,44 +14,37 @@
 - const hasFooterIcons = Boolean(footerIcons.enable && (footerIconLeft.length || footerIconRight.length || hasFooterLogo))
 - const hasGroupLinks = footerGroupLinks.some(item => Array.isArray(item.footer_links) && item.footer_links.length)
 
+//- 页脚图标项。缺少 link 的条目直接跳过，避免渲染出 href="undefined"。
+mixin footerIconLink(i)
+  if i.link
+    if i.class == "in"
+      if theme.pjax.enable
+        a.icon_link(href=i.link, title=i.desrc, data-pjax-state)
+          i(class=i.icon)
+      else
+        a.icon_link(href=i.link, title=i.desrc)
+          i(class=i.icon)
+    else if i.class == "out"
+      a.icon_link(rel='noopener external nofollow', href=i.link, title=i.desrc, target='_blank')
+        i(class=i.icon)
+    else
+      a.icon_link(href=i.link, title=i.desrc)
+        i(class=i.icon)
+
 #footer-wrap(style='background: transparent')
   if hasFooterIcons
     #footer_icons
       if footerIconLeft.length
         div
           each i in footerIconLeft
-            if i.class == "in"
-              if theme.pjax.enable
-                a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
-                  i(class=`${i.icon}`)
-              else
-                a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
-                  i(class=`${i.icon}`)
-            else if i.class == "out"
-              a.icon_link(rel='noopener external nofollow', href=`${i.link}`, title=`${i.desrc}`, target='_blank')
-                i(class=`${i.icon}`)
-            else
-              a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
-                i(class=`${i.icon}`)
+            +footerIconLink(i)
       if hasFooterLogo
         .footer_logo_container(onclick='btf.scrollToDest(0,500)', title='返回顶部')
           img.footer_logo(src=`${footerIcons.footer_logo.url}`)
       if footerIconRight.length
         div
           each i in footerIconRight
-            if i.class == "in"
-              if theme.pjax.enable
-                a.icon_link(href=`${i.link}`, title=`${i.desrc}`,data-pjax-state)
-                  i(class=`${i.icon}`)
-              else
-                a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
-                  i(class=`${i.icon}`)
-            else if i.class == "out"
-              a.icon_link(rel='noopener external nofollow', href=`${i.link}`, title=`${i.desrc}`, target='_blank')
-                i(class=`${i.icon}`)
-            else
-              a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
-                i(class=`${i.icon}`)
+            +footerIconLink(i)
   if footerGroup.enable && (hasGroupLinks || footerFriendLinks.enable)
     #footer_content
       each item in footerGroupLinks
