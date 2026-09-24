@@ -10,9 +10,12 @@
 - const footerBottomLeft = Array.isArray(footerBottom.left) ? footerBottom.left : []
 - const footerBottomRight = Array.isArray(footerBottom.right) ? footerBottom.right : []
 - const footerRuntime = footerBottom.runtime || {}
+- const hasFooterLogo = Boolean(footerIcons.footer_logo && footerIcons.footer_logo.enable && footerIcons.footer_logo.url)
+- const hasFooterIcons = Boolean(footerIcons.enable && (footerIconLeft.length || footerIconRight.length || hasFooterLogo))
+- const hasGroupLinks = footerGroupLinks.some(item => Array.isArray(item.footer_links) && item.footer_links.length)
 
 #footer-wrap(style='background: transparent')
-  if footerIcons.enable
+  if hasFooterIcons
     #footer_icons
       if footerIconLeft.length
         div
@@ -30,7 +33,7 @@
             else
               a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
                 i(class=`${i.icon}`)
-      if footerIcons.footer_logo && footerIcons.footer_logo.enable && footerIcons.footer_logo.url
+      if hasFooterLogo
         .footer_logo_container(onclick='btf.scrollToDest(0,500)', title='返回顶部')
           img.footer_logo(src=`${footerIcons.footer_logo.url}`)
       if footerIconRight.length
@@ -49,7 +52,7 @@
             else
               a.icon_link(href=`${i.link}`, title=`${i.desrc}`)
                 i(class=`${i.icon}`)
-  if footerGroup.enable && (footerGroupLinks.length || footerFriendLinks.enable)
+  if footerGroup.enable && (hasGroupLinks || footerFriendLinks.enable)
     #footer_content
       each item in footerGroupLinks
         - const links = Array.isArray(item.footer_links) ? item.footer_links : []
