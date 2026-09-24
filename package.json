@@ -15,16 +15,16 @@
   ],
   "repository": {
     "type" : "git",
-    "url" : "https://github.com/your-name/hexo-theme-liushen.git"
+    "url" : "git+https://github.com/willow-god/hexo-theme-liushen.git"
   },
   "bugs": {
-    "url": "https://github.com/your-name/hexo-theme-liushen/issues"
+    "url": "https://github.com/willow-god/hexo-theme-liushen/issues"
   },
   "dependencies": {
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-renderer-pug": "^3.0.0"
   },
-  "homepage": "https://github.com/your-name/hexo-theme-liushen",
-  "author": "",
+  "homepage": "https://github.com/willow-god/hexo-theme-liushen",
+  "author": "LiuShen",
   "license": "Apache-2.0"
 }

@@ -6,10 +6,6 @@
   一个基于 hexo-theme-butterfly 的定制化 Hexo 博客主题，具有独特的风格和各种各样的功能，可爱又不臃肿，漂亮而不奢华！
 </p>
 
-<p align="center">
-  <img src="https://fastly.jsdelivr.net/gh/god-willow/pic@main/pic/202411102327875.webp" alt="hexo-theme-LiuShen">
-</p>
-
 ## 🚧 正在开发
 
 目前此主题仍在开发中，功能尚未完善，可能无法正常使用。如对 Hexo 主题配置不熟悉，请暂勿使用。
