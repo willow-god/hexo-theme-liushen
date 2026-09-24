@@ -1559,6 +1559,10 @@ shuoshuo:
   source: api
   # source 为 local 时的数据文件路径（相对站点根目录）。
   local_file: /shuoshuo.json
+  # 是否在首页显示说说轮播条。
+  # 注意：本主题未内置把内容填入 .talk-list 的填充器，开启后首页会一直停在
+  # 「说说加载中。。。」，需自行接入数据来源后再打开。故默认关闭。
+  home_talk: false
   # 说说 API 地址。
   api:
   # 说说详情或外链的基础地址。

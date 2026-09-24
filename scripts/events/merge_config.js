@@ -497,6 +497,7 @@ hexo.extend.filter.register('before_generate', () => {
       enable: false,
       source: 'api',
       local_file: '/shuoshuo.json',
+      home_talk: false,
       api: null,
       base_url: null,
       avatar: null,

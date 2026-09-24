@@ -1,4 +1,9 @@
-if (is_home())
+//- 首页说说轮播条。
+//- 该区块依赖一个把内容填进 .talk-list 的「填充器」，而本主题当前并未内置
+//- 任何填充器（source/css/_custom/shuoshuo.styl 里的 #bber-talk 样式是为它预留的）。
+//- 因此在提供填充器之前，这里默认不渲染，避免首页长期停留在「说说加载中。。。」。
+//- 需要时把 shuoshuo.home_talk 打开，并自行接入数据来源。
+if is_home() && theme.shuoshuo && theme.shuoshuo.home_talk
   #main_top
     #bber-talk.cardHover.bb_talk_swipper(onclick=`pjax.loadUrl("/shuoshuo/")`)
       i.fa-regular.fa-pen-to-square
