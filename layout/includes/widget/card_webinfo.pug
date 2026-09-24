@@ -25,8 +25,9 @@ if theme.aside.card_webinfo.enable
       else if theme.busuanzi.site_uv
         .webinfo-item
           .item-name= _p('aside.card_webinfo.site_uv_name') + " :"
-          .item-count#busuanzi_site_uv
-            i.fa-solid.fa-spinner.fa-spin
+          .item-count
+            span#busuanzi_container_site_uv(style='display:none')
+              span#busuanzi_value_site_uv
       if theme.umami_analytics.enable && theme.umami_analytics.UV_PV.site_pv
         .webinfo-item
           .item-name= _p('aside.card_webinfo.site_pv_name') + " :"
@@ -35,8 +36,9 @@ if theme.aside.card_webinfo.enable
       else if theme.busuanzi.site_pv
         .webinfo-item
           .item-name= _p('aside.card_webinfo.site_pv_name') + " :"
-          .item-count#busuanzi_site_pv
-            i.fa-solid.fa-spinner.fa-spin
+          .item-count
+            span#busuanzi_container_site_pv(style='display:none')
+              span#busuanzi_value_site_pv
       if theme.aside.card_webinfo.last_push_date
         .webinfo-item
           .item-name= _p('aside.card_webinfo.last_push_date.name') + " :"
