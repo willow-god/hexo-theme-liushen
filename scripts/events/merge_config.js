@@ -331,6 +331,8 @@ hexo.extend.filter.register('before_generate', () => {
       total_wordcount: true
     },
     busuanzi: {
+      provider: 'vercount',
+      cdn: null,
       site_uv: false,
       site_pv: false,
       page_pv: false

@@ -870,6 +870,11 @@ wordcount:
 
 # Busuanzi 网站 PV / UV 统计。会请求第三方统计脚本；开源默认关闭。
 busuanzi:
+  # 计数服务来源。选择: vercount / busuanzi / custom
+  # vercount 为不蒜子的兼容替代，更稳定，且会自动同步既有不蒜子数据。
+  provider: vercount
+  # provider 为 custom 时的脚本地址。留空则使用 provider 对应的默认地址。
+  cdn:
   # 是否显示全站访客数 UV。
   site_uv: false
   # 是否显示全站访问量 PV。

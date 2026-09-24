@@ -62,7 +62,7 @@ div
   if theme.umami_analytics.enable
     != partial("includes/third-party/umami_analytics", {}, { cache: true })
 
-  if theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv
-    script(async data-pjax src= theme.asset.busuanzi || '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')
+  if (theme.busuanzi.site_uv || theme.busuanzi.site_pv || theme.busuanzi.page_pv) && counter_script_url()
+    script(async data-pjax src=counter_script_url())
 
   != partial('includes/third-party/search/index', {}, { cache: true })
