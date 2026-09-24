@@ -25,7 +25,7 @@ var lastMessageTime = 0;
 function showMessageOnceInFiveMinutes() {
     var currentTime = Date.now();
     if (currentTime - lastMessageTime >= 5 * 60 * 1000) {
-        btf.snackbarShow('按住ctrl再右键点击可以恢复原菜单哦！');
+        btf.snackbarShow(GLOBAL_CONFIG.rightmenu && GLOBAL_CONFIG.rightmenu.restoreMenu);
         lastMessageTime = currentTime;
     }
 }
@@ -191,10 +191,10 @@ rm.copySelect = function(){
     if (selectedText) {
         navigator.clipboard.writeText(selectedText).then(
             () => {
-                btf.snackbarShow('复制啦！请注意版权信息哦！');
+                btf.snackbarShow(GLOBAL_CONFIG.copy && GLOBAL_CONFIG.copy.success);
             }
         ).catch((err) => {
-            console.error('复制失败:', err);
+            console.error((GLOBAL_CONFIG.rightmenu && GLOBAL_CONFIG.rightmenu.copyFailed) + ':', err);
         });
     }
 }
@@ -224,7 +224,7 @@ function showPopupWithComments() {
         ...(popupConfig.artalk.option || {})
     });
 
-    btf.snackbarShow('点击弹窗外任意部分即可退出');
+    btf.snackbarShow(GLOBAL_CONFIG.rightmenu && GLOBAL_CONFIG.rightmenu.copyExitTip);
 
     setTimeout(() => {
         overlay.style.opacity = 1;

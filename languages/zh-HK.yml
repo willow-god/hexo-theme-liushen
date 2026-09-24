@@ -7,6 +7,11 @@ copy:
   error: 複製失敗
   noSupport: 瀏覽器不支援
 
+rightmenu:
+  restore_menu: 按住 ctrl 再右鍵點擊可以恢復原選單哦！
+  copy_failed: 複製失敗
+  copy_exit_tip: 點擊彈窗外任意部分即可退出
+
 page:
   articles: 全部文章
   tag: 標籤

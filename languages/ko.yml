@@ -7,6 +7,11 @@ copy:
   error: コピー失敗
   noSupport: ブラウザが対応していません
 
+rightmenu:
+  restore_menu: Ctrl 키를 누른 채 마우스 오른쪽 버튼을 클릭하면 원래 메뉴로 돌아갑니다
+  copy_failed: 복사 실패
+  copy_exit_tip: 팝업 바깥 아무 곳이나 클릭하면 닫힙니다
+
 page:
   articles: 記事一覧
   tag: タグ

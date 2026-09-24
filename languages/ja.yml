@@ -7,6 +7,11 @@ copy:
   error: コピー失敗
   noSupport: ブラウザが対応していません
 
+rightmenu:
+  restore_menu: Ctrl キーを押しながら右クリックすると元のメニューに戻ります
+  copy_failed: コピーに失敗しました
+  copy_exit_tip: ポップアップの外側をクリックすると閉じます
+
 page:
   articles: 記事一覧
   tag: タグ

@@ -87,6 +87,11 @@
     artalk: theme.artalk || {},
     enabled: Boolean(theme.artalk && theme.artalk.server && theme.artalk.site)
   })
+  const rightmenu = JSON.stringify({
+    restoreMenu: _p('rightmenu.restore_menu'),
+    copyFailed: _p('rightmenu.copy_failed'),
+    copyExitTip: _p('rightmenu.copy_exit_tip')
+  })
 
   let highlight = 'undefined'
   let syntaxHighlighter = config.syntax_highlighter
@@ -116,6 +121,7 @@ script.
       error: '!{_p("copy.error")}',
       noSupport: '!{_p("copy.noSupport")}'
     },
+    rightmenu: !{rightmenu},
     relativeDate: {
       homepage: !{theme.post_meta.page.date_format === 'relative'},
       post: !{theme.post_meta.post.date_format === 'relative'}

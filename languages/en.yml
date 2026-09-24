@@ -7,6 +7,11 @@ copy:
   error: Copy Failed
   noSupport: Browser Not Supported
 
+rightmenu:
+  restore_menu: Hold Ctrl and right-click to restore the original menu.
+  copy_failed: Copy failed
+  copy_exit_tip: Click anywhere outside the popup to exit
+
 page:
   articles: All Articles
   tag: Tag

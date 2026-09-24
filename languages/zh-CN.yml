@@ -7,6 +7,11 @@ copy:
   error: 😪呜呜，复制失败了！
   noSupport: 🤐浏览器不支持呢，你用的啥玩意？
 
+rightmenu:
+  restore_menu: 按住 ctrl 再右键点击可以恢复原菜单哦！
+  copy_failed: 复制失败
+  copy_exit_tip: 点击弹窗外任意部分即可退出
+
 page:
   articles: 全部文章
   tag: 标签
