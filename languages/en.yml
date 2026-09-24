@@ -14,6 +14,7 @@ rightmenu:
 
 others:
   sitemap_missing: 😭 sitemap.xml not found, cannot jump to a random page
+  shuoshuo_empty: No posts yet
   pjax_failed: Pjax failed to fetch element
 
 page:

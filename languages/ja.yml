@@ -14,6 +14,7 @@ rightmenu:
 
 others:
   sitemap_missing: 😭 sitemap.xml が見つからないため、ページに移動できません
+  shuoshuo_empty: まだ投稿がありません
   pjax_failed: Pjax が要素を取得できません
 
 page:

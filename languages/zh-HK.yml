@@ -14,6 +14,7 @@ rightmenu:
 
 others:
   sitemap_missing: 😭找不到 sitemap.xml 檔案，無法跳轉頁面
+  shuoshuo_empty: 暫無說說
   pjax_failed: Pjax 無法取得元素
 
 page:

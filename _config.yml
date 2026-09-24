@@ -1553,6 +1553,12 @@ link_tag:
 shuoshuo:
   # 是否启用说说数据功能。
   enable: false
+  # 数据来源。选择: api / local
+  # api   - 从后端接口读取，功能完整，支持发布与点赞。
+  # local - 从站点静态 JSON 读取，只读展示，无需后端即可运行。
+  source: api
+  # source 为 local 时的数据文件路径（相对站点根目录）。
+  local_file: /shuoshuo.json
   # 说说 API 地址。
   api:
   # 说说详情或外链的基础地址。

@@ -461,13 +461,39 @@ function renderTalks() {
         shuoshuoState.afterRenderTimer = window.setTimeout(afterRender, 300);
     };
 
+    const renderEmptyState = () => {
+        const message = (GLOBAL_CONFIG.others && GLOBAL_CONFIG.others.shuoshuoEmpty) || '';
+        const empty = document.createElement('div');
+        empty.className = 'shuoshuo-empty';
+        empty.textContent = message;
+        talkContainer.appendChild(empty);
+    };
+
+    const renderList = (list) => {
+        const items = Array.isArray(list) ? list : [];
+        if (!items.length) {
+            renderEmptyState();
+            return;
+        }
+        renderTalksList(items);
+    };
+
     const fetchTalks = () => {
+        // local 模式：从站点静态 JSON 读取，只读展示，不发起任何后端请求
+        if (shuoshuoConfig.source === 'local') {
+            fetch(shuoshuoConfig.local_file || '/shuoshuo.json')
+                .then(response => (response.ok ? response.json() : []))
+                .catch(() => [])
+                .then(list => renderList(list));
+            return;
+        }
+
         const cachedData = localStorage.getItem(TALK_CACHE_KEY);
         const cachedTime = Number(localStorage.getItem(TALK_CACHE_TIME_KEY));
         const now = Date.now();
 
         if (cachedData && cachedTime && now - cachedTime < TALK_CACHE_DURATION) {
-            renderTalksList(JSON.parse(cachedData));
+            renderList(JSON.parse(cachedData));
             return;
         }
 
@@ -480,13 +506,13 @@ function renderTalks() {
             .then(data => {
                 if (data?.code !== 1 || !Array.isArray(data?.data?.items)) {
                     console.warn('Unexpected API response format:', data);
-                    renderTalksList([]);
+                    renderList([]);
                     return;
                 }
 
                 localStorage.setItem(TALK_CACHE_KEY, JSON.stringify(data.data.items));
                 localStorage.setItem(TALK_CACHE_TIME_KEY, now.toString());
-                renderTalksList(data.data.items);
+                renderList(data.data.items);
             })
             .catch(error => console.error('Error fetching data:', error));
     };

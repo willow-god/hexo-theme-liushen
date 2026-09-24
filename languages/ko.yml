@@ -14,6 +14,7 @@ rightmenu:
 
 others:
   sitemap_missing: 😭 sitemap.xml 을 찾을 수 없어 페이지로 이동할 수 없습니다
+  shuoshuo_empty: 아직 작성된 글이 없습니다
   pjax_failed: Pjax 가 요소를 가져오지 못했습니다
 
 page:
