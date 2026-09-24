@@ -1,6 +1,8 @@
 (function () {
 const shuoshuoConfig = GLOBAL_CONFIG?.shuoshuo || {};
-if (!shuoshuoConfig.enable || !shuoshuoConfig.api) return;
+// 只在未启用时退出。api 模式的地址校验放在 fetchTalks 内 ——
+// 否则 source=local 时 api 为空会让整个脚本提前 return，local 分支永远不可达。
+if (!shuoshuoConfig.enable) return;
 
 const TALK_API_URL = shuoshuoConfig.api;
 const TALK_CACHE_KEY = 'liushenEchoCacheV2';
@@ -358,9 +360,11 @@ function renderTalks() {
 
         return {
             content,
-            user: item?.username || '匿名',
+            // api 模式返回 username/created_at；本地数据文件沿用 page/shuoshuo.pug
+            // 的 author/date 约定，这里两种都兼容。
+            user: item?.username || item?.author || '匿名',
             avatar: TALK_AVATAR,
-            date: formatTime(item?.created_at),
+            date: formatTime(item?.created_at || item?.date),
             tags: getEchoTags(item),
             quoteText: textContent
         };
@@ -487,6 +491,9 @@ function renderTalks() {
                 .then(list => renderList(list));
             return;
         }
+
+        // api 模式缺少接口地址时不渲染（保持原有行为，避免请求 undefined）
+        if (!TALK_API_URL) return;
 
         const cachedData = localStorage.getItem(TALK_CACHE_KEY);
         const cachedTime = Number(localStorage.getItem(TALK_CACHE_TIME_KEY));
